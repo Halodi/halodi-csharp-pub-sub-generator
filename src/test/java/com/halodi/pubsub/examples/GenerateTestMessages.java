@@ -25,7 +25,7 @@ public class GenerateTestMessages
       for (Path idl : Files.list(Paths.get("idl")).toArray(Path[]::new))
       {
          IDLGenerator.execute(idl.toFile(),
-                              "com.halodi.idl.generated",
+                              "",
                               Paths.get("generated-java").toFile(),
                               Arrays.asList(Paths.get("idl").toFile()));
       }

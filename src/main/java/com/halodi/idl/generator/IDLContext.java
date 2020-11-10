@@ -97,7 +97,7 @@ public class IDLContext extends Context
 
    public String getProduct()
    {
-      return "IHMC IDL Generator";
+      return "Halodi CSharp IDL Generator";
    }
 
    public String getNamespace()

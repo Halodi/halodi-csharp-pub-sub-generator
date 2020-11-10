@@ -43,20 +43,7 @@ type_c(package, name) ::= <<$package$$name$>>
 type_10(package, name) ::= <<$name$>>
 
 // TODO Para que sirve empty en FastBuffers?
-type_e(package, type, maxsize, empty) ::= <<us.ihmc.idl.IDLSequence$if(type_e_content_types.(type))$$type_e_content_types.(type)$$else$.Object<$type$>$endif$ $empty$>>
-
-type_e_content_types ::= [
-	"boolean":".Boolean",
-	"byte":".Byte",
-	"char":".Char",
-	"short":".Short",
-	"int":".Integer",
-	"long":".Long",
-	"float":".Float",
-	"double":".Double",
-	"java.lang.StringBuilder":".StringBuilderHolder",
-    default:
-]
+type_e(package, type, maxsize, empty) ::= <<System.Collections.Generic.List<$type$>$empty$>>
 
 initialValues ::= [
     "type_d":"\"\"",

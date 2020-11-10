@@ -227,11 +227,11 @@ class TypesGenerator
                         st.setAttribute("extension", extensionst.toString());
                      }
 
-                     String fileName = packagDir + ifc.getName() + moduleNamePostfix + ".java";
+                     String fileName = packagDir + ifc.getName() + moduleNamePostfix + ".cs";
                      System.out.println("[IDL -> PubSub] Generating " + fileName);
                      if (!writeFile(fileName, st))
                      {
-                        System.out.println(ColorMessage.error() + "Cannot write file " + packagDir + ifc.getName() + ".java");
+                        System.out.println(ColorMessage.error() + "Cannot write file " + packagDir + ifc.getName() + ".cs");
                         return false;
                      }
                   }
@@ -271,11 +271,11 @@ class TypesGenerator
                            st.setAttribute("extension", extensionst.toString());
                         }
 
-                        String fileName = packagDir + typedecl.getName() + moduleNamePostfix + ".java";
+                        String fileName = packagDir + typedecl.getName() + moduleNamePostfix + ".cs";
                         System.out.println("[IDL -> PubSub] Generating " + fileName);
                         if (!writeFile(fileName, st))
                         {
-                           System.out.println(ColorMessage.error() + "Cannot write file " + packagDir + typedecl.getName() + ".java");
+                           System.out.println(ColorMessage.error() + "Cannot write file " + packagDir + typedecl.getName() + ".cs");
                            return false;
                         }
                      }
