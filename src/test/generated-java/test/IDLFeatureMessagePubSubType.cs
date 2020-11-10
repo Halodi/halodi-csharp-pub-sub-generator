@@ -193,10 +193,6 @@ public class IDLFeatureMessagePubSubType : Halodi.TopicDataType<test.IDLFeatureM
    }
 
 
-   public override int getTypeSize()
-   {
-      return us.ihmc.idl.CDR.getTypeSize(getMaxCdrSerializedSize());
-   }
 
    public override string getName()
    {

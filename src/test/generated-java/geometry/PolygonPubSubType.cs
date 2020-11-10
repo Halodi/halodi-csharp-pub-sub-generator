@@ -71,10 +71,6 @@ public class PolygonPubSubType : Halodi.TopicDataType<geometry.Polygon>
    }
 
 
-   public override int getTypeSize()
-   {
-      return us.ihmc.idl.CDR.getTypeSize(getMaxCdrSerializedSize());
-   }
 
    public override string getName()
    {

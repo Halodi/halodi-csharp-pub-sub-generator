@@ -79,10 +79,6 @@ public class BigMessagePubSubType : Halodi.TopicDataType<test.BigMessage>
    }
 
 
-   public override int getTypeSize()
-   {
-      return us.ihmc.idl.CDR.getTypeSize(getMaxCdrSerializedSize());
-   }
 
    public override string getName()
    {

@@ -110,10 +110,6 @@ public class VectorPubSubType : Halodi.TopicDataType<geometry.Vector>
    }
 
 
-   public override int getTypeSize()
-   {
-      return us.ihmc.idl.CDR.getTypeSize(getMaxCdrSerializedSize());
-   }
 
    public override string getName()
    {

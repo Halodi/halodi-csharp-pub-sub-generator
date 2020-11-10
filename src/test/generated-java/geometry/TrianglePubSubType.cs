@@ -68,10 +68,6 @@ public class TrianglePubSubType : Halodi.TopicDataType<geometry.Triangle>
    }
 
 
-   public override int getTypeSize()
-   {
-      return us.ihmc.idl.CDR.getTypeSize(getMaxCdrSerializedSize());
-   }
 
    public override string getName()
    {

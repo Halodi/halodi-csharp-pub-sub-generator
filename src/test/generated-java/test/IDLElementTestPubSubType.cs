@@ -470,10 +470,6 @@ public class IDLElementTestPubSubType : Halodi.TopicDataType<test.IDLElementTest
    }
 
 
-   public override int getTypeSize()
-   {
-      return us.ihmc.idl.CDR.getTypeSize(getMaxCdrSerializedSize());
-   }
 
    public override string getName()
    {

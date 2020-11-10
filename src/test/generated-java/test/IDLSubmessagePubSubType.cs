@@ -84,10 +84,6 @@ public class IDLSubmessagePubSubType : Halodi.TopicDataType<test.IDLSubmessage>
    }
 
 
-   public override int getTypeSize()
-   {
-      return us.ihmc.idl.CDR.getTypeSize(getMaxCdrSerializedSize());
-   }
 
    public override string getName()
    {

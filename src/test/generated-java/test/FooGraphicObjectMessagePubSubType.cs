@@ -110,10 +110,6 @@ public class FooGraphicObjectMessagePubSubType : Halodi.TopicDataType<test.FooGr
    }
 
 
-   public override int getTypeSize()
-   {
-      return us.ihmc.idl.CDR.getTypeSize(getMaxCdrSerializedSize());
-   }
 
    public override string getName()
    {

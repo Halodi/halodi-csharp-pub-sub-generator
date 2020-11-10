@@ -124,10 +124,6 @@ public class FooYoVariableDefinitionPubSubType : Halodi.TopicDataType<test.FooYo
    }
 
 
-   public override int getTypeSize()
-   {
-      return us.ihmc.idl.CDR.getTypeSize(getMaxCdrSerializedSize());
-   }
 
    public override string getName()
    {

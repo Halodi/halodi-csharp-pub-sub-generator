@@ -69,10 +69,6 @@ public class FooJointDefinitionPubSubType : Halodi.TopicDataType<test.FooJointDe
    }
 
 
-   public override int getTypeSize()
-   {
-      return us.ihmc.idl.CDR.getTypeSize(getMaxCdrSerializedSize());
-   }
 
    public override string getName()
    {

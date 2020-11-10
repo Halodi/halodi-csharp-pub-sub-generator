@@ -82,10 +82,6 @@ public class BoxPubSubType : Halodi.TopicDataType<geometry.Box>
    }
 
 
-   public override int getTypeSize()
-   {
-      return us.ihmc.idl.CDR.getTypeSize(getMaxCdrSerializedSize());
-   }
 
    public override string getName()
    {

@@ -73,10 +73,6 @@ public class ChatMessagePubSubType : Halodi.TopicDataType<chat.ChatMessage>
    }
 
 
-   public override int getTypeSize()
-   {
-      return us.ihmc.idl.CDR.getTypeSize(getMaxCdrSerializedSize());
-   }
 
    public override string getName()
    {

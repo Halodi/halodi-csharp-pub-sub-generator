@@ -77,10 +77,6 @@ public class FooEnumTypePubSubType : Halodi.TopicDataType<test.FooEnumType>
    }
 
 
-   public override int getTypeSize()
-   {
-      return us.ihmc.idl.CDR.getTypeSize(getMaxCdrSerializedSize());
-   }
 
    public override string getName()
    {

@@ -70,10 +70,6 @@ public class StatusMessagePubSubType : Halodi.TopicDataType<test.StatusMessage>
    }
 
 
-   public override int getTypeSize()
-   {
-      return us.ihmc.idl.CDR.getTypeSize(getMaxCdrSerializedSize());
-   }
 
    public override string getName()
    {
