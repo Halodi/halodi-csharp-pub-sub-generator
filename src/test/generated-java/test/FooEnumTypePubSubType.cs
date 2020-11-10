@@ -69,7 +69,7 @@ public class FooEnumTypePubSubType : Halodi.TopicDataType<test.FooEnumType>
       data.EnumValues = new System.Collections.Generic.List<string>(EnumValues_length);
       for(int i = 0; i < EnumValues_length; i++)
       {
-      	cdr.read_type_d(data.EnumValues);	
+      	data.EnumValues.Add(cdr.read_type_d());	
       	
       }
       	

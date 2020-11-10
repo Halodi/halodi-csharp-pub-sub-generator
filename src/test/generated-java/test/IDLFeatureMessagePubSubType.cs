@@ -167,7 +167,7 @@ public class IDLFeatureMessagePubSubType : Halodi.TopicDataType<test.IDLFeatureM
       data.Str3 = new System.Collections.Generic.List<string>(Str3_length);
       for(int i = 0; i < Str3_length; i++)
       {
-      	cdr.read_type_d(data.Str3);	
+      	data.Str3.Add(cdr.read_type_d());	
       	
       }
       	
@@ -176,7 +176,7 @@ public class IDLFeatureMessagePubSubType : Halodi.TopicDataType<test.IDLFeatureM
       data.Str4 = new System.Collections.Generic.List<string>(Str4_length);
       for(int i = 0; i < Str4_length; i++)
       {
-      	cdr.read_type_d(data.Str4);	
+      	data.Str4.Add(cdr.read_type_d());	
       	
       }
       	
@@ -185,7 +185,7 @@ public class IDLFeatureMessagePubSubType : Halodi.TopicDataType<test.IDLFeatureM
       data.Str5 = new System.Collections.Generic.List<string>(Str5_length);
       for(int i = 0; i < Str5_length; i++)
       {
-      	cdr.read_type_d(data.Str5);	
+      	data.Str5.Add(cdr.read_type_d());	
       	
       }
       	

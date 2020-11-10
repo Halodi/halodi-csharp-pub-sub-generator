@@ -303,7 +303,7 @@ public class IDLElementTestPubSubType : Halodi.TopicDataType<test.IDLElementTest
       	
       for(int i0 = 0; i0 < data.StringArray.length; ++i0)
       {
-        	cdr.read_type_d(data.StringArray[i0]);	
+        	data.StringArray[i0].Add(cdr.read_type_d());	
       }
       	
       for(int i0 = 0; i0 < data.EnumArray.length; ++i0)
@@ -462,7 +462,7 @@ public class IDLElementTestPubSubType : Halodi.TopicDataType<test.IDLElementTest
       data.StringSeqTest = new System.Collections.Generic.List<string>(StringSeqTest_length);
       for(int i = 0; i < StringSeqTest_length; i++)
       {
-      	cdr.read_type_d(data.StringSeqTest);	
+      	data.StringSeqTest.Add(cdr.read_type_d());	
       	
       }
       	

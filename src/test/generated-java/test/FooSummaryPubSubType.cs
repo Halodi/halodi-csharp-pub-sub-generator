@@ -76,7 +76,7 @@ public class FooSummaryPubSubType : Halodi.TopicDataType<test.FooSummary>
       data.SummarizedVariables = new System.Collections.Generic.List<string>(SummarizedVariables_length);
       for(int i = 0; i < SummarizedVariables_length; i++)
       {
-      	cdr.read_type_d(data.SummarizedVariables);	
+      	data.SummarizedVariables.Add(cdr.read_type_d());	
       	
       }
       	
