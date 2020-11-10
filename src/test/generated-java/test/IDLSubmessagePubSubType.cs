@@ -33,27 +33,6 @@ public class IDLSubmessagePubSubType : Halodi.TopicDataType<test.IDLSubmessage>
       deserializeCDR.finishDeserialize();
    }
 
-   public static int getMaxCdrSerializedSize()
-   {
-      return getMaxCdrSerializedSize(0);
-   }
-
-   public static int getMaxCdrSerializedSize(int current_alignment)
-   {
-      int initial_alignment = current_alignment;
-
-      current_alignment += 8 + us.ihmc.idl.CDR.alignment(current_alignment, 8);
-
-      current_alignment += 8 + us.ihmc.idl.CDR.alignment(current_alignment, 8);
-
-      current_alignment += 8 + us.ihmc.idl.CDR.alignment(current_alignment, 8);
-
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
-
-
-      return current_alignment - initial_alignment;
-   }
-
    public final static int getCdrSerializedSize(test.IDLSubmessage data)
    {
       return getCdrSerializedSize(data, 0);
@@ -93,54 +72,24 @@ public class IDLSubmessagePubSubType : Halodi.TopicDataType<test.IDLSubmessage>
 
    public static void read(test.IDLSubmessage data, us.ihmc.idl.CDR cdr)
    {
-      data.setNum(cdr.read_type_11());
+      data.Num=cdr.read_type_11());
       	
-      data.setNoDefaultWithDoc(cdr.read_type_11());
+      data.NoDefaultWithDoc=cdr.read_type_11());
       	
-      data.setNoDocNum(cdr.read_type_11());
+      data.NoDocNum=cdr.read_type_11());
       	
-      data.setHello(cdr.read_type_2());
+      data.Hello=cdr.read_type_2());
       	
 
    }
 
-   @Override
-   public final void serialize(test.IDLSubmessage data, us.ihmc.idl.InterchangeSerializer ser)
-   {
-      ser.write_type_11("num", data.getNum());
-      ser.write_type_11("no_default_with_doc", data.getNoDefaultWithDoc());
-      ser.write_type_11("no_doc_num", data.getNoDocNum());
-      ser.write_type_2("hello", data.getHello());
-   }
 
-   @Override
-   public final void deserialize(us.ihmc.idl.InterchangeSerializer ser, test.IDLSubmessage data)
-   {
-      data.setNum(ser.read_type_11("num"));
-      data.setNoDefaultWithDoc(ser.read_type_11("no_default_with_doc"));
-      data.setNoDocNum(ser.read_type_11("no_doc_num"));
-      data.setHello(ser.read_type_2("hello"));
-   }
-
-   public static void staticCopy(test.IDLSubmessage src, test.IDLSubmessage dest)
-   {
-      dest.set(src);
-   }
-
-   @Override
-   public test.IDLSubmessage createData()
-   {
-      return new test.IDLSubmessage();
-   }
-
-   @Override
-   public int getTypeSize()
+   public override int getTypeSize()
    {
       return us.ihmc.idl.CDR.getTypeSize(getMaxCdrSerializedSize());
    }
 
-   @Override
-   public java.lang.String getName()
+   public override string getName()
    {
       return name;
    }
@@ -153,17 +102,6 @@ public class IDLSubmessagePubSubType : Halodi.TopicDataType<test.IDLSubmessage>
    public void deserialize(test.IDLSubmessage data, us.ihmc.idl.CDR cdr)
    {
       read(data, cdr);
-   }
-   
-   public void copy(test.IDLSubmessage src, test.IDLSubmessage dest)
-   {
-      staticCopy(src, dest);
-   }
-
-   @Override
-   public IDLSubmessagePubSubType newInstance()
-   {
-      return new IDLSubmessagePubSubType();
    }
 }
 

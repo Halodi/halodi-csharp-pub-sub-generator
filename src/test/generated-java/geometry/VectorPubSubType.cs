@@ -33,30 +33,6 @@ public class VectorPubSubType : Halodi.TopicDataType<geometry.Vector>
       deserializeCDR.finishDeserialize();
    }
 
-   public static int getMaxCdrSerializedSize()
-   {
-      return getMaxCdrSerializedSize(0);
-   }
-
-   public static int getMaxCdrSerializedSize(int current_alignment)
-   {
-      int initial_alignment = current_alignment;
-
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4) + 128 + 1;
-      current_alignment += 8 + us.ihmc.idl.CDR.alignment(current_alignment, 8);
-
-      current_alignment += 8 + us.ihmc.idl.CDR.alignment(current_alignment, 8);
-
-      current_alignment += 8 + us.ihmc.idl.CDR.alignment(current_alignment, 8);
-
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);current_alignment += (100 * 8) + us.ihmc.idl.CDR.alignment(current_alignment, 8);
-
-      current_alignment += ((3) * 8) + us.ihmc.idl.CDR.alignment(current_alignment, 8);
-
-
-      return current_alignment - initial_alignment;
-   }
-
    public final static int getCdrSerializedSize(geometry.Vector data)
    {
       return getCdrSerializedSize(data, 0);
@@ -88,9 +64,7 @@ public class VectorPubSubType : Halodi.TopicDataType<geometry.Vector>
 
    public static void write(geometry.Vector data, us.ihmc.idl.CDR cdr)
    {
-      if(data.getFrame().length() <= 128)
-      cdr.write_type_d(data.getFrame());else
-          throw new RuntimeException("frame field exceeds the maximum length");
+      cdr.write_type_d(data.getFrame());
 
       cdr.write_type_6(data.getX());
 
@@ -98,9 +72,7 @@ public class VectorPubSubType : Halodi.TopicDataType<geometry.Vector>
 
       cdr.write_type_6(data.getZ());
 
-      if(data.getBla().size() <= 100)
-      cdr.write_type_e(data.getBla());else
-          throw new RuntimeException("bla field exceeds the maximum length");
+      cdr.write_type_e(data.getBla());
 
       for(int i0 = 0; i0 < data.getWaa().length; ++i0)
       {
@@ -112,63 +84,38 @@ public class VectorPubSubType : Halodi.TopicDataType<geometry.Vector>
    public static void read(geometry.Vector data, us.ihmc.idl.CDR cdr)
    {
       cdr.read_type_d(data.getFrame());	
-      data.setX(cdr.read_type_6());
+      data.X=cdr.read_type_6());
       	
-      data.setY(cdr.read_type_6());
+      data.Y=cdr.read_type_6());
       	
-      data.setZ(cdr.read_type_6());
+      data.Z=cdr.read_type_6());
       	
-      cdr.read_type_e(data.getBla());	
-      for(int i0 = 0; i0 < data.getWaa().length; ++i0)
+
+      int Bla_length = cdr.read_type_2();
+      data.Bla = new System.Collections.Generic.List<double>(Bla_length);
+      for(int i = 0; i < Bla_length; i++)
       {
-        	data.getWaa()[i0] = cdr.read_type_6();
+      	data.Bla.Add(cdr.read_type_6());
+      	
+      	
+      }
+      	
+      for(int i0 = 0; i0 < data.Waa.length; ++i0)
+      {
+        	data.Waa[i0] = cdr.read_type_6();
         	
       }
       	
 
    }
 
-   @Override
-   public final void serialize(geometry.Vector data, us.ihmc.idl.InterchangeSerializer ser)
-   {
-      ser.write_type_d("frame", data.getFrame());
-      ser.write_type_6("x", data.getX());
-      ser.write_type_6("y", data.getY());
-      ser.write_type_6("z", data.getZ());
-      ser.write_type_e("bla", data.getBla());
-      ser.write_type_f("waa", data.getWaa());
-   }
 
-   @Override
-   public final void deserialize(us.ihmc.idl.InterchangeSerializer ser, geometry.Vector data)
-   {
-      ser.read_type_d("frame", data.getFrame());
-      data.setX(ser.read_type_6("x"));
-      data.setY(ser.read_type_6("y"));
-      data.setZ(ser.read_type_6("z"));
-      ser.read_type_e("bla", data.getBla());
-      ser.read_type_f("waa", data.getWaa());
-   }
-
-   public static void staticCopy(geometry.Vector src, geometry.Vector dest)
-   {
-      dest.set(src);
-   }
-
-   @Override
-   public geometry.Vector createData()
-   {
-      return new geometry.Vector();
-   }
-
-   @Override
-   public int getTypeSize()
+   public override int getTypeSize()
    {
       return us.ihmc.idl.CDR.getTypeSize(getMaxCdrSerializedSize());
    }
 
-   @Override
-   public java.lang.String getName()
+   public override string getName()
    {
       return name;
    }
@@ -181,17 +128,6 @@ public class VectorPubSubType : Halodi.TopicDataType<geometry.Vector>
    public void deserialize(geometry.Vector data, us.ihmc.idl.CDR cdr)
    {
       read(data, cdr);
-   }
-   
-   public void copy(geometry.Vector src, geometry.Vector dest)
-   {
-      staticCopy(src, dest);
-   }
-
-   @Override
-   public VectorPubSubType newInstance()
-   {
-      return new VectorPubSubType();
    }
 }
 

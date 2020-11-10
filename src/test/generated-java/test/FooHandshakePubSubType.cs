@@ -33,41 +33,6 @@ public class FooHandshakePubSubType : Halodi.TopicDataType<test.FooHandshake>
       deserializeCDR.finishDeserialize();
    }
 
-   public static int getMaxCdrSerializedSize()
-   {
-      return getMaxCdrSerializedSize(0);
-   }
-
-   public static int getMaxCdrSerializedSize(int current_alignment)
-   {
-      int initial_alignment = current_alignment;
-
-      current_alignment += 8 + us.ihmc.idl.CDR.alignment(current_alignment, 8);
-
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);for(int i0 = 0; i0 < 1024; ++i0)
-      {
-          current_alignment += test.FooYoRegistryDefinitionPubSubType.getMaxCdrSerializedSize(current_alignment);}
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);for(int i0 = 0; i0 < 32767; ++i0)
-      {
-          current_alignment += test.FooYoVariableDefinitionPubSubType.getMaxCdrSerializedSize(current_alignment);}
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);for(int i0 = 0; i0 < 128; ++i0)
-      {
-          current_alignment += test.FooJointDefinitionPubSubType.getMaxCdrSerializedSize(current_alignment);}
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);for(int i0 = 0; i0 < 2048; ++i0)
-      {
-          current_alignment += test.FooGraphicObjectMessagePubSubType.getMaxCdrSerializedSize(current_alignment);}
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);for(int i0 = 0; i0 < 2048; ++i0)
-      {
-          current_alignment += test.FooGraphicObjectMessagePubSubType.getMaxCdrSerializedSize(current_alignment);}
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);for(int i0 = 0; i0 < 1024; ++i0)
-      {
-          current_alignment += test.FooEnumTypePubSubType.getMaxCdrSerializedSize(current_alignment);}
-      current_alignment += test.FooSummaryPubSubType.getMaxCdrSerializedSize(current_alignment);
-
-
-      return current_alignment - initial_alignment;
-   }
-
    public final static int getCdrSerializedSize(test.FooHandshake data)
    {
       return getCdrSerializedSize(data, 0);
@@ -120,94 +85,91 @@ public class FooHandshakePubSubType : Halodi.TopicDataType<test.FooHandshake>
    {
       cdr.write_type_6(data.getDt());
 
-      if(data.getRegistries().size() <= 1024)
-      cdr.write_type_e(data.getRegistries());else
-          throw new RuntimeException("registries field exceeds the maximum length");
+      cdr.write_type_e(data.getRegistries());
 
-      if(data.getVariables().size() <= 32767)
-      cdr.write_type_e(data.getVariables());else
-          throw new RuntimeException("variables field exceeds the maximum length");
+      cdr.write_type_e(data.getVariables());
 
-      if(data.getJoints().size() <= 128)
-      cdr.write_type_e(data.getJoints());else
-          throw new RuntimeException("joints field exceeds the maximum length");
+      cdr.write_type_e(data.getJoints());
 
-      if(data.getGraphicObjects().size() <= 2048)
-      cdr.write_type_e(data.getGraphicObjects());else
-          throw new RuntimeException("graphicObjects field exceeds the maximum length");
+      cdr.write_type_e(data.getGraphicObjects());
 
-      if(data.getArtifacts().size() <= 2048)
-      cdr.write_type_e(data.getArtifacts());else
-          throw new RuntimeException("artifacts field exceeds the maximum length");
+      cdr.write_type_e(data.getArtifacts());
 
-      if(data.getEnumTypes().size() <= 1024)
-      cdr.write_type_e(data.getEnumTypes());else
-          throw new RuntimeException("enumTypes field exceeds the maximum length");
+      cdr.write_type_e(data.getEnumTypes());
 
       test.FooSummaryPubSubType.write(data.getSummary(), cdr);
    }
 
    public static void read(test.FooHandshake data, us.ihmc.idl.CDR cdr)
    {
-      data.setDt(cdr.read_type_6());
+      data.Dt=cdr.read_type_6());
       	
-      cdr.read_type_e(data.getRegistries());	
-      cdr.read_type_e(data.getVariables());	
-      cdr.read_type_e(data.getJoints());	
-      cdr.read_type_e(data.getGraphicObjects());	
-      cdr.read_type_e(data.getArtifacts());	
-      cdr.read_type_e(data.getEnumTypes());	
-      test.FooSummaryPubSubType.read(data.getSummary(), cdr);	
+
+      int Registries_length = cdr.read_type_2();
+      data.Registries = new System.Collections.Generic.List<test.FooYoRegistryDefinition>(Registries_length);
+      for(int i = 0; i < Registries_length; i++)
+      {
+      	test.FooYoRegistryDefinitionPubSubType.read(data.Registries, cdr);	
+      	
+      }
+      	
+
+      int Variables_length = cdr.read_type_2();
+      data.Variables = new System.Collections.Generic.List<test.FooYoVariableDefinition>(Variables_length);
+      for(int i = 0; i < Variables_length; i++)
+      {
+      	test.FooYoVariableDefinitionPubSubType.read(data.Variables, cdr);	
+      	
+      }
+      	
+
+      int Joints_length = cdr.read_type_2();
+      data.Joints = new System.Collections.Generic.List<test.FooJointDefinition>(Joints_length);
+      for(int i = 0; i < Joints_length; i++)
+      {
+      	test.FooJointDefinitionPubSubType.read(data.Joints, cdr);	
+      	
+      }
+      	
+
+      int GraphicObjects_length = cdr.read_type_2();
+      data.GraphicObjects = new System.Collections.Generic.List<test.FooGraphicObjectMessage>(GraphicObjects_length);
+      for(int i = 0; i < GraphicObjects_length; i++)
+      {
+      	test.FooGraphicObjectMessagePubSubType.read(data.GraphicObjects, cdr);	
+      	
+      }
+      	
+
+      int Artifacts_length = cdr.read_type_2();
+      data.Artifacts = new System.Collections.Generic.List<test.FooGraphicObjectMessage>(Artifacts_length);
+      for(int i = 0; i < Artifacts_length; i++)
+      {
+      	test.FooGraphicObjectMessagePubSubType.read(data.Artifacts, cdr);	
+      	
+      }
+      	
+
+      int EnumTypes_length = cdr.read_type_2();
+      data.EnumTypes = new System.Collections.Generic.List<test.FooEnumType>(EnumTypes_length);
+      for(int i = 0; i < EnumTypes_length; i++)
+      {
+      	test.FooEnumTypePubSubType.read(data.EnumTypes, cdr);	
+      	
+      }
+      	
+      test.FooSummaryPubSubType.read(data.Summary, cdr);
+      	
 
    }
 
-   @Override
-   public final void serialize(test.FooHandshake data, us.ihmc.idl.InterchangeSerializer ser)
-   {
-      ser.write_type_6("dt", data.getDt());
-      ser.write_type_e("registries", data.getRegistries());
-      ser.write_type_e("variables", data.getVariables());
-      ser.write_type_e("joints", data.getJoints());
-      ser.write_type_e("graphicObjects", data.getGraphicObjects());
-      ser.write_type_e("artifacts", data.getArtifacts());
-      ser.write_type_e("enumTypes", data.getEnumTypes());
-      ser.write_type_a("summary", new test.FooSummaryPubSubType(), data.getSummary());
 
-   }
-
-   @Override
-   public final void deserialize(us.ihmc.idl.InterchangeSerializer ser, test.FooHandshake data)
-   {
-      data.setDt(ser.read_type_6("dt"));
-      ser.read_type_e("registries", data.getRegistries());
-      ser.read_type_e("variables", data.getVariables());
-      ser.read_type_e("joints", data.getJoints());
-      ser.read_type_e("graphicObjects", data.getGraphicObjects());
-      ser.read_type_e("artifacts", data.getArtifacts());
-      ser.read_type_e("enumTypes", data.getEnumTypes());
-      ser.read_type_a("summary", new test.FooSummaryPubSubType(), data.getSummary());
-
-   }
-
-   public static void staticCopy(test.FooHandshake src, test.FooHandshake dest)
-   {
-      dest.set(src);
-   }
-
-   @Override
-   public test.FooHandshake createData()
-   {
-      return new test.FooHandshake();
-   }
-
-   @Override
-   public int getTypeSize()
+   public override int getTypeSize()
    {
       return us.ihmc.idl.CDR.getTypeSize(getMaxCdrSerializedSize());
    }
 
-   @Override
-   public java.lang.String getName()
+   public override string getName()
    {
       return name;
    }
@@ -220,17 +182,6 @@ public class FooHandshakePubSubType : Halodi.TopicDataType<test.FooHandshake>
    public void deserialize(test.FooHandshake data, us.ihmc.idl.CDR cdr)
    {
       read(data, cdr);
-   }
-   
-   public void copy(test.FooHandshake src, test.FooHandshake dest)
-   {
-      staticCopy(src, dest);
-   }
-
-   @Override
-   public FooHandshakePubSubType newInstance()
-   {
-      return new FooHandshakePubSubType();
    }
 }
 

@@ -33,23 +33,6 @@ public class StatusMessagePubSubType : Halodi.TopicDataType<test.StatusMessage>
       deserializeCDR.finishDeserialize();
    }
 
-   public static int getMaxCdrSerializedSize()
-   {
-      return getMaxCdrSerializedSize(0);
-   }
-
-   public static int getMaxCdrSerializedSize(int current_alignment)
-   {
-      int initial_alignment = current_alignment;
-
-      current_alignment += 8 + us.ihmc.idl.CDR.alignment(current_alignment, 8);
-
-      current_alignment += 1 + us.ihmc.idl.CDR.alignment(current_alignment, 1);
-
-
-      return current_alignment - initial_alignment;
-   }
-
    public final static int getCdrSerializedSize(test.StatusMessage data)
    {
       return getCdrSerializedSize(data, 0);
@@ -79,46 +62,20 @@ public class StatusMessagePubSubType : Halodi.TopicDataType<test.StatusMessage>
 
    public static void read(test.StatusMessage data, us.ihmc.idl.CDR cdr)
    {
-      data.setSequenceId(cdr.read_type_12());
+      data.SequenceId=cdr.read_type_12());
       	
-      data.setPause(cdr.read_type_7());
+      data.Pause=cdr.read_type_7());
       	
 
    }
 
-   @Override
-   public final void serialize(test.StatusMessage data, us.ihmc.idl.InterchangeSerializer ser)
-   {
-      ser.write_type_12("sequence_id", data.getSequenceId());
-      ser.write_type_7("pause", data.getPause());
-   }
 
-   @Override
-   public final void deserialize(us.ihmc.idl.InterchangeSerializer ser, test.StatusMessage data)
-   {
-      data.setSequenceId(ser.read_type_12("sequence_id"));
-      data.setPause(ser.read_type_7("pause"));
-   }
-
-   public static void staticCopy(test.StatusMessage src, test.StatusMessage dest)
-   {
-      dest.set(src);
-   }
-
-   @Override
-   public test.StatusMessage createData()
-   {
-      return new test.StatusMessage();
-   }
-
-   @Override
-   public int getTypeSize()
+   public override int getTypeSize()
    {
       return us.ihmc.idl.CDR.getTypeSize(getMaxCdrSerializedSize());
    }
 
-   @Override
-   public java.lang.String getName()
+   public override string getName()
    {
       return name;
    }
@@ -131,17 +88,6 @@ public class StatusMessagePubSubType : Halodi.TopicDataType<test.StatusMessage>
    public void deserialize(test.StatusMessage data, us.ihmc.idl.CDR cdr)
    {
       read(data, cdr);
-   }
-   
-   public void copy(test.StatusMessage src, test.StatusMessage dest)
-   {
-      staticCopy(src, dest);
-   }
-
-   @Override
-   public StatusMessagePubSubType newInstance()
-   {
-      return new StatusMessagePubSubType();
    }
 }
 

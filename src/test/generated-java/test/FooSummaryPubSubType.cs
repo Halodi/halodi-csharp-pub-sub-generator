@@ -33,26 +33,6 @@ public class FooSummaryPubSubType : Halodi.TopicDataType<test.FooSummary>
       deserializeCDR.finishDeserialize();
    }
 
-   public static int getMaxCdrSerializedSize()
-   {
-      return getMaxCdrSerializedSize(0);
-   }
-
-   public static int getMaxCdrSerializedSize(int current_alignment)
-   {
-      int initial_alignment = current_alignment;
-
-      current_alignment += 1 + us.ihmc.idl.CDR.alignment(current_alignment, 1);
-
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4) + 1024 + 1;
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);for(int i0 = 0; i0 < 128; ++i0)
-      {
-        current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4) + 1024 + 1;
-      }
-
-      return current_alignment - initial_alignment;
-   }
-
    public final static int getCdrSerializedSize(test.FooSummary data)
    {
       return getCdrSerializedSize(data, 0);
@@ -80,60 +60,36 @@ public class FooSummaryPubSubType : Halodi.TopicDataType<test.FooSummary>
    {
       cdr.write_type_7(data.getCreateSummary());
 
-      if(data.getSummaryTriggerVariable().length() <= 1024)
-      cdr.write_type_d(data.getSummaryTriggerVariable());else
-          throw new RuntimeException("summaryTriggerVariable field exceeds the maximum length");
+      cdr.write_type_d(data.getSummaryTriggerVariable());
 
-      if(data.getSummarizedVariables().size() <= 128)
-      cdr.write_type_e(data.getSummarizedVariables());else
-          throw new RuntimeException("summarizedVariables field exceeds the maximum length");
+      cdr.write_type_e(data.getSummarizedVariables());
 
    }
 
    public static void read(test.FooSummary data, us.ihmc.idl.CDR cdr)
    {
-      data.setCreateSummary(cdr.read_type_7());
+      data.CreateSummary=cdr.read_type_7());
       	
       cdr.read_type_d(data.getSummaryTriggerVariable());	
-      cdr.read_type_e(data.getSummarizedVariables());	
+
+      int SummarizedVariables_length = cdr.read_type_2();
+      data.SummarizedVariables = new System.Collections.Generic.List<string>(SummarizedVariables_length);
+      for(int i = 0; i < SummarizedVariables_length; i++)
+      {
+      	cdr.read_type_d(data.SummarizedVariables);	
+      	
+      }
+      	
 
    }
 
-   @Override
-   public final void serialize(test.FooSummary data, us.ihmc.idl.InterchangeSerializer ser)
-   {
-      ser.write_type_7("createSummary", data.getCreateSummary());
-      ser.write_type_d("summaryTriggerVariable", data.getSummaryTriggerVariable());
-      ser.write_type_e("summarizedVariables", data.getSummarizedVariables());
-   }
 
-   @Override
-   public final void deserialize(us.ihmc.idl.InterchangeSerializer ser, test.FooSummary data)
-   {
-      data.setCreateSummary(ser.read_type_7("createSummary"));
-      ser.read_type_d("summaryTriggerVariable", data.getSummaryTriggerVariable());
-      ser.read_type_e("summarizedVariables", data.getSummarizedVariables());
-   }
-
-   public static void staticCopy(test.FooSummary src, test.FooSummary dest)
-   {
-      dest.set(src);
-   }
-
-   @Override
-   public test.FooSummary createData()
-   {
-      return new test.FooSummary();
-   }
-
-   @Override
-   public int getTypeSize()
+   public override int getTypeSize()
    {
       return us.ihmc.idl.CDR.getTypeSize(getMaxCdrSerializedSize());
    }
 
-   @Override
-   public java.lang.String getName()
+   public override string getName()
    {
       return name;
    }
@@ -146,17 +102,6 @@ public class FooSummaryPubSubType : Halodi.TopicDataType<test.FooSummary>
    public void deserialize(test.FooSummary data, us.ihmc.idl.CDR cdr)
    {
       read(data, cdr);
-   }
-   
-   public void copy(test.FooSummary src, test.FooSummary dest)
-   {
-      staticCopy(src, dest);
-   }
-
-   @Override
-   public FooSummaryPubSubType newInstance()
-   {
-      return new FooSummaryPubSubType();
    }
 }
 

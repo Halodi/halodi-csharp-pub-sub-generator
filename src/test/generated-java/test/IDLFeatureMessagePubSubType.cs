@@ -33,52 +33,6 @@ public class IDLFeatureMessagePubSubType : Halodi.TopicDataType<test.IDLFeatureM
       deserializeCDR.finishDeserialize();
    }
 
-   public static int getMaxCdrSerializedSize()
-   {
-      return getMaxCdrSerializedSize(0);
-   }
-
-   public static int getMaxCdrSerializedSize(int current_alignment)
-   {
-      int initial_alignment = current_alignment;
-
-      current_alignment += 8 + us.ihmc.idl.CDR.alignment(current_alignment, 8);
-
-      current_alignment += 8 + us.ihmc.idl.CDR.alignment(current_alignment, 8);
-
-      current_alignment += 8 + us.ihmc.idl.CDR.alignment(current_alignment, 8);
-
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
-
-      current_alignment += test.IDLSubmessagePubSubType.getMaxCdrSerializedSize(current_alignment);
-
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);for(int i0 = 0; i0 < 100; ++i0)
-      {
-          current_alignment += test.IDLSubmessagePubSubType.getMaxCdrSerializedSize(current_alignment);}
-      for(int i0 = 0; i0 < (3); ++i0)
-      {
-          current_alignment += test.IDLSubmessagePubSubType.getMaxCdrSerializedSize(current_alignment);}
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);for(int i0 = 0; i0 < 3; ++i0)
-      {
-          current_alignment += test.IDLSubmessagePubSubType.getMaxCdrSerializedSize(current_alignment);}
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4) + 255 + 1;
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4) + 10 + 1;
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);for(int i0 = 0; i0 < 5; ++i0)
-      {
-        current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4) + 255 + 1;
-      }
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);for(int i0 = 0; i0 < 100; ++i0)
-      {
-        current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4) + 10 + 1;
-      }
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);for(int i0 = 0; i0 < 5; ++i0)
-      {
-        current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4) + 10 + 1;
-      }
-
-      return current_alignment - initial_alignment;
-   }
-
    public final static int getCdrSerializedSize(test.IDLFeatureMessage data)
    {
       return getCdrSerializedSize(data, 0);
@@ -150,124 +104,101 @@ public class IDLFeatureMessagePubSubType : Halodi.TopicDataType<test.IDLFeatureM
       cdr.write_type_2(data.getHello());
 
       test.IDLSubmessagePubSubType.write(data.getNum1(), cdr);
-      if(data.getNum2().size() <= 100)
-      cdr.write_type_e(data.getNum2());else
-          throw new RuntimeException("num2 field exceeds the maximum length");
+      cdr.write_type_e(data.getNum2());
 
       for(int i0 = 0; i0 < data.getNum3().length; ++i0)
       {
         	test.IDLSubmessagePubSubType.write(data.getNum3()[i0], cdr);		
       }
 
-      if(data.getNum4().size() <= 3)
-      cdr.write_type_e(data.getNum4());else
-          throw new RuntimeException("num4 field exceeds the maximum length");
+      cdr.write_type_e(data.getNum4());
 
-      if(data.getStr1().length() <= 255)
-      cdr.write_type_d(data.getStr1());else
-          throw new RuntimeException("str1 field exceeds the maximum length");
+      cdr.write_type_d(data.getStr1());
 
-      if(data.getStr2().length() <= 10)
-      cdr.write_type_d(data.getStr2());else
-          throw new RuntimeException("str2 field exceeds the maximum length");
+      cdr.write_type_d(data.getStr2());
 
-      if(data.getStr3().size() <= 5)
-      cdr.write_type_e(data.getStr3());else
-          throw new RuntimeException("str3 field exceeds the maximum length");
+      cdr.write_type_e(data.getStr3());
 
-      if(data.getStr4().size() <= 100)
-      cdr.write_type_e(data.getStr4());else
-          throw new RuntimeException("str4 field exceeds the maximum length");
+      cdr.write_type_e(data.getStr4());
 
-      if(data.getStr5().size() <= 5)
-      cdr.write_type_e(data.getStr5());else
-          throw new RuntimeException("str5 field exceeds the maximum length");
+      cdr.write_type_e(data.getStr5());
 
    }
 
    public static void read(test.IDLFeatureMessage data, us.ihmc.idl.CDR cdr)
    {
-      data.setNum(cdr.read_type_11());
+      data.Num=cdr.read_type_11());
       	
-      data.setNoDefaultWithDoc(cdr.read_type_11());
+      data.NoDefaultWithDoc=cdr.read_type_11());
       	
-      data.setNoDocNum(cdr.read_type_11());
+      data.NoDocNum=cdr.read_type_11());
       	
-      data.setHello(cdr.read_type_2());
+      data.Hello=cdr.read_type_2());
       	
-      test.IDLSubmessagePubSubType.read(data.getNum1(), cdr);	
-      cdr.read_type_e(data.getNum2());	
-      for(int i0 = 0; i0 < data.getNum3().length; ++i0)
+      test.IDLSubmessagePubSubType.read(data.Num1, cdr);
+      	
+
+      int Num2_length = cdr.read_type_2();
+      data.Num2 = new System.Collections.Generic.List<test.IDLSubmessage>(Num2_length);
+      for(int i = 0; i < Num2_length; i++)
       {
-        	test.IDLSubmessagePubSubType.read(data.getNum3()[i0], cdr);	
+      	test.IDLSubmessagePubSubType.read(data.Num2, cdr);	
+      	
       }
       	
-      cdr.read_type_e(data.getNum4());	
+      for(int i0 = 0; i0 < data.Num3.length; ++i0)
+      {
+        	test.IDLSubmessagePubSubType.read(data.Num3[i0], cdr);	
+      }
+      	
+
+      int Num4_length = cdr.read_type_2();
+      data.Num4 = new System.Collections.Generic.List<test.IDLSubmessage>(Num4_length);
+      for(int i = 0; i < Num4_length; i++)
+      {
+      	test.IDLSubmessagePubSubType.read(data.Num4, cdr);	
+      	
+      }
+      	
       cdr.read_type_d(data.getStr1());	
       cdr.read_type_d(data.getStr2());	
-      cdr.read_type_e(data.getStr3());	
-      cdr.read_type_e(data.getStr4());	
-      cdr.read_type_e(data.getStr5());	
+
+      int Str3_length = cdr.read_type_2();
+      data.Str3 = new System.Collections.Generic.List<string>(Str3_length);
+      for(int i = 0; i < Str3_length; i++)
+      {
+      	cdr.read_type_d(data.Str3);	
+      	
+      }
+      	
+
+      int Str4_length = cdr.read_type_2();
+      data.Str4 = new System.Collections.Generic.List<string>(Str4_length);
+      for(int i = 0; i < Str4_length; i++)
+      {
+      	cdr.read_type_d(data.Str4);	
+      	
+      }
+      	
+
+      int Str5_length = cdr.read_type_2();
+      data.Str5 = new System.Collections.Generic.List<string>(Str5_length);
+      for(int i = 0; i < Str5_length; i++)
+      {
+      	cdr.read_type_d(data.Str5);	
+      	
+      }
+      	
 
    }
 
-   @Override
-   public final void serialize(test.IDLFeatureMessage data, us.ihmc.idl.InterchangeSerializer ser)
-   {
-      ser.write_type_11("num", data.getNum());
-      ser.write_type_11("no_default_with_doc", data.getNoDefaultWithDoc());
-      ser.write_type_11("no_doc_num", data.getNoDocNum());
-      ser.write_type_2("hello", data.getHello());
-      ser.write_type_a("num1", new test.IDLSubmessagePubSubType(), data.getNum1());
 
-      ser.write_type_e("num2", data.getNum2());
-      ser.write_type_f("num3", new test.IDLSubmessagePubSubType(), data.getNum3());
-      ser.write_type_e("num4", data.getNum4());
-      ser.write_type_d("str1", data.getStr1());
-      ser.write_type_d("str2", data.getStr2());
-      ser.write_type_e("str3", data.getStr3());
-      ser.write_type_e("str4", data.getStr4());
-      ser.write_type_e("str5", data.getStr5());
-   }
-
-   @Override
-   public final void deserialize(us.ihmc.idl.InterchangeSerializer ser, test.IDLFeatureMessage data)
-   {
-      data.setNum(ser.read_type_11("num"));
-      data.setNoDefaultWithDoc(ser.read_type_11("no_default_with_doc"));
-      data.setNoDocNum(ser.read_type_11("no_doc_num"));
-      data.setHello(ser.read_type_2("hello"));
-      ser.read_type_a("num1", new test.IDLSubmessagePubSubType(), data.getNum1());
-
-      ser.read_type_e("num2", data.getNum2());
-      ser.read_type_f("num3", new test.IDLSubmessagePubSubType(), data.getNum3());
-      ser.read_type_e("num4", data.getNum4());
-      ser.read_type_d("str1", data.getStr1());
-      ser.read_type_d("str2", data.getStr2());
-      ser.read_type_e("str3", data.getStr3());
-      ser.read_type_e("str4", data.getStr4());
-      ser.read_type_e("str5", data.getStr5());
-   }
-
-   public static void staticCopy(test.IDLFeatureMessage src, test.IDLFeatureMessage dest)
-   {
-      dest.set(src);
-   }
-
-   @Override
-   public test.IDLFeatureMessage createData()
-   {
-      return new test.IDLFeatureMessage();
-   }
-
-   @Override
-   public int getTypeSize()
+   public override int getTypeSize()
    {
       return us.ihmc.idl.CDR.getTypeSize(getMaxCdrSerializedSize());
    }
 
-   @Override
-   public java.lang.String getName()
+   public override string getName()
    {
       return name;
    }
@@ -280,17 +211,6 @@ public class IDLFeatureMessagePubSubType : Halodi.TopicDataType<test.IDLFeatureM
    public void deserialize(test.IDLFeatureMessage data, us.ihmc.idl.CDR cdr)
    {
       read(data, cdr);
-   }
-   
-   public void copy(test.IDLFeatureMessage src, test.IDLFeatureMessage dest)
-   {
-      staticCopy(src, dest);
-   }
-
-   @Override
-   public IDLFeatureMessagePubSubType newInstance()
-   {
-      return new IDLFeatureMessagePubSubType();
    }
 }
 

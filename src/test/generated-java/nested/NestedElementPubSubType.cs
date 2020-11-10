@@ -33,22 +33,6 @@ public class NestedElementPubSubType : Halodi.TopicDataType<nested.NestedElement
       deserializeCDR.finishDeserialize();
    }
 
-   public static int getMaxCdrSerializedSize()
-   {
-      return getMaxCdrSerializedSize(0);
-   }
-
-   public static int getMaxCdrSerializedSize(int current_alignment)
-   {
-      int initial_alignment = current_alignment;
-
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4) + 255 + 1;
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
-
-
-      return current_alignment - initial_alignment;
-   }
-
    public final static int getCdrSerializedSize(nested.NestedElement data)
    {
       return getCdrSerializedSize(data, 0);
@@ -69,9 +53,7 @@ public class NestedElementPubSubType : Halodi.TopicDataType<nested.NestedElement
 
    public static void write(nested.NestedElement data, us.ihmc.idl.CDR cdr)
    {
-      if(data.getStringTest().length() <= 255)
-      cdr.write_type_d(data.getStringTest());else
-          throw new RuntimeException("stringTest field exceeds the maximum length");
+      cdr.write_type_d(data.getStringTest());
 
       cdr.write_type_2(data.getLongTest());
 
@@ -80,44 +62,18 @@ public class NestedElementPubSubType : Halodi.TopicDataType<nested.NestedElement
    public static void read(nested.NestedElement data, us.ihmc.idl.CDR cdr)
    {
       cdr.read_type_d(data.getStringTest());	
-      data.setLongTest(cdr.read_type_2());
+      data.LongTest=cdr.read_type_2());
       	
 
    }
 
-   @Override
-   public final void serialize(nested.NestedElement data, us.ihmc.idl.InterchangeSerializer ser)
-   {
-      ser.write_type_d("stringTest", data.getStringTest());
-      ser.write_type_2("longTest", data.getLongTest());
-   }
 
-   @Override
-   public final void deserialize(us.ihmc.idl.InterchangeSerializer ser, nested.NestedElement data)
-   {
-      ser.read_type_d("stringTest", data.getStringTest());
-      data.setLongTest(ser.read_type_2("longTest"));
-   }
-
-   public static void staticCopy(nested.NestedElement src, nested.NestedElement dest)
-   {
-      dest.set(src);
-   }
-
-   @Override
-   public nested.NestedElement createData()
-   {
-      return new nested.NestedElement();
-   }
-
-   @Override
-   public int getTypeSize()
+   public override int getTypeSize()
    {
       return us.ihmc.idl.CDR.getTypeSize(getMaxCdrSerializedSize());
    }
 
-   @Override
-   public java.lang.String getName()
+   public override string getName()
    {
       return name;
    }
@@ -130,17 +86,6 @@ public class NestedElementPubSubType : Halodi.TopicDataType<nested.NestedElement
    public void deserialize(nested.NestedElement data, us.ihmc.idl.CDR cdr)
    {
       read(data, cdr);
-   }
-   
-   public void copy(nested.NestedElement src, nested.NestedElement dest)
-   {
-      staticCopy(src, dest);
-   }
-
-   @Override
-   public NestedElementPubSubType newInstance()
-   {
-      return new NestedElementPubSubType();
    }
 }
 

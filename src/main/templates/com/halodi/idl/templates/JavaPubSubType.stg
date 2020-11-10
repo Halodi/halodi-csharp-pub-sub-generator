@@ -50,22 +50,6 @@ public class $struct.name$PubSubType : Halodi.TopicDataType<$struct.javaTypename
       deserializeCDR.finishDeserialize();
    }
 
-   public static int getMaxCdrSerializedSize()
-   {
-      return getMaxCdrSerializedSize(0);
-   }
-
-   public static int getMaxCdrSerializedSize(int current_alignment)
-   {
-      int initial_alignment = current_alignment;
-
-$struct.members : { member |
-      $max_serialized_size(ctx=ctx, typecode=member.typecode, var="current_alignment")$
-}; separator="\n"$
-
-      return current_alignment - initial_alignment;
-   }
-
    public final static int getCdrSerializedSize($struct.javaTypename$ data)
    {
       return getCdrSerializedSize(data, 0);
@@ -96,65 +80,13 @@ $struct.members : { member |
 }; separator=""$
    }
 
-   @Override
-   public final void serialize($struct.javaTypename$ data, us.ihmc.idl.InterchangeSerializer ser)
-   {
-$struct.members : { member |
-$if(member.typecode.isType_a)$
-      ser.write_$member.typecode.stType$("$member.name$", new $member.typecode.pubsubTypename$(), data.get$member.javaName$());
-$elseif(member.typecode.isType_f)$
-$if(member.typecode.contentTypeCode.isType_a)$
-      ser.write_$member.typecode.stType$("$member.name$", new $member.typecode.contentTypeCode.pubsubTypename$(), data.get$member.javaName$());
-$else$
-      ser.write_$member.typecode.stType$("$member.name$", data.get$member.javaName$());
-$endif$
-$else$
-      ser.write_$member.typecode.stType$("$member.name$", data.get$member.javaName$());
-$endif$
-}; separator="\n"$
-   }
 
-   @Override
-   public final void deserialize(us.ihmc.idl.InterchangeSerializer ser, $struct.javaTypename$ data)
-   {
-$struct.members : { member |
-$if(member.typecode.isType_c)$
-      data.set$member.javaName$(($member.typecode.javaTypename$)ser.read_$member.typecode.stType$("$member.name$", $member.typecode.javaTypename$.class));
-$elseif(member.typecode.isType_a)$
-      ser.read_type_a("$member.name$", new $member.typecode.pubsubTypename$(), data.get$member.javaName$());
-$elseif(member.typecode.isType_f)$
-$if(member.typecode.contentTypeCode.isType_a)$
-      ser.read_$member.typecode.stType$("$member.name$", new $member.typecode.contentTypeCode.pubsubTypename$(), data.get$member.javaName$());
-$else$
-      ser.read_$member.typecode.stType$("$member.name$", data.get$member.javaName$());
-$endif$
-$elseif(member.typecode.primitive)$
-      data.set$member.javaName$(ser.read_$member.typecode.stType$("$member.name$"));
-$else$
-      ser.read_$member.typecode.stType$("$member.name$", data.get$member.javaName$());
-$endif$
-}; separator="\n"$
-   }
-
-   public static void staticCopy($struct.javaTypename$ src, $struct.javaTypename$ dest)
-   {
-      dest.set(src);
-   }
-
-   @Override
-   public $struct.javaTypename$ createData()
-   {
-      return new $struct.javaTypename$();
-   }
-
-   @Override
-   public int getTypeSize()
+   public override int getTypeSize()
    {
       return us.ihmc.idl.CDR.getTypeSize(getMaxCdrSerializedSize());
    }
 
-   @Override
-   public java.lang.String getName()
+   public override string getName()
    {
       return name;
    }
@@ -167,17 +99,6 @@ $endif$
    public void deserialize($struct.javaTypename$ data, us.ihmc.idl.CDR cdr)
    {
       read(data, cdr);
-   }
-   
-   public void copy($struct.javaTypename$ src, $struct.javaTypename$ dest)
-   {
-      staticCopy(src, dest);
-   }
-
-   @Override
-   public $struct.name$PubSubType newInstance()
-   {
-      return new $struct.name$PubSubType();
    }
    $extension$
 }$\n$

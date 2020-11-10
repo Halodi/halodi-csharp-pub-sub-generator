@@ -33,22 +33,6 @@ public class FooYoRegistryDefinitionPubSubType : Halodi.TopicDataType<test.FooYo
       deserializeCDR.finishDeserialize();
    }
 
-   public static int getMaxCdrSerializedSize()
-   {
-      return getMaxCdrSerializedSize(0);
-   }
-
-   public static int getMaxCdrSerializedSize(int current_alignment)
-   {
-      int initial_alignment = current_alignment;
-
-      current_alignment += 2 + us.ihmc.idl.CDR.alignment(current_alignment, 2);
-
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4) + 255 + 1;
-
-      return current_alignment - initial_alignment;
-   }
-
    public final static int getCdrSerializedSize(test.FooYoRegistryDefinition data)
    {
       return getCdrSerializedSize(data, 0);
@@ -71,53 +55,25 @@ public class FooYoRegistryDefinitionPubSubType : Halodi.TopicDataType<test.FooYo
    {
       cdr.write_type_3(data.getParent());
 
-      if(data.getName().length() <= 255)
-      cdr.write_type_d(data.getName());else
-          throw new RuntimeException("name field exceeds the maximum length");
+      cdr.write_type_d(data.getName());
 
    }
 
    public static void read(test.FooYoRegistryDefinition data, us.ihmc.idl.CDR cdr)
    {
-      data.setParent(cdr.read_type_3());
+      data.Parent=cdr.read_type_3());
       	
       cdr.read_type_d(data.getName());	
 
    }
 
-   @Override
-   public final void serialize(test.FooYoRegistryDefinition data, us.ihmc.idl.InterchangeSerializer ser)
-   {
-      ser.write_type_3("parent", data.getParent());
-      ser.write_type_d("name", data.getName());
-   }
 
-   @Override
-   public final void deserialize(us.ihmc.idl.InterchangeSerializer ser, test.FooYoRegistryDefinition data)
-   {
-      data.setParent(ser.read_type_3("parent"));
-      ser.read_type_d("name", data.getName());
-   }
-
-   public static void staticCopy(test.FooYoRegistryDefinition src, test.FooYoRegistryDefinition dest)
-   {
-      dest.set(src);
-   }
-
-   @Override
-   public test.FooYoRegistryDefinition createData()
-   {
-      return new test.FooYoRegistryDefinition();
-   }
-
-   @Override
-   public int getTypeSize()
+   public override int getTypeSize()
    {
       return us.ihmc.idl.CDR.getTypeSize(getMaxCdrSerializedSize());
    }
 
-   @Override
-   public java.lang.String getName()
+   public override string getName()
    {
       return name;
    }
@@ -130,17 +86,6 @@ public class FooYoRegistryDefinitionPubSubType : Halodi.TopicDataType<test.FooYo
    public void deserialize(test.FooYoRegistryDefinition data, us.ihmc.idl.CDR cdr)
    {
       read(data, cdr);
-   }
-   
-   public void copy(test.FooYoRegistryDefinition src, test.FooYoRegistryDefinition dest)
-   {
-      staticCopy(src, dest);
-   }
-
-   @Override
-   public FooYoRegistryDefinitionPubSubType newInstance()
-   {
-      return new FooYoRegistryDefinitionPubSubType();
    }
 }
 

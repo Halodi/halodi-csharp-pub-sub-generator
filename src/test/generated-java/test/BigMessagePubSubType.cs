@@ -33,24 +33,6 @@ public class BigMessagePubSubType : Halodi.TopicDataType<test.BigMessage>
       deserializeCDR.finishDeserialize();
    }
 
-   public static int getMaxCdrSerializedSize()
-   {
-      return getMaxCdrSerializedSize(0);
-   }
-
-   public static int getMaxCdrSerializedSize(int current_alignment)
-   {
-      int initial_alignment = current_alignment;
-
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
-
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);for(int i0 = 0; i0 < 100000; ++i0)
-      {
-          current_alignment += test.IDLSubmessagePubSubType.getMaxCdrSerializedSize(current_alignment);}
-
-      return current_alignment - initial_alignment;
-   }
-
    public final static int getCdrSerializedSize(test.BigMessage data)
    {
       return getCdrSerializedSize(data, 0);
@@ -76,53 +58,33 @@ public class BigMessagePubSubType : Halodi.TopicDataType<test.BigMessage>
    {
       cdr.write_type_2(data.getId());
 
-      if(data.getLargeSequence().size() <= 100000)
-      cdr.write_type_e(data.getLargeSequence());else
-          throw new RuntimeException("largeSequence field exceeds the maximum length");
+      cdr.write_type_e(data.getLargeSequence());
 
    }
 
    public static void read(test.BigMessage data, us.ihmc.idl.CDR cdr)
    {
-      data.setId(cdr.read_type_2());
+      data.Id=cdr.read_type_2());
       	
-      cdr.read_type_e(data.getLargeSequence());	
+
+      int LargeSequence_length = cdr.read_type_2();
+      data.LargeSequence = new System.Collections.Generic.List<test.IDLSubmessage>(LargeSequence_length);
+      for(int i = 0; i < LargeSequence_length; i++)
+      {
+      	test.IDLSubmessagePubSubType.read(data.LargeSequence, cdr);	
+      	
+      }
+      	
 
    }
 
-   @Override
-   public final void serialize(test.BigMessage data, us.ihmc.idl.InterchangeSerializer ser)
-   {
-      ser.write_type_2("id", data.getId());
-      ser.write_type_e("largeSequence", data.getLargeSequence());
-   }
 
-   @Override
-   public final void deserialize(us.ihmc.idl.InterchangeSerializer ser, test.BigMessage data)
-   {
-      data.setId(ser.read_type_2("id"));
-      ser.read_type_e("largeSequence", data.getLargeSequence());
-   }
-
-   public static void staticCopy(test.BigMessage src, test.BigMessage dest)
-   {
-      dest.set(src);
-   }
-
-   @Override
-   public test.BigMessage createData()
-   {
-      return new test.BigMessage();
-   }
-
-   @Override
-   public int getTypeSize()
+   public override int getTypeSize()
    {
       return us.ihmc.idl.CDR.getTypeSize(getMaxCdrSerializedSize());
    }
 
-   @Override
-   public java.lang.String getName()
+   public override string getName()
    {
       return name;
    }
@@ -135,17 +97,6 @@ public class BigMessagePubSubType : Halodi.TopicDataType<test.BigMessage>
    public void deserialize(test.BigMessage data, us.ihmc.idl.CDR cdr)
    {
       read(data, cdr);
-   }
-   
-   public void copy(test.BigMessage src, test.BigMessage dest)
-   {
-      staticCopy(src, dest);
-   }
-
-   @Override
-   public BigMessagePubSubType newInstance()
-   {
-      return new BigMessagePubSubType();
    }
 }
 

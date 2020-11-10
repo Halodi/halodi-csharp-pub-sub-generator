@@ -33,21 +33,6 @@ public class PolygonPubSubType : Halodi.TopicDataType<geometry.Polygon>
       deserializeCDR.finishDeserialize();
    }
 
-   public static int getMaxCdrSerializedSize()
-   {
-      return getMaxCdrSerializedSize(0);
-   }
-
-   public static int getMaxCdrSerializedSize(int current_alignment)
-   {
-      int initial_alignment = current_alignment;
-
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);for(int i0 = 0; i0 < 100; ++i0)
-      {
-          current_alignment += geometry.VectorPubSubType.getMaxCdrSerializedSize(current_alignment);}
-      return current_alignment - initial_alignment;
-   }
-
    public final static int getCdrSerializedSize(geometry.Polygon data)
    {
       return getCdrSerializedSize(data, 0);
@@ -67,49 +52,31 @@ public class PolygonPubSubType : Halodi.TopicDataType<geometry.Polygon>
 
    public static void write(geometry.Polygon data, us.ihmc.idl.CDR cdr)
    {
-      if(data.getPoints().size() <= 100)
-      cdr.write_type_e(data.getPoints());else
-          throw new RuntimeException("points field exceeds the maximum length");
+      cdr.write_type_e(data.getPoints());
 
    }
 
    public static void read(geometry.Polygon data, us.ihmc.idl.CDR cdr)
    {
-      cdr.read_type_e(data.getPoints());	
+
+      int Points_length = cdr.read_type_2();
+      data.Points = new System.Collections.Generic.List<geometry.Vector>(Points_length);
+      for(int i = 0; i < Points_length; i++)
+      {
+      	geometry.VectorPubSubType.read(data.Points, cdr);	
+      	
+      }
+      	
 
    }
 
-   @Override
-   public final void serialize(geometry.Polygon data, us.ihmc.idl.InterchangeSerializer ser)
-   {
-      ser.write_type_e("points", data.getPoints());
-   }
 
-   @Override
-   public final void deserialize(us.ihmc.idl.InterchangeSerializer ser, geometry.Polygon data)
-   {
-      ser.read_type_e("points", data.getPoints());
-   }
-
-   public static void staticCopy(geometry.Polygon src, geometry.Polygon dest)
-   {
-      dest.set(src);
-   }
-
-   @Override
-   public geometry.Polygon createData()
-   {
-      return new geometry.Polygon();
-   }
-
-   @Override
-   public int getTypeSize()
+   public override int getTypeSize()
    {
       return us.ihmc.idl.CDR.getTypeSize(getMaxCdrSerializedSize());
    }
 
-   @Override
-   public java.lang.String getName()
+   public override string getName()
    {
       return name;
    }
@@ -122,17 +89,6 @@ public class PolygonPubSubType : Halodi.TopicDataType<geometry.Polygon>
    public void deserialize(geometry.Polygon data, us.ihmc.idl.CDR cdr)
    {
       read(data, cdr);
-   }
-   
-   public void copy(geometry.Polygon src, geometry.Polygon dest)
-   {
-      staticCopy(src, dest);
-   }
-
-   @Override
-   public PolygonPubSubType newInstance()
-   {
-      return new PolygonPubSubType();
    }
 }
 

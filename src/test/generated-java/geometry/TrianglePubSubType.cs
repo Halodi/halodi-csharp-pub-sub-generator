@@ -33,21 +33,6 @@ public class TrianglePubSubType : Halodi.TopicDataType<geometry.Triangle>
       deserializeCDR.finishDeserialize();
    }
 
-   public static int getMaxCdrSerializedSize()
-   {
-      return getMaxCdrSerializedSize(0);
-   }
-
-   public static int getMaxCdrSerializedSize(int current_alignment)
-   {
-      int initial_alignment = current_alignment;
-
-      for(int i0 = 0; i0 < (3); ++i0)
-      {
-          current_alignment += geometry.VectorPubSubType.getMaxCdrSerializedSize(current_alignment);}
-      return current_alignment - initial_alignment;
-   }
-
    public final static int getCdrSerializedSize(geometry.Triangle data)
    {
       return getCdrSerializedSize(data, 0);
@@ -74,43 +59,21 @@ public class TrianglePubSubType : Halodi.TopicDataType<geometry.Triangle>
 
    public static void read(geometry.Triangle data, us.ihmc.idl.CDR cdr)
    {
-      for(int i0 = 0; i0 < data.getPoints().length; ++i0)
+      for(int i0 = 0; i0 < data.Points.length; ++i0)
       {
-        	geometry.VectorPubSubType.read(data.getPoints()[i0], cdr);	
+        	geometry.VectorPubSubType.read(data.Points[i0], cdr);	
       }
       	
 
    }
 
-   @Override
-   public final void serialize(geometry.Triangle data, us.ihmc.idl.InterchangeSerializer ser)
-   {
-      ser.write_type_f("points", new geometry.VectorPubSubType(), data.getPoints());   }
 
-   @Override
-   public final void deserialize(us.ihmc.idl.InterchangeSerializer ser, geometry.Triangle data)
-   {
-      ser.read_type_f("points", new geometry.VectorPubSubType(), data.getPoints());   }
-
-   public static void staticCopy(geometry.Triangle src, geometry.Triangle dest)
-   {
-      dest.set(src);
-   }
-
-   @Override
-   public geometry.Triangle createData()
-   {
-      return new geometry.Triangle();
-   }
-
-   @Override
-   public int getTypeSize()
+   public override int getTypeSize()
    {
       return us.ihmc.idl.CDR.getTypeSize(getMaxCdrSerializedSize());
    }
 
-   @Override
-   public java.lang.String getName()
+   public override string getName()
    {
       return name;
    }
@@ -123,17 +86,6 @@ public class TrianglePubSubType : Halodi.TopicDataType<geometry.Triangle>
    public void deserialize(geometry.Triangle data, us.ihmc.idl.CDR cdr)
    {
       read(data, cdr);
-   }
-   
-   public void copy(geometry.Triangle src, geometry.Triangle dest)
-   {
-      staticCopy(src, dest);
-   }
-
-   @Override
-   public TrianglePubSubType newInstance()
-   {
-      return new TrianglePubSubType();
    }
 }
 

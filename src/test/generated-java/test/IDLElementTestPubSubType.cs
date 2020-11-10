@@ -33,92 +33,6 @@ public class IDLElementTestPubSubType : Halodi.TopicDataType<test.IDLElementTest
       deserializeCDR.finishDeserialize();
    }
 
-   public static int getMaxCdrSerializedSize()
-   {
-      return getMaxCdrSerializedSize(0);
-   }
-
-   public static int getMaxCdrSerializedSize(int current_alignment)
-   {
-      int initial_alignment = current_alignment;
-
-      current_alignment += 1 + us.ihmc.idl.CDR.alignment(current_alignment, 1);
-
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
-
-      current_alignment += 1 + us.ihmc.idl.CDR.alignment(current_alignment, 1);
-
-      current_alignment += 2 + us.ihmc.idl.CDR.alignment(current_alignment, 2);
-
-      current_alignment += 2 + us.ihmc.idl.CDR.alignment(current_alignment, 2);
-
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
-
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
-
-      current_alignment += 8 + us.ihmc.idl.CDR.alignment(current_alignment, 8);
-
-      current_alignment += 8 + us.ihmc.idl.CDR.alignment(current_alignment, 8);
-
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
-
-      current_alignment += 8 + us.ihmc.idl.CDR.alignment(current_alignment, 8);
-
-      current_alignment += 1 + us.ihmc.idl.CDR.alignment(current_alignment, 1);
-
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
-
-      current_alignment += nested.NestedElementPubSubType.getMaxCdrSerializedSize(current_alignment);
-
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4) + 255 + 1;
-      current_alignment += ((10) * 4) + us.ihmc.idl.CDR.alignment(current_alignment, 4);
-
-      for(int i0 = 0; i0 < (5 * 3); ++i0)
-      {
-          current_alignment += nested.NestedElementPubSubType.getMaxCdrSerializedSize(current_alignment);}
-      for(int i0 = 0; i0 < (4); ++i0)
-      {
-          current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4) + 255 + 1;
-      }
-      current_alignment += ((6) * 4) + us.ihmc.idl.CDR.alignment(current_alignment, 4);
-
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);current_alignment += (25 * 1) + us.ihmc.idl.CDR.alignment(current_alignment, 1);
-
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);current_alignment += (25 * 4) + us.ihmc.idl.CDR.alignment(current_alignment, 4);
-
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);current_alignment += (25 * 1) + us.ihmc.idl.CDR.alignment(current_alignment, 1);
-
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);current_alignment += (25 * 2) + us.ihmc.idl.CDR.alignment(current_alignment, 2);
-
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);current_alignment += (25 * 2) + us.ihmc.idl.CDR.alignment(current_alignment, 2);
-
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);current_alignment += (25 * 4) + us.ihmc.idl.CDR.alignment(current_alignment, 4);
-
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);current_alignment += (25 * 4) + us.ihmc.idl.CDR.alignment(current_alignment, 4);
-
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);current_alignment += (25 * 8) + us.ihmc.idl.CDR.alignment(current_alignment, 8);
-
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);current_alignment += (25 * 8) + us.ihmc.idl.CDR.alignment(current_alignment, 8);
-
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);current_alignment += (25 * 4) + us.ihmc.idl.CDR.alignment(current_alignment, 4);
-
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);current_alignment += (25 * 8) + us.ihmc.idl.CDR.alignment(current_alignment, 8);
-
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);current_alignment += (25 * 1) + us.ihmc.idl.CDR.alignment(current_alignment, 1);
-
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);for(int i0 = 0; i0 < 25; ++i0)
-      {
-          current_alignment += nested.NestedElementPubSubType.getMaxCdrSerializedSize(current_alignment);}
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);current_alignment += (25 * 4) + us.ihmc.idl.CDR.alignment(current_alignment, 4);
-
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);for(int i0 = 0; i0 < 25; ++i0)
-      {
-        current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4) + 255 + 1;
-      }
-
-      return current_alignment - initial_alignment;
-   }
-
    public final static int getCdrSerializedSize(test.IDLElementTest data)
    {
       return getCdrSerializedSize(data, 0);
@@ -281,9 +195,7 @@ public class IDLElementTestPubSubType : Halodi.TopicDataType<test.IDLElementTest
 
 
       nested.NestedElementPubSubType.write(data.getNestedElementTest(), cdr);
-      if(data.getStringTest().length() <= 255)
-      cdr.write_type_d(data.getStringTest());else
-          throw new RuntimeException("stringTest field exceeds the maximum length");
+      cdr.write_type_d(data.getStringTest());
 
       for(int i0 = 0; i0 < data.getLongArray().length; ++i0)
       {
@@ -312,245 +224,258 @@ public class IDLElementTestPubSubType : Halodi.TopicDataType<test.IDLElementTest
         	
       }
 
-      if(data.getCharSeqTest().size() <= 25)
-      cdr.write_type_e(data.getCharSeqTest());else
-          throw new RuntimeException("charSeqTest field exceeds the maximum length");
+      cdr.write_type_e(data.getCharSeqTest());
 
-      if(data.getWcharSeqTest().size() <= 25)
-      cdr.write_type_e(data.getWcharSeqTest());else
-          throw new RuntimeException("wcharSeqTest field exceeds the maximum length");
+      cdr.write_type_e(data.getWcharSeqTest());
 
-      if(data.getOctetSeqTest().size() <= 25)
-      cdr.write_type_e(data.getOctetSeqTest());else
-          throw new RuntimeException("octetSeqTest field exceeds the maximum length");
+      cdr.write_type_e(data.getOctetSeqTest());
 
-      if(data.getShortSeqTest().size() <= 25)
-      cdr.write_type_e(data.getShortSeqTest());else
-          throw new RuntimeException("shortSeqTest field exceeds the maximum length");
+      cdr.write_type_e(data.getShortSeqTest());
 
-      if(data.getUshortSeqTest().size() <= 25)
-      cdr.write_type_e(data.getUshortSeqTest());else
-          throw new RuntimeException("ushortSeqTest field exceeds the maximum length");
+      cdr.write_type_e(data.getUshortSeqTest());
 
-      if(data.getLongSeqTest().size() <= 25)
-      cdr.write_type_e(data.getLongSeqTest());else
-          throw new RuntimeException("longSeqTest field exceeds the maximum length");
+      cdr.write_type_e(data.getLongSeqTest());
 
-      if(data.getUlongSeqTest().size() <= 25)
-      cdr.write_type_e(data.getUlongSeqTest());else
-          throw new RuntimeException("ulongSeqTest field exceeds the maximum length");
+      cdr.write_type_e(data.getUlongSeqTest());
 
-      if(data.getLonglongSeqtest().size() <= 25)
-      cdr.write_type_e(data.getLonglongSeqtest());else
-          throw new RuntimeException("longlongSeqtest field exceeds the maximum length");
+      cdr.write_type_e(data.getLonglongSeqtest());
 
-      if(data.getUlonglongSeqTest().size() <= 25)
-      cdr.write_type_e(data.getUlonglongSeqTest());else
-          throw new RuntimeException("ulonglongSeqTest field exceeds the maximum length");
+      cdr.write_type_e(data.getUlonglongSeqTest());
 
-      if(data.getFloatSeqTest().size() <= 25)
-      cdr.write_type_e(data.getFloatSeqTest());else
-          throw new RuntimeException("floatSeqTest field exceeds the maximum length");
+      cdr.write_type_e(data.getFloatSeqTest());
 
-      if(data.getDoubleSeqTest().size() <= 25)
-      cdr.write_type_e(data.getDoubleSeqTest());else
-          throw new RuntimeException("doubleSeqTest field exceeds the maximum length");
+      cdr.write_type_e(data.getDoubleSeqTest());
 
-      if(data.getBooleanSeqTest().size() <= 25)
-      cdr.write_type_e(data.getBooleanSeqTest());else
-          throw new RuntimeException("booleanSeqTest field exceeds the maximum length");
+      cdr.write_type_e(data.getBooleanSeqTest());
 
-      if(data.getNestedSeqTest().size() <= 25)
-      cdr.write_type_e(data.getNestedSeqTest());else
-          throw new RuntimeException("nestedSeqTest field exceeds the maximum length");
+      cdr.write_type_e(data.getNestedSeqTest());
 
-      if(data.getEnumSeqTest().size() <= 25)
-      cdr.write_type_e(data.getEnumSeqTest());else
-          throw new RuntimeException("enumSeqTest field exceeds the maximum length");
+      cdr.write_type_e(data.getEnumSeqTest());
 
-      if(data.getStringSeqTest().size() <= 25)
-      cdr.write_type_e(data.getStringSeqTest());else
-          throw new RuntimeException("stringSeqTest field exceeds the maximum length");
+      cdr.write_type_e(data.getStringSeqTest());
 
    }
 
    public static void read(test.IDLElementTest data, us.ihmc.idl.CDR cdr)
    {
-      data.setCharTest(cdr.read_type_8());
+      data.CharTest=cdr.read_type_8());
       	
-      data.setWcharTest(cdr.read_type_14());
+      data.WcharTest=cdr.read_type_14());
       	
-      data.setOctetTest(cdr.read_type_9());
+      data.OctetTest=cdr.read_type_9());
       	
-      data.setShortTest(cdr.read_type_1());
+      data.ShortTest=cdr.read_type_1());
       	
-      data.setUshortTest(cdr.read_type_3());
+      data.UshortTest=cdr.read_type_3());
       	
-      data.setLongTest(cdr.read_type_2());
+      data.LongTest=cdr.read_type_2());
       	
-      data.setUlongTest(cdr.read_type_4());
+      data.UlongTest=cdr.read_type_4());
       	
-      data.setLonglongTest(cdr.read_type_11());
+      data.LonglongTest=cdr.read_type_11());
       	
-      data.setUlonglongTest(cdr.read_type_12());
+      data.UlonglongTest=cdr.read_type_12());
       	
-      data.setFloatTest(cdr.read_type_5());
+      data.FloatTest=cdr.read_type_5());
       	
-      data.setDoubleTest(cdr.read_type_6());
+      data.DoubleTest=cdr.read_type_6());
       	
-      data.setBooleanTest(cdr.read_type_7());
+      data.BooleanTest=cdr.read_type_7());
       	
-      data.setColorTest(test.Color.values[cdr.read_type_c()]);
+      data.ColorTest = (test.Color) cdr.read_type_c();
       	
-      nested.NestedElementPubSubType.read(data.getNestedElementTest(), cdr);	
+      nested.NestedElementPubSubType.read(data.NestedElementTest, cdr);
+      	
       cdr.read_type_d(data.getStringTest());	
-      for(int i0 = 0; i0 < data.getLongArray().length; ++i0)
+      for(int i0 = 0; i0 < data.LongArray.length; ++i0)
       {
-        	data.getLongArray()[i0] = cdr.read_type_2();
+        	data.LongArray[i0] = cdr.read_type_2();
         	
       }
       	
-      for(int i0 = 0; i0 < data.getNestedArray().length; ++i0)
+      for(int i0 = 0; i0 < data.NestedArray.length; ++i0)
       {
-        for(int i1 = 0; i1 < data.getNestedArray()[i0].length; ++i1)
+        for(int i1 = 0; i1 < data.NestedArray[i0].length; ++i1)
         {
-          	nested.NestedElementPubSubType.read(data.getNestedArray()[i0][i1], cdr);	
+          	nested.NestedElementPubSubType.read(data.NestedArray[i0][i1], cdr);	
         }
       }
       	
-      for(int i0 = 0; i0 < data.getStringArray().length; ++i0)
+      for(int i0 = 0; i0 < data.StringArray.length; ++i0)
       {
-        	cdr.read_type_d(data.getStringArray()[i0]);	
+        	cdr.read_type_d(data.StringArray[i0]);	
       }
       	
-      for(int i0 = 0; i0 < data.getEnumArray().length; ++i0)
+      for(int i0 = 0; i0 < data.EnumArray.length; ++i0)
       {
            int ordinal = cdr.read_type_c();
            if (ordinal < 0)
-        	  data.getEnumArray()[i0] = null;
-           else
-              data.getEnumArray()[i0] = test.Color.values[ordinal];
+        	  ordinal = 0;
+          data.EnumArray[i0] = (test.Color) ordinal;
         	
       }
       	
-      cdr.read_type_e(data.getCharSeqTest());	
-      cdr.read_type_e(data.getWcharSeqTest());	
-      cdr.read_type_e(data.getOctetSeqTest());	
-      cdr.read_type_e(data.getShortSeqTest());	
-      cdr.read_type_e(data.getUshortSeqTest());	
-      cdr.read_type_e(data.getLongSeqTest());	
-      cdr.read_type_e(data.getUlongSeqTest());	
-      cdr.read_type_e(data.getLonglongSeqtest());	
-      cdr.read_type_e(data.getUlonglongSeqTest());	
-      cdr.read_type_e(data.getFloatSeqTest());	
-      cdr.read_type_e(data.getDoubleSeqTest());	
-      cdr.read_type_e(data.getBooleanSeqTest());	
-      cdr.read_type_e(data.getNestedSeqTest());	
-      cdr.read_type_e(data.getEnumSeqTest());	
-      cdr.read_type_e(data.getStringSeqTest());	
+
+      int CharSeqTest_length = cdr.read_type_2();
+      data.CharSeqTest = new System.Collections.Generic.List<char>(CharSeqTest_length);
+      for(int i = 0; i < CharSeqTest_length; i++)
+      {
+      	data.CharSeqTest.Add(cdr.read_type_8());
+      	
+      	
+      }
+      	
+
+      int WcharSeqTest_length = cdr.read_type_2();
+      data.WcharSeqTest = new System.Collections.Generic.List<char>(WcharSeqTest_length);
+      for(int i = 0; i < WcharSeqTest_length; i++)
+      {
+      	data.WcharSeqTest.Add(cdr.read_type_14());
+      	
+      	
+      }
+      	
+
+      int OctetSeqTest_length = cdr.read_type_2();
+      data.OctetSeqTest = new System.Collections.Generic.List<byte>(OctetSeqTest_length);
+      for(int i = 0; i < OctetSeqTest_length; i++)
+      {
+      	data.OctetSeqTest.Add(cdr.read_type_9());
+      	
+      	
+      }
+      	
+
+      int ShortSeqTest_length = cdr.read_type_2();
+      data.ShortSeqTest = new System.Collections.Generic.List<short>(ShortSeqTest_length);
+      for(int i = 0; i < ShortSeqTest_length; i++)
+      {
+      	data.ShortSeqTest.Add(cdr.read_type_1());
+      	
+      	
+      }
+      	
+
+      int UshortSeqTest_length = cdr.read_type_2();
+      data.UshortSeqTest = new System.Collections.Generic.List<ushort>(UshortSeqTest_length);
+      for(int i = 0; i < UshortSeqTest_length; i++)
+      {
+      	data.UshortSeqTest.Add(cdr.read_type_3());
+      	
+      	
+      }
+      	
+
+      int LongSeqTest_length = cdr.read_type_2();
+      data.LongSeqTest = new System.Collections.Generic.List<int>(LongSeqTest_length);
+      for(int i = 0; i < LongSeqTest_length; i++)
+      {
+      	data.LongSeqTest.Add(cdr.read_type_2());
+      	
+      	
+      }
+      	
+
+      int UlongSeqTest_length = cdr.read_type_2();
+      data.UlongSeqTest = new System.Collections.Generic.List<uint>(UlongSeqTest_length);
+      for(int i = 0; i < UlongSeqTest_length; i++)
+      {
+      	data.UlongSeqTest.Add(cdr.read_type_4());
+      	
+      	
+      }
+      	
+
+      int LonglongSeqtest_length = cdr.read_type_2();
+      data.LonglongSeqtest = new System.Collections.Generic.List<long>(LonglongSeqtest_length);
+      for(int i = 0; i < LonglongSeqtest_length; i++)
+      {
+      	data.LonglongSeqtest.Add(cdr.read_type_11());
+      	
+      	
+      }
+      	
+
+      int UlonglongSeqTest_length = cdr.read_type_2();
+      data.UlonglongSeqTest = new System.Collections.Generic.List<ulong>(UlonglongSeqTest_length);
+      for(int i = 0; i < UlonglongSeqTest_length; i++)
+      {
+      	data.UlonglongSeqTest.Add(cdr.read_type_12());
+      	
+      	
+      }
+      	
+
+      int FloatSeqTest_length = cdr.read_type_2();
+      data.FloatSeqTest = new System.Collections.Generic.List<float>(FloatSeqTest_length);
+      for(int i = 0; i < FloatSeqTest_length; i++)
+      {
+      	data.FloatSeqTest.Add(cdr.read_type_5());
+      	
+      	
+      }
+      	
+
+      int DoubleSeqTest_length = cdr.read_type_2();
+      data.DoubleSeqTest = new System.Collections.Generic.List<double>(DoubleSeqTest_length);
+      for(int i = 0; i < DoubleSeqTest_length; i++)
+      {
+      	data.DoubleSeqTest.Add(cdr.read_type_6());
+      	
+      	
+      }
+      	
+
+      int BooleanSeqTest_length = cdr.read_type_2();
+      data.BooleanSeqTest = new System.Collections.Generic.List<bool>(BooleanSeqTest_length);
+      for(int i = 0; i < BooleanSeqTest_length; i++)
+      {
+      	data.BooleanSeqTest.Add(cdr.read_type_7());
+      	
+      	
+      }
+      	
+
+      int NestedSeqTest_length = cdr.read_type_2();
+      data.NestedSeqTest = new System.Collections.Generic.List<nested.NestedElement>(NestedSeqTest_length);
+      for(int i = 0; i < NestedSeqTest_length; i++)
+      {
+      	nested.NestedElementPubSubType.read(data.NestedSeqTest, cdr);	
+      	
+      }
+      	
+
+      int EnumSeqTest_length = cdr.read_type_2();
+      data.EnumSeqTest = new us.ihmc.idl.IDLSequence.Enum<test.Color>(EnumSeqTest_length);
+      for(int i = 0; i < EnumSeqTest_length; i++)
+      {
+         int ordinal = cdr.read_type_c();
+         if (ordinal < 0)
+      	  ordinal = 0;
+         data.EnumSeqTest.Add((us.ihmc.idl.IDLSequence.Enum<test.Color>) ordinal);
+      	
+      	
+      }
+      	
+
+      int StringSeqTest_length = cdr.read_type_2();
+      data.StringSeqTest = new System.Collections.Generic.List<string>(StringSeqTest_length);
+      for(int i = 0; i < StringSeqTest_length; i++)
+      {
+      	cdr.read_type_d(data.StringSeqTest);	
+      	
+      }
+      	
 
    }
 
-   @Override
-   public final void serialize(test.IDLElementTest data, us.ihmc.idl.InterchangeSerializer ser)
-   {
-      ser.write_type_8("charTest", data.getCharTest());
-      ser.write_type_14("wcharTest", data.getWcharTest());
-      ser.write_type_9("octetTest", data.getOctetTest());
-      ser.write_type_1("shortTest", data.getShortTest());
-      ser.write_type_3("ushortTest", data.getUshortTest());
-      ser.write_type_2("longTest", data.getLongTest());
-      ser.write_type_4("ulongTest", data.getUlongTest());
-      ser.write_type_11("longlongTest", data.getLonglongTest());
-      ser.write_type_12("ulonglongTest", data.getUlonglongTest());
-      ser.write_type_5("floatTest", data.getFloatTest());
-      ser.write_type_6("doubleTest", data.getDoubleTest());
-      ser.write_type_7("booleanTest", data.getBooleanTest());
-      ser.write_type_c("colorTest", data.getColorTest());
-      ser.write_type_a("nestedElementTest", new nested.NestedElementPubSubType(), data.getNestedElementTest());
 
-      ser.write_type_d("stringTest", data.getStringTest());
-      ser.write_type_f("longArray", data.getLongArray());
-      ser.write_type_f("nestedArray", new nested.NestedElementPubSubType(), data.getNestedArray());
-      ser.write_type_f("stringArray", data.getStringArray());
-      ser.write_type_f("enumArray", data.getEnumArray());
-      ser.write_type_e("charSeqTest", data.getCharSeqTest());
-      ser.write_type_e("wcharSeqTest", data.getWcharSeqTest());
-      ser.write_type_e("octetSeqTest", data.getOctetSeqTest());
-      ser.write_type_e("shortSeqTest", data.getShortSeqTest());
-      ser.write_type_e("ushortSeqTest", data.getUshortSeqTest());
-      ser.write_type_e("longSeqTest", data.getLongSeqTest());
-      ser.write_type_e("ulongSeqTest", data.getUlongSeqTest());
-      ser.write_type_e("longlongSeqtest", data.getLonglongSeqtest());
-      ser.write_type_e("ulonglongSeqTest", data.getUlonglongSeqTest());
-      ser.write_type_e("floatSeqTest", data.getFloatSeqTest());
-      ser.write_type_e("doubleSeqTest", data.getDoubleSeqTest());
-      ser.write_type_e("booleanSeqTest", data.getBooleanSeqTest());
-      ser.write_type_e("nestedSeqTest", data.getNestedSeqTest());
-      ser.write_type_e("enumSeqTest", data.getEnumSeqTest());
-      ser.write_type_e("stringSeqTest", data.getStringSeqTest());
-   }
-
-   @Override
-   public final void deserialize(us.ihmc.idl.InterchangeSerializer ser, test.IDLElementTest data)
-   {
-      data.setCharTest(ser.read_type_8("charTest"));
-      data.setWcharTest(ser.read_type_14("wcharTest"));
-      data.setOctetTest(ser.read_type_9("octetTest"));
-      data.setShortTest(ser.read_type_1("shortTest"));
-      data.setUshortTest(ser.read_type_3("ushortTest"));
-      data.setLongTest(ser.read_type_2("longTest"));
-      data.setUlongTest(ser.read_type_4("ulongTest"));
-      data.setLonglongTest(ser.read_type_11("longlongTest"));
-      data.setUlonglongTest(ser.read_type_12("ulonglongTest"));
-      data.setFloatTest(ser.read_type_5("floatTest"));
-      data.setDoubleTest(ser.read_type_6("doubleTest"));
-      data.setBooleanTest(ser.read_type_7("booleanTest"));
-      data.setColorTest((test.Color)ser.read_type_c("colorTest", test.Color.class));
-
-      ser.read_type_a("nestedElementTest", new nested.NestedElementPubSubType(), data.getNestedElementTest());
-
-      ser.read_type_d("stringTest", data.getStringTest());
-      ser.read_type_f("longArray", data.getLongArray());
-      ser.read_type_f("nestedArray", new nested.NestedElementPubSubType(), data.getNestedArray());
-      ser.read_type_f("stringArray", data.getStringArray());
-      ser.read_type_f("enumArray", data.getEnumArray());
-      ser.read_type_e("charSeqTest", data.getCharSeqTest());
-      ser.read_type_e("wcharSeqTest", data.getWcharSeqTest());
-      ser.read_type_e("octetSeqTest", data.getOctetSeqTest());
-      ser.read_type_e("shortSeqTest", data.getShortSeqTest());
-      ser.read_type_e("ushortSeqTest", data.getUshortSeqTest());
-      ser.read_type_e("longSeqTest", data.getLongSeqTest());
-      ser.read_type_e("ulongSeqTest", data.getUlongSeqTest());
-      ser.read_type_e("longlongSeqtest", data.getLonglongSeqtest());
-      ser.read_type_e("ulonglongSeqTest", data.getUlonglongSeqTest());
-      ser.read_type_e("floatSeqTest", data.getFloatSeqTest());
-      ser.read_type_e("doubleSeqTest", data.getDoubleSeqTest());
-      ser.read_type_e("booleanSeqTest", data.getBooleanSeqTest());
-      ser.read_type_e("nestedSeqTest", data.getNestedSeqTest());
-      ser.read_type_e("enumSeqTest", data.getEnumSeqTest());
-      ser.read_type_e("stringSeqTest", data.getStringSeqTest());
-   }
-
-   public static void staticCopy(test.IDLElementTest src, test.IDLElementTest dest)
-   {
-      dest.set(src);
-   }
-
-   @Override
-   public test.IDLElementTest createData()
-   {
-      return new test.IDLElementTest();
-   }
-
-   @Override
-   public int getTypeSize()
+   public override int getTypeSize()
    {
       return us.ihmc.idl.CDR.getTypeSize(getMaxCdrSerializedSize());
    }
 
-   @Override
-   public java.lang.String getName()
+   public override string getName()
    {
       return name;
    }
@@ -563,17 +488,6 @@ public class IDLElementTestPubSubType : Halodi.TopicDataType<test.IDLElementTest
    public void deserialize(test.IDLElementTest data, us.ihmc.idl.CDR cdr)
    {
       read(data, cdr);
-   }
-   
-   public void copy(test.IDLElementTest src, test.IDLElementTest dest)
-   {
-      staticCopy(src, dest);
-   }
-
-   @Override
-   public IDLElementTestPubSubType newInstance()
-   {
-      return new IDLElementTestPubSubType();
    }
 }
 

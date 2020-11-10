@@ -33,22 +33,6 @@ public class FooJointDefinitionPubSubType : Halodi.TopicDataType<test.FooJointDe
       deserializeCDR.finishDeserialize();
    }
 
-   public static int getMaxCdrSerializedSize()
-   {
-      return getMaxCdrSerializedSize(0);
-   }
-
-   public static int getMaxCdrSerializedSize(int current_alignment)
-   {
-      int initial_alignment = current_alignment;
-
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4) + 255 + 1;
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
-
-
-      return current_alignment - initial_alignment;
-   }
-
    public final static int getCdrSerializedSize(test.FooJointDefinition data)
    {
       return getCdrSerializedSize(data, 0);
@@ -69,9 +53,7 @@ public class FooJointDefinitionPubSubType : Halodi.TopicDataType<test.FooJointDe
 
    public static void write(test.FooJointDefinition data, us.ihmc.idl.CDR cdr)
    {
-      if(data.getName().length() <= 255)
-      cdr.write_type_d(data.getName());else
-          throw new RuntimeException("name field exceeds the maximum length");
+      cdr.write_type_d(data.getName());
 
       cdr.write_type_c(data.getType().ordinal());
 
@@ -81,45 +63,18 @@ public class FooJointDefinitionPubSubType : Halodi.TopicDataType<test.FooJointDe
    public static void read(test.FooJointDefinition data, us.ihmc.idl.CDR cdr)
    {
       cdr.read_type_d(data.getName());	
-      data.setType(test.FooJointType.values[cdr.read_type_c()]);
+      data.Type = (test.FooJointType) cdr.read_type_c();
       	
 
    }
 
-   @Override
-   public final void serialize(test.FooJointDefinition data, us.ihmc.idl.InterchangeSerializer ser)
-   {
-      ser.write_type_d("name", data.getName());
-      ser.write_type_c("type", data.getType());
-   }
 
-   @Override
-   public final void deserialize(us.ihmc.idl.InterchangeSerializer ser, test.FooJointDefinition data)
-   {
-      ser.read_type_d("name", data.getName());
-      data.setType((test.FooJointType)ser.read_type_c("type", test.FooJointType.class));
-
-   }
-
-   public static void staticCopy(test.FooJointDefinition src, test.FooJointDefinition dest)
-   {
-      dest.set(src);
-   }
-
-   @Override
-   public test.FooJointDefinition createData()
-   {
-      return new test.FooJointDefinition();
-   }
-
-   @Override
-   public int getTypeSize()
+   public override int getTypeSize()
    {
       return us.ihmc.idl.CDR.getTypeSize(getMaxCdrSerializedSize());
    }
 
-   @Override
-   public java.lang.String getName()
+   public override string getName()
    {
       return name;
    }
@@ -132,17 +87,6 @@ public class FooJointDefinitionPubSubType : Halodi.TopicDataType<test.FooJointDe
    public void deserialize(test.FooJointDefinition data, us.ihmc.idl.CDR cdr)
    {
       read(data, cdr);
-   }
-   
-   public void copy(test.FooJointDefinition src, test.FooJointDefinition dest)
-   {
-      staticCopy(src, dest);
-   }
-
-   @Override
-   public FooJointDefinitionPubSubType newInstance()
-   {
-      return new FooJointDefinitionPubSubType();
    }
 }
 

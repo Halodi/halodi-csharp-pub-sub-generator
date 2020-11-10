@@ -33,27 +33,6 @@ public class FooAppearanceDefinitionMessagePubSubType : Halodi.TopicDataType<tes
       deserializeCDR.finishDeserialize();
    }
 
-   public static int getMaxCdrSerializedSize()
-   {
-      return getMaxCdrSerializedSize(0);
-   }
-
-   public static int getMaxCdrSerializedSize(int current_alignment)
-   {
-      int initial_alignment = current_alignment;
-
-      current_alignment += 8 + us.ihmc.idl.CDR.alignment(current_alignment, 8);
-
-      current_alignment += 8 + us.ihmc.idl.CDR.alignment(current_alignment, 8);
-
-      current_alignment += 8 + us.ihmc.idl.CDR.alignment(current_alignment, 8);
-
-      current_alignment += 8 + us.ihmc.idl.CDR.alignment(current_alignment, 8);
-
-
-      return current_alignment - initial_alignment;
-   }
-
    public final static int getCdrSerializedSize(test.FooAppearanceDefinitionMessage data)
    {
       return getCdrSerializedSize(data, 0);
@@ -93,54 +72,24 @@ public class FooAppearanceDefinitionMessagePubSubType : Halodi.TopicDataType<tes
 
    public static void read(test.FooAppearanceDefinitionMessage data, us.ihmc.idl.CDR cdr)
    {
-      data.setR(cdr.read_type_6());
+      data.R=cdr.read_type_6());
       	
-      data.setG(cdr.read_type_6());
+      data.G=cdr.read_type_6());
       	
-      data.setB(cdr.read_type_6());
+      data.B=cdr.read_type_6());
       	
-      data.setTransparency(cdr.read_type_6());
+      data.Transparency=cdr.read_type_6());
       	
 
    }
 
-   @Override
-   public final void serialize(test.FooAppearanceDefinitionMessage data, us.ihmc.idl.InterchangeSerializer ser)
-   {
-      ser.write_type_6("r", data.getR());
-      ser.write_type_6("g", data.getG());
-      ser.write_type_6("b", data.getB());
-      ser.write_type_6("transparency", data.getTransparency());
-   }
 
-   @Override
-   public final void deserialize(us.ihmc.idl.InterchangeSerializer ser, test.FooAppearanceDefinitionMessage data)
-   {
-      data.setR(ser.read_type_6("r"));
-      data.setG(ser.read_type_6("g"));
-      data.setB(ser.read_type_6("b"));
-      data.setTransparency(ser.read_type_6("transparency"));
-   }
-
-   public static void staticCopy(test.FooAppearanceDefinitionMessage src, test.FooAppearanceDefinitionMessage dest)
-   {
-      dest.set(src);
-   }
-
-   @Override
-   public test.FooAppearanceDefinitionMessage createData()
-   {
-      return new test.FooAppearanceDefinitionMessage();
-   }
-
-   @Override
-   public int getTypeSize()
+   public override int getTypeSize()
    {
       return us.ihmc.idl.CDR.getTypeSize(getMaxCdrSerializedSize());
    }
 
-   @Override
-   public java.lang.String getName()
+   public override string getName()
    {
       return name;
    }
@@ -153,17 +102,6 @@ public class FooAppearanceDefinitionMessagePubSubType : Halodi.TopicDataType<tes
    public void deserialize(test.FooAppearanceDefinitionMessage data, us.ihmc.idl.CDR cdr)
    {
       read(data, cdr);
-   }
-   
-   public void copy(test.FooAppearanceDefinitionMessage src, test.FooAppearanceDefinitionMessage dest)
-   {
-      staticCopy(src, dest);
-   }
-
-   @Override
-   public FooAppearanceDefinitionMessagePubSubType newInstance()
-   {
-      return new FooAppearanceDefinitionMessagePubSubType();
    }
 }
 

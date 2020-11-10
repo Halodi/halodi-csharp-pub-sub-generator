@@ -33,29 +33,6 @@ public class FooGraphicObjectMessagePubSubType : Halodi.TopicDataType<test.FooGr
       deserializeCDR.finishDeserialize();
    }
 
-   public static int getMaxCdrSerializedSize()
-   {
-      return getMaxCdrSerializedSize(0);
-   }
-
-   public static int getMaxCdrSerializedSize(int current_alignment)
-   {
-      int initial_alignment = current_alignment;
-
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
-
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4) + 255 + 1;
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);current_alignment += (1024 * 2) + us.ihmc.idl.CDR.alignment(current_alignment, 2);
-
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);current_alignment += (128 * 8) + us.ihmc.idl.CDR.alignment(current_alignment, 8);
-
-      current_alignment += test.FooAppearanceDefinitionMessagePubSubType.getMaxCdrSerializedSize(current_alignment);
-
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4) + 255 + 1;
-
-      return current_alignment - initial_alignment;
-   }
-
    public final static int getCdrSerializedSize(test.FooGraphicObjectMessage data)
    {
       return getCdrSerializedSize(data, 0);
@@ -90,80 +67,55 @@ public class FooGraphicObjectMessagePubSubType : Halodi.TopicDataType<test.FooGr
    {
       cdr.write_type_2(data.getRegistrationID());
 
-      if(data.getName().length() <= 255)
-      cdr.write_type_d(data.getName());else
-          throw new RuntimeException("name field exceeds the maximum length");
+      cdr.write_type_d(data.getName());
 
-      if(data.getYoVariableIndex().size() <= 1024)
-      cdr.write_type_e(data.getYoVariableIndex());else
-          throw new RuntimeException("yoVariableIndex field exceeds the maximum length");
+      cdr.write_type_e(data.getYoVariableIndex());
 
-      if(data.getConstants().size() <= 128)
-      cdr.write_type_e(data.getConstants());else
-          throw new RuntimeException("constants field exceeds the maximum length");
+      cdr.write_type_e(data.getConstants());
 
       test.FooAppearanceDefinitionMessagePubSubType.write(data.getAppearance(), cdr);
-      if(data.getListName().length() <= 255)
-      cdr.write_type_d(data.getListName());else
-          throw new RuntimeException("listName field exceeds the maximum length");
+      cdr.write_type_d(data.getListName());
 
    }
 
    public static void read(test.FooGraphicObjectMessage data, us.ihmc.idl.CDR cdr)
    {
-      data.setRegistrationID(cdr.read_type_2());
+      data.RegistrationID=cdr.read_type_2());
       	
       cdr.read_type_d(data.getName());	
-      cdr.read_type_e(data.getYoVariableIndex());	
-      cdr.read_type_e(data.getConstants());	
-      test.FooAppearanceDefinitionMessagePubSubType.read(data.getAppearance(), cdr);	
+
+      int YoVariableIndex_length = cdr.read_type_2();
+      data.YoVariableIndex = new System.Collections.Generic.List<ushort>(YoVariableIndex_length);
+      for(int i = 0; i < YoVariableIndex_length; i++)
+      {
+      	data.YoVariableIndex.Add(cdr.read_type_3());
+      	
+      	
+      }
+      	
+
+      int Constants_length = cdr.read_type_2();
+      data.Constants = new System.Collections.Generic.List<double>(Constants_length);
+      for(int i = 0; i < Constants_length; i++)
+      {
+      	data.Constants.Add(cdr.read_type_6());
+      	
+      	
+      }
+      	
+      test.FooAppearanceDefinitionMessagePubSubType.read(data.Appearance, cdr);
+      	
       cdr.read_type_d(data.getListName());	
 
    }
 
-   @Override
-   public final void serialize(test.FooGraphicObjectMessage data, us.ihmc.idl.InterchangeSerializer ser)
-   {
-      ser.write_type_2("registrationID", data.getRegistrationID());
-      ser.write_type_d("name", data.getName());
-      ser.write_type_e("yoVariableIndex", data.getYoVariableIndex());
-      ser.write_type_e("constants", data.getConstants());
-      ser.write_type_a("appearance", new test.FooAppearanceDefinitionMessagePubSubType(), data.getAppearance());
 
-      ser.write_type_d("listName", data.getListName());
-   }
-
-   @Override
-   public final void deserialize(us.ihmc.idl.InterchangeSerializer ser, test.FooGraphicObjectMessage data)
-   {
-      data.setRegistrationID(ser.read_type_2("registrationID"));
-      ser.read_type_d("name", data.getName());
-      ser.read_type_e("yoVariableIndex", data.getYoVariableIndex());
-      ser.read_type_e("constants", data.getConstants());
-      ser.read_type_a("appearance", new test.FooAppearanceDefinitionMessagePubSubType(), data.getAppearance());
-
-      ser.read_type_d("listName", data.getListName());
-   }
-
-   public static void staticCopy(test.FooGraphicObjectMessage src, test.FooGraphicObjectMessage dest)
-   {
-      dest.set(src);
-   }
-
-   @Override
-   public test.FooGraphicObjectMessage createData()
-   {
-      return new test.FooGraphicObjectMessage();
-   }
-
-   @Override
-   public int getTypeSize()
+   public override int getTypeSize()
    {
       return us.ihmc.idl.CDR.getTypeSize(getMaxCdrSerializedSize());
    }
 
-   @Override
-   public java.lang.String getName()
+   public override string getName()
    {
       return name;
    }
@@ -176,17 +128,6 @@ public class FooGraphicObjectMessagePubSubType : Halodi.TopicDataType<test.FooGr
    public void deserialize(test.FooGraphicObjectMessage data, us.ihmc.idl.CDR cdr)
    {
       read(data, cdr);
-   }
-   
-   public void copy(test.FooGraphicObjectMessage src, test.FooGraphicObjectMessage dest)
-   {
-      staticCopy(src, dest);
-   }
-
-   @Override
-   public FooGraphicObjectMessagePubSubType newInstance()
-   {
-      return new FooGraphicObjectMessagePubSubType();
    }
 }
 

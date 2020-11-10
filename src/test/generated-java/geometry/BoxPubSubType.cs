@@ -33,27 +33,6 @@ public class BoxPubSubType : Halodi.TopicDataType<geometry.Box>
       deserializeCDR.finishDeserialize();
    }
 
-   public static int getMaxCdrSerializedSize()
-   {
-      return getMaxCdrSerializedSize(0);
-   }
-
-   public static int getMaxCdrSerializedSize(int current_alignment)
-   {
-      int initial_alignment = current_alignment;
-
-      current_alignment += geometry.VectorPubSubType.getMaxCdrSerializedSize(current_alignment);
-
-      current_alignment += 8 + us.ihmc.idl.CDR.alignment(current_alignment, 8);
-
-      current_alignment += 8 + us.ihmc.idl.CDR.alignment(current_alignment, 8);
-
-      current_alignment += 8 + us.ihmc.idl.CDR.alignment(current_alignment, 8);
-
-
-      return current_alignment - initial_alignment;
-   }
-
    public final static int getCdrSerializedSize(geometry.Box data)
    {
       return getCdrSerializedSize(data, 0);
@@ -91,55 +70,24 @@ public class BoxPubSubType : Halodi.TopicDataType<geometry.Box>
 
    public static void read(geometry.Box data, us.ihmc.idl.CDR cdr)
    {
-      geometry.VectorPubSubType.read(data.getCenter(), cdr);	
-      data.setW(cdr.read_type_6());
+      geometry.VectorPubSubType.read(data.Center, cdr);
       	
-      data.setL(cdr.read_type_6());
+      data.W=cdr.read_type_6());
       	
-      data.setH(cdr.read_type_6());
+      data.L=cdr.read_type_6());
+      	
+      data.H=cdr.read_type_6());
       	
 
    }
 
-   @Override
-   public final void serialize(geometry.Box data, us.ihmc.idl.InterchangeSerializer ser)
-   {
-      ser.write_type_a("center", new geometry.VectorPubSubType(), data.getCenter());
 
-      ser.write_type_6("w", data.getW());
-      ser.write_type_6("l", data.getL());
-      ser.write_type_6("h", data.getH());
-   }
-
-   @Override
-   public final void deserialize(us.ihmc.idl.InterchangeSerializer ser, geometry.Box data)
-   {
-      ser.read_type_a("center", new geometry.VectorPubSubType(), data.getCenter());
-
-      data.setW(ser.read_type_6("w"));
-      data.setL(ser.read_type_6("l"));
-      data.setH(ser.read_type_6("h"));
-   }
-
-   public static void staticCopy(geometry.Box src, geometry.Box dest)
-   {
-      dest.set(src);
-   }
-
-   @Override
-   public geometry.Box createData()
-   {
-      return new geometry.Box();
-   }
-
-   @Override
-   public int getTypeSize()
+   public override int getTypeSize()
    {
       return us.ihmc.idl.CDR.getTypeSize(getMaxCdrSerializedSize());
    }
 
-   @Override
-   public java.lang.String getName()
+   public override string getName()
    {
       return name;
    }
@@ -152,17 +100,6 @@ public class BoxPubSubType : Halodi.TopicDataType<geometry.Box>
    public void deserialize(geometry.Box data, us.ihmc.idl.CDR cdr)
    {
       read(data, cdr);
-   }
-   
-   public void copy(geometry.Box src, geometry.Box dest)
-   {
-      staticCopy(src, dest);
-   }
-
-   @Override
-   public BoxPubSubType newInstance()
-   {
-      return new BoxPubSubType();
    }
 }
 
