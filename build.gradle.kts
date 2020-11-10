@@ -6,7 +6,10 @@ plugins {
 }
 
 ihmc {
-   loadProductProperties("../group.gradle.properties")
+   group = "com.halodi"
+   version = "0.1"
+   vcsUrl = "https://github.com/Halodi/halodi-csharp-pub-sub-generator"
+   openSource = true
 
    configureDependencyResolution()
    resourceDirectory("main", "templates")
@@ -19,13 +22,13 @@ app.entrypoint("IDLGenerator", "us.ihmc.idl.generator.IDLGenerator")
 
 mainDependencies {
    api(dependencies.gradleApi())
-   api("us.ihmc:eprosima-idl-parser:source")
+   api("us.ihmc:eprosima-idl-parser:0.16.0")
    api("org.anarres:jcpp:1.4.12")
    api("us.ihmc:euclid:0.15.1")
 }
 
 testDependencies {
-   api("us.ihmc:ihmc-pub-sub-test:source")
+   api("us.ihmc:ihmc-pub-sub-test:0.16.0")
    api("us.ihmc:ihmc-commons-testing:0.30.2")
 }
 
