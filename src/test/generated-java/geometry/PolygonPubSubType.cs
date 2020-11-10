@@ -1,4 +1,5 @@
-package geometry;
+namespace geometry
+{
 
 /**
 * 
@@ -8,9 +9,10 @@ package geometry;
 * Do not update this file directly, edit Vector.idl instead.
 *
 */
-public class PolygonPubSubType implements us.ihmc.pubsub.TopicDataType<geometry.Polygon>
+public class PolygonPubSubType : Halodi.TopicDataType<geometry.Polygon>
 {
-   public static final java.lang.String name = "geometry::Polygon";
+   public const string name = "geometry::Polygon";
+
 
    private final us.ihmc.idl.CDR serializeCDR = new us.ihmc.idl.CDR();
    private final us.ihmc.idl.CDR deserializeCDR = new us.ihmc.idl.CDR();
@@ -99,6 +101,7 @@ public class PolygonPubSubType implements us.ihmc.pubsub.TopicDataType<geometry.
    {
       return new geometry.Polygon();
    }
+
    @Override
    public int getTypeSize()
    {
@@ -131,4 +134,7 @@ public class PolygonPubSubType implements us.ihmc.pubsub.TopicDataType<geometry.
    {
       return new PolygonPubSubType();
    }
+}
+
+
 }

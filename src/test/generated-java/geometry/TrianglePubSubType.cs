@@ -1,4 +1,5 @@
-package geometry;
+namespace geometry
+{
 
 /**
 * 
@@ -8,9 +9,10 @@ package geometry;
 * Do not update this file directly, edit Vector.idl instead.
 *
 */
-public class TrianglePubSubType implements us.ihmc.pubsub.TopicDataType<geometry.Triangle>
+public class TrianglePubSubType : Halodi.TopicDataType<geometry.Triangle>
 {
-   public static final java.lang.String name = "geometry::Triangle";
+   public const string name = "geometry::Triangle";
+
 
    private final us.ihmc.idl.CDR serializeCDR = new us.ihmc.idl.CDR();
    private final us.ihmc.idl.CDR deserializeCDR = new us.ihmc.idl.CDR();
@@ -100,6 +102,7 @@ public class TrianglePubSubType implements us.ihmc.pubsub.TopicDataType<geometry
    {
       return new geometry.Triangle();
    }
+
    @Override
    public int getTypeSize()
    {
@@ -132,4 +135,7 @@ public class TrianglePubSubType implements us.ihmc.pubsub.TopicDataType<geometry
    {
       return new TrianglePubSubType();
    }
+}
+
+
 }

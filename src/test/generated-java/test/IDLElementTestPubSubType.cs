@@ -1,4 +1,5 @@
-package test;
+namespace test
+{
 
 /**
 * 
@@ -8,9 +9,10 @@ package test;
 * Do not update this file directly, edit IDLElementTest.idl instead.
 *
 */
-public class IDLElementTestPubSubType implements us.ihmc.pubsub.TopicDataType<test.IDLElementTest>
+public class IDLElementTestPubSubType : Halodi.TopicDataType<test.IDLElementTest>
 {
-   public static final java.lang.String name = "test::IDLElementTest";
+   public const string name = "test::IDLElementTest";
+
 
    private final us.ihmc.idl.CDR serializeCDR = new us.ihmc.idl.CDR();
    private final us.ihmc.idl.CDR deserializeCDR = new us.ihmc.idl.CDR();
@@ -540,6 +542,7 @@ public class IDLElementTestPubSubType implements us.ihmc.pubsub.TopicDataType<te
    {
       return new test.IDLElementTest();
    }
+
    @Override
    public int getTypeSize()
    {
@@ -572,4 +575,7 @@ public class IDLElementTestPubSubType implements us.ihmc.pubsub.TopicDataType<te
    {
       return new IDLElementTestPubSubType();
    }
+}
+
+
 }

@@ -1,4 +1,5 @@
-package test;
+namespace test
+{
 
 /**
 * 
@@ -8,9 +9,10 @@ package test;
 * Do not update this file directly, edit IDLFeatureMessage.idl instead.
 *
 */
-public class IDLFeatureMessagePubSubType implements us.ihmc.pubsub.TopicDataType<test.IDLFeatureMessage>
+public class IDLFeatureMessagePubSubType : Halodi.TopicDataType<test.IDLFeatureMessage>
 {
-   public static final java.lang.String name = "test::IDLFeatureMessage";
+   public const string name = "test::IDLFeatureMessage";
+
 
    private final us.ihmc.idl.CDR serializeCDR = new us.ihmc.idl.CDR();
    private final us.ihmc.idl.CDR deserializeCDR = new us.ihmc.idl.CDR();
@@ -257,6 +259,7 @@ public class IDLFeatureMessagePubSubType implements us.ihmc.pubsub.TopicDataType
    {
       return new test.IDLFeatureMessage();
    }
+
    @Override
    public int getTypeSize()
    {
@@ -289,4 +292,7 @@ public class IDLFeatureMessagePubSubType implements us.ihmc.pubsub.TopicDataType
    {
       return new IDLFeatureMessagePubSubType();
    }
+}
+
+
 }

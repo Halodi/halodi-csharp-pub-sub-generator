@@ -1,4 +1,5 @@
-package chat;
+namespace chat
+{
 
 /**
 * 
@@ -8,9 +9,10 @@ package chat;
 * Do not update this file directly, edit ChatMessage.idl instead.
 *
 */
-public class ChatMessagePubSubType implements us.ihmc.pubsub.TopicDataType<chat.ChatMessage>
+public class ChatMessagePubSubType : Halodi.TopicDataType<chat.ChatMessage>
 {
-   public static final java.lang.String name = "chat::ChatMessage";
+   public const string name = "chat::ChatMessage";
+
 
    private final us.ihmc.idl.CDR serializeCDR = new us.ihmc.idl.CDR();
    private final us.ihmc.idl.CDR deserializeCDR = new us.ihmc.idl.CDR();
@@ -117,6 +119,7 @@ public class ChatMessagePubSubType implements us.ihmc.pubsub.TopicDataType<chat.
    {
       return new chat.ChatMessage();
    }
+
    @Override
    public int getTypeSize()
    {
@@ -149,4 +152,7 @@ public class ChatMessagePubSubType implements us.ihmc.pubsub.TopicDataType<chat.
    {
       return new ChatMessagePubSubType();
    }
+}
+
+
 }

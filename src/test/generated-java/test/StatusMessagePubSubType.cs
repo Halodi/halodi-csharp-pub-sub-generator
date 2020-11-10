@@ -1,4 +1,5 @@
-package test;
+namespace test
+{
 
 /**
 * 
@@ -8,9 +9,10 @@ package test;
 * Do not update this file directly, edit StatusMessage.idl instead.
 *
 */
-public class StatusMessagePubSubType implements us.ihmc.pubsub.TopicDataType<test.StatusMessage>
+public class StatusMessagePubSubType : Halodi.TopicDataType<test.StatusMessage>
 {
-   public static final java.lang.String name = "test::StatusMessage";
+   public const string name = "test::StatusMessage";
+
 
    private final us.ihmc.idl.CDR serializeCDR = new us.ihmc.idl.CDR();
    private final us.ihmc.idl.CDR deserializeCDR = new us.ihmc.idl.CDR();
@@ -108,6 +110,7 @@ public class StatusMessagePubSubType implements us.ihmc.pubsub.TopicDataType<tes
    {
       return new test.StatusMessage();
    }
+
    @Override
    public int getTypeSize()
    {
@@ -140,4 +143,7 @@ public class StatusMessagePubSubType implements us.ihmc.pubsub.TopicDataType<tes
    {
       return new StatusMessagePubSubType();
    }
+}
+
+
 }

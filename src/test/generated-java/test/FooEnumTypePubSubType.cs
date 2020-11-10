@@ -1,4 +1,5 @@
-package test;
+namespace test
+{
 
 /**
 * 
@@ -8,9 +9,10 @@ package test;
 * Do not update this file directly, edit FooHandshake.idl instead.
 *
 */
-public class FooEnumTypePubSubType implements us.ihmc.pubsub.TopicDataType<test.FooEnumType>
+public class FooEnumTypePubSubType : Halodi.TopicDataType<test.FooEnumType>
 {
-   public static final java.lang.String name = "test::FooEnumType";
+   public const string name = "test::FooEnumType";
+
 
    private final us.ihmc.idl.CDR serializeCDR = new us.ihmc.idl.CDR();
    private final us.ihmc.idl.CDR deserializeCDR = new us.ihmc.idl.CDR();
@@ -112,6 +114,7 @@ public class FooEnumTypePubSubType implements us.ihmc.pubsub.TopicDataType<test.
    {
       return new test.FooEnumType();
    }
+
    @Override
    public int getTypeSize()
    {
@@ -144,4 +147,7 @@ public class FooEnumTypePubSubType implements us.ihmc.pubsub.TopicDataType<test.
    {
       return new FooEnumTypePubSubType();
    }
+}
+
+
 }

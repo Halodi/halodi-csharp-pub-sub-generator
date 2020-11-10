@@ -6,6 +6,10 @@ $if(package)$
 namespace $package$$\n${$\n\n$
 $endif$
 $definitions$
+
+$if(package)$
+}
+$endif$
 >>
 interface(ctx, parent, interface, exports, extension) ::= <<
 $classdescription(type="interface", name=interface.name, filename=[ctx.filename, ".idl"])$

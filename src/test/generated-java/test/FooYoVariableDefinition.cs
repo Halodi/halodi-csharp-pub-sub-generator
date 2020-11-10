@@ -72,3 +72,6 @@ public class FooYoVariableDefinition
       return builder.ToString();
    }
 }
+
+
+}

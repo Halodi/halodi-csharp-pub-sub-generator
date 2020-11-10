@@ -32,3 +32,6 @@ public class FooYoRegistryDefinition
       return builder.ToString();
    }
 }
+
+
+}

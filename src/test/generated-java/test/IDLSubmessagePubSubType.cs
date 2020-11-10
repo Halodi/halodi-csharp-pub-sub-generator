@@ -1,4 +1,5 @@
-package test;
+namespace test
+{
 
 /**
 * 
@@ -8,9 +9,10 @@ package test;
 * Do not update this file directly, edit IDLSubmessage.idl instead.
 *
 */
-public class IDLSubmessagePubSubType implements us.ihmc.pubsub.TopicDataType<test.IDLSubmessage>
+public class IDLSubmessagePubSubType : Halodi.TopicDataType<test.IDLSubmessage>
 {
-   public static final java.lang.String name = "test::IDLSubmessage";
+   public const string name = "test::IDLSubmessage";
+
 
    private final us.ihmc.idl.CDR serializeCDR = new us.ihmc.idl.CDR();
    private final us.ihmc.idl.CDR deserializeCDR = new us.ihmc.idl.CDR();
@@ -130,6 +132,7 @@ public class IDLSubmessagePubSubType implements us.ihmc.pubsub.TopicDataType<tes
    {
       return new test.IDLSubmessage();
    }
+
    @Override
    public int getTypeSize()
    {
@@ -162,4 +165,7 @@ public class IDLSubmessagePubSubType implements us.ihmc.pubsub.TopicDataType<tes
    {
       return new IDLSubmessagePubSubType();
    }
+}
+
+
 }

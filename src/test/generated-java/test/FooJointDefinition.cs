@@ -32,3 +32,6 @@ public class FooJointDefinition
       return builder.ToString();
    }
 }
+
+
+}

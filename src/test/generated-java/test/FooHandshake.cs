@@ -55,3 +55,6 @@ public class FooHandshake
       return builder.ToString();
    }
 }
+
+
+}

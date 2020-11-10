@@ -1,4 +1,5 @@
-package geometry;
+namespace geometry
+{
 
 /**
 * 
@@ -8,9 +9,10 @@ package geometry;
 * Do not update this file directly, edit Vector.idl instead.
 *
 */
-public class BoxPubSubType implements us.ihmc.pubsub.TopicDataType<geometry.Box>
+public class BoxPubSubType : Halodi.TopicDataType<geometry.Box>
 {
-   public static final java.lang.String name = "geometry::Box";
+   public const string name = "geometry::Box";
+
 
    private final us.ihmc.idl.CDR serializeCDR = new us.ihmc.idl.CDR();
    private final us.ihmc.idl.CDR deserializeCDR = new us.ihmc.idl.CDR();
@@ -129,6 +131,7 @@ public class BoxPubSubType implements us.ihmc.pubsub.TopicDataType<geometry.Box>
    {
       return new geometry.Box();
    }
+
    @Override
    public int getTypeSize()
    {
@@ -161,4 +164,7 @@ public class BoxPubSubType implements us.ihmc.pubsub.TopicDataType<geometry.Box>
    {
       return new BoxPubSubType();
    }
+}
+
+
 }

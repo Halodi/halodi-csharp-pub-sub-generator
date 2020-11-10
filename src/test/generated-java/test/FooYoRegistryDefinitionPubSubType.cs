@@ -1,4 +1,5 @@
-package test;
+namespace test
+{
 
 /**
 * 
@@ -8,9 +9,10 @@ package test;
 * Do not update this file directly, edit FooHandshake.idl instead.
 *
 */
-public class FooYoRegistryDefinitionPubSubType implements us.ihmc.pubsub.TopicDataType<test.FooYoRegistryDefinition>
+public class FooYoRegistryDefinitionPubSubType : Halodi.TopicDataType<test.FooYoRegistryDefinition>
 {
-   public static final java.lang.String name = "test::FooYoRegistryDefinition";
+   public const string name = "test::FooYoRegistryDefinition";
+
 
    private final us.ihmc.idl.CDR serializeCDR = new us.ihmc.idl.CDR();
    private final us.ihmc.idl.CDR deserializeCDR = new us.ihmc.idl.CDR();
@@ -107,6 +109,7 @@ public class FooYoRegistryDefinitionPubSubType implements us.ihmc.pubsub.TopicDa
    {
       return new test.FooYoRegistryDefinition();
    }
+
    @Override
    public int getTypeSize()
    {
@@ -139,4 +142,7 @@ public class FooYoRegistryDefinitionPubSubType implements us.ihmc.pubsub.TopicDa
    {
       return new FooYoRegistryDefinitionPubSubType();
    }
+}
+
+
 }

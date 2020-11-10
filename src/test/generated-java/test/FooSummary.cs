@@ -36,3 +36,6 @@ public class FooSummary
       return builder.ToString();
    }
 }
+
+
+}

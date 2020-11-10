@@ -31,3 +31,6 @@ public class FooEnumType
       return builder.ToString();
    }
 }
+
+
+}

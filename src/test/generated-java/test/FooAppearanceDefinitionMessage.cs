@@ -42,3 +42,6 @@ public class FooAppearanceDefinitionMessage
       return builder.ToString();
    }
 }
+
+
+}

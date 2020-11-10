@@ -1,4 +1,5 @@
-package test;
+namespace test
+{
 
 /**
 * 
@@ -8,9 +9,10 @@ package test;
 * Do not update this file directly, edit FooHandshake.idl instead.
 *
 */
-public class FooGraphicObjectMessagePubSubType implements us.ihmc.pubsub.TopicDataType<test.FooGraphicObjectMessage>
+public class FooGraphicObjectMessagePubSubType : Halodi.TopicDataType<test.FooGraphicObjectMessage>
 {
-   public static final java.lang.String name = "test::FooGraphicObjectMessage";
+   public const string name = "test::FooGraphicObjectMessage";
+
 
    private final us.ihmc.idl.CDR serializeCDR = new us.ihmc.idl.CDR();
    private final us.ihmc.idl.CDR deserializeCDR = new us.ihmc.idl.CDR();
@@ -153,6 +155,7 @@ public class FooGraphicObjectMessagePubSubType implements us.ihmc.pubsub.TopicDa
    {
       return new test.FooGraphicObjectMessage();
    }
+
    @Override
    public int getTypeSize()
    {
@@ -185,4 +188,7 @@ public class FooGraphicObjectMessagePubSubType implements us.ihmc.pubsub.TopicDa
    {
       return new FooGraphicObjectMessagePubSubType();
    }
+}
+
+
 }

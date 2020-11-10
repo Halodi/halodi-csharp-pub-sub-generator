@@ -1,4 +1,5 @@
-package test;
+namespace test
+{
 
 /**
 * 
@@ -8,9 +9,10 @@ package test;
 * Do not update this file directly, edit FooHandshake.idl instead.
 *
 */
-public class FooYoVariableDefinitionPubSubType implements us.ihmc.pubsub.TopicDataType<test.FooYoVariableDefinition>
+public class FooYoVariableDefinitionPubSubType : Halodi.TopicDataType<test.FooYoVariableDefinition>
 {
-   public static final java.lang.String name = "test::FooYoVariableDefinition";
+   public const string name = "test::FooYoVariableDefinition";
+
 
    private final us.ihmc.idl.CDR serializeCDR = new us.ihmc.idl.CDR();
    private final us.ihmc.idl.CDR deserializeCDR = new us.ihmc.idl.CDR();
@@ -198,6 +200,7 @@ public class FooYoVariableDefinitionPubSubType implements us.ihmc.pubsub.TopicDa
    {
       return new test.FooYoVariableDefinition();
    }
+
    @Override
    public int getTypeSize()
    {
@@ -230,4 +233,7 @@ public class FooYoVariableDefinitionPubSubType implements us.ihmc.pubsub.TopicDa
    {
       return new FooYoVariableDefinitionPubSubType();
    }
+}
+
+
 }

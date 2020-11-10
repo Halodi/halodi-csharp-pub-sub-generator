@@ -1,4 +1,5 @@
-package nested;
+namespace nested
+{
 
 /**
 * 
@@ -8,9 +9,10 @@ package nested;
 * Do not update this file directly, edit NestedElement.idl instead.
 *
 */
-public class NestedElementPubSubType implements us.ihmc.pubsub.TopicDataType<nested.NestedElement>
+public class NestedElementPubSubType : Halodi.TopicDataType<nested.NestedElement>
 {
-   public static final java.lang.String name = "nested::NestedElement";
+   public const string name = "nested::NestedElement";
+
 
    private final us.ihmc.idl.CDR serializeCDR = new us.ihmc.idl.CDR();
    private final us.ihmc.idl.CDR deserializeCDR = new us.ihmc.idl.CDR();
@@ -107,6 +109,7 @@ public class NestedElementPubSubType implements us.ihmc.pubsub.TopicDataType<nes
    {
       return new nested.NestedElement();
    }
+
    @Override
    public int getTypeSize()
    {
@@ -139,4 +142,7 @@ public class NestedElementPubSubType implements us.ihmc.pubsub.TopicDataType<nes
    {
       return new NestedElementPubSubType();
    }
+}
+
+
 }

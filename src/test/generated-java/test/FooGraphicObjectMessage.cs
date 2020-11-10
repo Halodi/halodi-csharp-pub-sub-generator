@@ -49,3 +49,6 @@ public class FooGraphicObjectMessage
       return builder.ToString();
    }
 }
+
+
+}
