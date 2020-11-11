@@ -11,18 +11,24 @@ public class FooSummary
    public System.Collections.Generic.List<string> summarizedVariables;
 
 
-   public void set(FooSummary other)
+   public void Set(FooSummary other)
    {
       createSummary = other.createSummary;
 
       summaryTriggerVariable = other.summaryTriggerVariable;
 
 
-
-      summarizedVariables = new System.Collections.Generic.List<string>(other.summarizedVariables.Count);
-      for(int i4 = 0; i4 < other.summarizedVariables.Count; i4++)
+      if(other.summarizedVariables == null)
       {
-         summarizedVariables.Add(other.summarizedVariables[i4]);
+      	summarizedVariables = null;
+      }
+      else
+      {
+      	summarizedVariables = new System.Collections.Generic.List<string>(other.summarizedVariables.Count);
+      	for(int i4 = 0; i4 < other.summarizedVariables.Count; i4++)
+      	{
+         		summarizedVariables.Add(other.summarizedVariables[i4]);
+      	}
       }
    }
 

@@ -47,7 +47,7 @@ $endif$
 }; separator="\n"$
 
 
-   public void set($struct.name$ other)
+   public void Set($struct.name$ other)
    {
 $struct.members : { member |
 $if(member.typecode.primitive)$
@@ -77,13 +77,9 @@ $struct.members : { member |
       builder.Append("$member.name$=");
 $if(member.typecode.isType_f)$
 $if(first(rest(member.typecode.dimensions)))$
-      builder.Append("[");
-      builder.Append(System.String.Join(",", this.$member.name$));
-      builder.Append("]");
+      builder.Append(Halodi.CDR.CDRCommon.DeepArrayToString(",", this.$member.name$));
 $else$
-	  builder.Append("[");
-      builder.Append(System.String.Join(",", this.$member.name$));
-      builder.Append("]");
+      builder.Append(Halodi.CDR.CDRCommon.ArrayToString(",", this.$member.name$));
 $endif$
 $else$
       builder.Append(this.$member.name$);

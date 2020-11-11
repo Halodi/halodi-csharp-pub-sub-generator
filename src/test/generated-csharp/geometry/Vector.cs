@@ -15,7 +15,7 @@ public class Vector
    public double[] waa;
 
 
-   public void set(Vector other)
+   public void Set(Vector other)
    {
       frame = other.frame;
 
@@ -26,11 +26,17 @@ public class Vector
       z = other.z;
 
 
-
-      bla = new System.Collections.Generic.List<double>(other.bla.Count);
-      for(int i1 = 0; i1 < other.bla.Count; i1++)
+      if(other.bla == null)
       {
-         bla.Add(other.bla[i1]);
+      	bla = null;
+      }
+      else
+      {
+      	bla = new System.Collections.Generic.List<double>(other.bla.Count);
+      	for(int i1 = 0; i1 < other.bla.Count; i1++)
+      	{
+         		bla.Add(other.bla[i1]);
+      	}
       }
       for(int i2 = 0; i2 < waa.Length; ++i2)
       {
@@ -58,9 +64,7 @@ public class Vector
       builder.Append("bla=");
       builder.Append(this.bla);      builder.Append(", ");
       builder.Append("waa=");
-	  builder.Append("[");
-      builder.Append(System.String.Join(",", this.waa));
-      builder.Append("]");
+      builder.Append(Halodi.CDR.CDRCommon.ArrayToString(",", this.waa));
       builder.Append("}");
       return builder.ToString();
    }

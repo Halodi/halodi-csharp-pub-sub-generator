@@ -16,58 +16,136 @@ public class FooHandshake
    public test.FooSummary summary;
 
 
-   public void set(FooHandshake other)
+   public void Set(FooHandshake other)
    {
       dt = other.dt;
 
 
-
-      registries = new System.Collections.Generic.List<test.FooYoRegistryDefinition>(other.registries.Count);
-      for(int i5 = 0; i5 < other.registries.Count; i5++)
+      if(other.registries == null)
       {
-      	test.FooYoRegistryDefinition newElement = new test.FooYoRegistryDefinitionPubSubType.Create();
-         test.FooYoRegistryDefinitionPubSubType.Copy(other.registries, newElement);
-         registries.Add(newElement);}
-
-
-      variables = new System.Collections.Generic.List<test.FooYoVariableDefinition>(other.variables.Count);
-      for(int i6 = 0; i6 < other.variables.Count; i6++)
+      	registries = null;
+      }
+      else
       {
-      	test.FooYoVariableDefinition newElement = new test.FooYoVariableDefinitionPubSubType.Create();
-         test.FooYoVariableDefinitionPubSubType.Copy(other.variables, newElement);
-         variables.Add(newElement);}
+      	registries = new System.Collections.Generic.List<test.FooYoRegistryDefinition>(other.registries.Count);
+      	for(int i5 = 0; i5 < other.registries.Count; i5++)
+      	{
+      		if(other.registries[i5] == null)
+      		{
+      			registries.Add(null);
+      		}
+      		else
+      		{
+      			test.FooYoRegistryDefinition newElement = test.FooYoRegistryDefinitionPubSubType.Create();
+      	   		test.FooYoRegistryDefinitionPubSubType.Copy(other.registries[i5], newElement);
+      	   		registries.Add(newElement);
+      		}	}
+      }
 
-
-      joints = new System.Collections.Generic.List<test.FooJointDefinition>(other.joints.Count);
-      for(int i7 = 0; i7 < other.joints.Count; i7++)
+      if(other.variables == null)
       {
-      	test.FooJointDefinition newElement = new test.FooJointDefinitionPubSubType.Create();
-         test.FooJointDefinitionPubSubType.Copy(other.joints, newElement);
-         joints.Add(newElement);}
-
-
-      graphicObjects = new System.Collections.Generic.List<test.FooGraphicObjectMessage>(other.graphicObjects.Count);
-      for(int i8 = 0; i8 < other.graphicObjects.Count; i8++)
+      	variables = null;
+      }
+      else
       {
-      	test.FooGraphicObjectMessage newElement = new test.FooGraphicObjectMessagePubSubType.Create();
-         test.FooGraphicObjectMessagePubSubType.Copy(other.graphicObjects, newElement);
-         graphicObjects.Add(newElement);}
+      	variables = new System.Collections.Generic.List<test.FooYoVariableDefinition>(other.variables.Count);
+      	for(int i6 = 0; i6 < other.variables.Count; i6++)
+      	{
+      		if(other.variables[i6] == null)
+      		{
+      			variables.Add(null);
+      		}
+      		else
+      		{
+      			test.FooYoVariableDefinition newElement = test.FooYoVariableDefinitionPubSubType.Create();
+      	   		test.FooYoVariableDefinitionPubSubType.Copy(other.variables[i6], newElement);
+      	   		variables.Add(newElement);
+      		}	}
+      }
 
-
-      artifacts = new System.Collections.Generic.List<test.FooGraphicObjectMessage>(other.artifacts.Count);
-      for(int i9 = 0; i9 < other.artifacts.Count; i9++)
+      if(other.joints == null)
       {
-      	test.FooGraphicObjectMessage newElement = new test.FooGraphicObjectMessagePubSubType.Create();
-         test.FooGraphicObjectMessagePubSubType.Copy(other.artifacts, newElement);
-         artifacts.Add(newElement);}
-
-
-      enumTypes = new System.Collections.Generic.List<test.FooEnumType>(other.enumTypes.Count);
-      for(int i10 = 0; i10 < other.enumTypes.Count; i10++)
+      	joints = null;
+      }
+      else
       {
-      	test.FooEnumType newElement = new test.FooEnumTypePubSubType.Create();
-         test.FooEnumTypePubSubType.Copy(other.enumTypes, newElement);
-         enumTypes.Add(newElement);}
+      	joints = new System.Collections.Generic.List<test.FooJointDefinition>(other.joints.Count);
+      	for(int i7 = 0; i7 < other.joints.Count; i7++)
+      	{
+      		if(other.joints[i7] == null)
+      		{
+      			joints.Add(null);
+      		}
+      		else
+      		{
+      			test.FooJointDefinition newElement = test.FooJointDefinitionPubSubType.Create();
+      	   		test.FooJointDefinitionPubSubType.Copy(other.joints[i7], newElement);
+      	   		joints.Add(newElement);
+      		}	}
+      }
+
+      if(other.graphicObjects == null)
+      {
+      	graphicObjects = null;
+      }
+      else
+      {
+      	graphicObjects = new System.Collections.Generic.List<test.FooGraphicObjectMessage>(other.graphicObjects.Count);
+      	for(int i8 = 0; i8 < other.graphicObjects.Count; i8++)
+      	{
+      		if(other.graphicObjects[i8] == null)
+      		{
+      			graphicObjects.Add(null);
+      		}
+      		else
+      		{
+      			test.FooGraphicObjectMessage newElement = test.FooGraphicObjectMessagePubSubType.Create();
+      	   		test.FooGraphicObjectMessagePubSubType.Copy(other.graphicObjects[i8], newElement);
+      	   		graphicObjects.Add(newElement);
+      		}	}
+      }
+
+      if(other.artifacts == null)
+      {
+      	artifacts = null;
+      }
+      else
+      {
+      	artifacts = new System.Collections.Generic.List<test.FooGraphicObjectMessage>(other.artifacts.Count);
+      	for(int i9 = 0; i9 < other.artifacts.Count; i9++)
+      	{
+      		if(other.artifacts[i9] == null)
+      		{
+      			artifacts.Add(null);
+      		}
+      		else
+      		{
+      			test.FooGraphicObjectMessage newElement = test.FooGraphicObjectMessagePubSubType.Create();
+      	   		test.FooGraphicObjectMessagePubSubType.Copy(other.artifacts[i9], newElement);
+      	   		artifacts.Add(newElement);
+      		}	}
+      }
+
+      if(other.enumTypes == null)
+      {
+      	enumTypes = null;
+      }
+      else
+      {
+      	enumTypes = new System.Collections.Generic.List<test.FooEnumType>(other.enumTypes.Count);
+      	for(int i10 = 0; i10 < other.enumTypes.Count; i10++)
+      	{
+      		if(other.enumTypes[i10] == null)
+      		{
+      			enumTypes.Add(null);
+      		}
+      		else
+      		{
+      			test.FooEnumType newElement = test.FooEnumTypePubSubType.Create();
+      	   		test.FooEnumTypePubSubType.Copy(other.enumTypes[i10], newElement);
+      	   		enumTypes.Add(newElement);
+      		}	}
+      }
       test.FooSummaryPubSubType.Copy(other.summary, summary);
 
    }

@@ -412,7 +412,7 @@ class TypesGenerator
          if (!handle.exists() || replace_)
          {
             FileWriter fw = new FileWriter(file);
-            String data = template.toString();
+            String data = fixBugs(template.toString());
 
             data = data.replaceAll("\r\n", "\n");
             fw.write(data, 0, data.length());
@@ -431,5 +431,10 @@ class TypesGenerator
       }
 
       return returnedValue;
+   }
+   
+   private String fixBugs(String original)
+   {
+      return original.replace("us.ihmc.idl.IDLSequence.Enum", "System.Collections.Generic.List");
    }
 }

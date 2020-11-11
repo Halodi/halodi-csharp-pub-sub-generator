@@ -10,18 +10,31 @@ public class BigMessage
    public System.Collections.Generic.List<test.IDLSubmessage> largeSequence;
 
 
-   public void set(BigMessage other)
+   public void Set(BigMessage other)
    {
       id = other.id;
 
 
-
-      largeSequence = new System.Collections.Generic.List<test.IDLSubmessage>(other.largeSequence.Count);
-      for(int i1 = 0; i1 < other.largeSequence.Count; i1++)
+      if(other.largeSequence == null)
       {
-      	test.IDLSubmessage newElement = new test.IDLSubmessagePubSubType.Create();
-         test.IDLSubmessagePubSubType.Copy(other.largeSequence, newElement);
-         largeSequence.Add(newElement);}
+      	largeSequence = null;
+      }
+      else
+      {
+      	largeSequence = new System.Collections.Generic.List<test.IDLSubmessage>(other.largeSequence.Count);
+      	for(int i1 = 0; i1 < other.largeSequence.Count; i1++)
+      	{
+      		if(other.largeSequence[i1] == null)
+      		{
+      			largeSequence.Add(null);
+      		}
+      		else
+      		{
+      			test.IDLSubmessage newElement = test.IDLSubmessagePubSubType.Create();
+      	   		test.IDLSubmessagePubSubType.Copy(other.largeSequence[i1], newElement);
+      	   		largeSequence.Add(newElement);
+      		}	}
+      }
    }
 
 

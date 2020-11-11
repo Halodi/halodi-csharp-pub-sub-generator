@@ -14,25 +14,37 @@ public class FooGraphicObjectMessage
    public string listName;
 
 
-   public void set(FooGraphicObjectMessage other)
+   public void Set(FooGraphicObjectMessage other)
    {
       registrationID = other.registrationID;
 
       name = other.name;
 
 
-
-      yoVariableIndex = new System.Collections.Generic.List<ushort>(other.yoVariableIndex.Count);
-      for(int i1 = 0; i1 < other.yoVariableIndex.Count; i1++)
+      if(other.yoVariableIndex == null)
       {
-         yoVariableIndex.Add(other.yoVariableIndex[i1]);
+      	yoVariableIndex = null;
+      }
+      else
+      {
+      	yoVariableIndex = new System.Collections.Generic.List<ushort>(other.yoVariableIndex.Count);
+      	for(int i1 = 0; i1 < other.yoVariableIndex.Count; i1++)
+      	{
+         		yoVariableIndex.Add(other.yoVariableIndex[i1]);
+      	}
       }
 
-
-      constants = new System.Collections.Generic.List<double>(other.constants.Count);
-      for(int i2 = 0; i2 < other.constants.Count; i2++)
+      if(other.constants == null)
       {
-         constants.Add(other.constants[i2]);
+      	constants = null;
+      }
+      else
+      {
+      	constants = new System.Collections.Generic.List<double>(other.constants.Count);
+      	for(int i2 = 0; i2 < other.constants.Count; i2++)
+      	{
+         		constants.Add(other.constants[i2]);
+      	}
       }
       test.FooAppearanceDefinitionMessagePubSubType.Copy(other.appearance, appearance);
 

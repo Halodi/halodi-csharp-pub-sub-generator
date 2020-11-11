@@ -10,7 +10,7 @@ public class NestedElement
    public int longTest;
 
 
-   public void set(NestedElement other)
+   public void Set(NestedElement other)
    {
       stringTest = other.stringTest;
 

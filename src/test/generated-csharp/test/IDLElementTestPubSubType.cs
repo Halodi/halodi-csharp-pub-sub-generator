@@ -319,7 +319,7 @@ public class IDLElementTestPubSubType : Halodi.CDR.TopicDataType<test.IDLElement
             cdr.write_type_2(enumSeqTest_length);
             for (int i0 = 0; i0 < enumSeqTest_length; i0++)
             {
-      	   		cdr.write_type_c(data.enumSeqTest[i0].ordinal());
+      	   		cdr.write_type_c((int) data.enumSeqTest[i0]);
 
             }
 
@@ -537,13 +537,13 @@ public class IDLElementTestPubSubType : Halodi.CDR.TopicDataType<test.IDLElement
       	
 
       int enumSeqTest_length = cdr.read_type_2();
-      data.enumSeqTest = new us.ihmc.idl.IDLSequence.Enum<test.Color>(enumSeqTest_length);
+      data.enumSeqTest = new System.Collections.Generic.List<test.Color>(enumSeqTest_length);
       for(int i = 0; i < enumSeqTest_length; i++)
       {
          int ordinal = cdr.read_type_c();
          if (ordinal < 0)
       	  ordinal = 0;
-         data.enumSeqTest.Add((us.ihmc.idl.IDLSequence.Enum<test.Color>) ordinal);
+         data.enumSeqTest.Add((test.Color) ordinal);
       	
       	
       }

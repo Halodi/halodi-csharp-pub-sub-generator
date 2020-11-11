@@ -12,7 +12,7 @@ public class Box
    public double h;
 
 
-   public void set(Box other)
+   public void Set(Box other)
    {
       geometry.VectorPubSubType.Copy(other.center, center);
 

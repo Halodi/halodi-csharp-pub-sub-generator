@@ -16,7 +16,7 @@ public class ChatMessage
    public string msg;
 
 
-   public void set(ChatMessage other)
+   public void Set(ChatMessage other)
    {
       key = other.key;
 

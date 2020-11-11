@@ -10,7 +10,7 @@ public class FooYoRegistryDefinition
    public string name;
 
 
-   public void set(FooYoRegistryDefinition other)
+   public void Set(FooYoRegistryDefinition other)
    {
       parent = other.parent;
 

@@ -10,7 +10,7 @@ public class FooJointDefinition
    public test.FooJointType type;
 
 
-   public void set(FooJointDefinition other)
+   public void Set(FooJointDefinition other)
    {
       name = other.name;
 

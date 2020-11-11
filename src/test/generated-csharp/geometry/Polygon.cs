@@ -9,16 +9,29 @@ public class Polygon
    public System.Collections.Generic.List<geometry.Vector> points;
 
 
-   public void set(Polygon other)
+   public void Set(Polygon other)
    {
 
-
-      points = new System.Collections.Generic.List<geometry.Vector>(other.points.Count);
-      for(int i4 = 0; i4 < other.points.Count; i4++)
+      if(other.points == null)
       {
-      	geometry.Vector newElement = new geometry.VectorPubSubType.Create();
-         geometry.VectorPubSubType.Copy(other.points, newElement);
-         points.Add(newElement);}   }
+      	points = null;
+      }
+      else
+      {
+      	points = new System.Collections.Generic.List<geometry.Vector>(other.points.Count);
+      	for(int i4 = 0; i4 < other.points.Count; i4++)
+      	{
+      		if(other.points[i4] == null)
+      		{
+      			points.Add(null);
+      		}
+      		else
+      		{
+      			geometry.Vector newElement = geometry.VectorPubSubType.Create();
+      	   		geometry.VectorPubSubType.Copy(other.points[i4], newElement);
+      	   		points.Add(newElement);
+      		}	}
+      }   }
 
 
    public override string ToString()

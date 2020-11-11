@@ -18,7 +18,7 @@ public class FooYoVariableDefinition
    public test.FooLoadStatus loadStatus;
 
 
-   public void set(FooYoVariableDefinition other)
+   public void Set(FooYoVariableDefinition other)
    {
       name = other.name;
 

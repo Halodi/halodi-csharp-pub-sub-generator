@@ -69,21 +69,34 @@ $endif$
 
 sequence_copy(ctx, typecodeArr, data, loopvar, other) ::= <<
 
-
-$data$ = new $typecodeArr.javaTypename$($other$.Count);
-for(int $loopvar$ = 0; $loopvar$ < $other$.Count; $loopvar$++)
+if($other$ == null)
 {
+	$data$ = null;
+}
+else
+{
+	$data$ = new $typecodeArr.javaTypename$($other$.Count);
+	for(int $loopvar$ = 0; $loopvar$ < $other$.Count; $loopvar$++)
+	{
 $if(typecodeArr.contentTypeCode.primitive)$
-   $data$.Add($other$[$loopvar$]);
+   		$data$.Add($other$[$loopvar$]);
 $elseif(typecodeArr.contentTypeCode.isType_d)$
-   $data$.Add($other$[$loopvar$]);
+   		$data$.Add($other$[$loopvar$]);
 $elseif(typecodeArr.contentTypeCode.isType_a)$
-	$typecodeArr.contentTypeCode.javaTypename$ newElement = new $typecodeArr.contentTypeCode.pubsubTypename$.Create();
-   $typecodeArr.contentTypeCode.pubsubTypename$.Copy($other$, newElement);
-   $data$.Add(newElement);
+		if($other$[$loopvar$] == null)
+		{
+			$data$.Add(null);
+		}
+		else
+		{
+			$typecodeArr.contentTypeCode.javaTypename$ newElement = $typecodeArr.contentTypeCode.pubsubTypename$.Create();
+	   		$typecodeArr.contentTypeCode.pubsubTypename$.Copy($other$[$loopvar$], newElement);
+	   		$data$.Add(newElement);
+		}
 $else$
-   $data$.Add($other$[$loopvar$]);
+   		$data$.Add($other$[$loopvar$]);
 $endif$
+	}
 }
 >>
 
@@ -150,7 +163,7 @@ sequence_serialize(ctx, typecodeArr, fieldname, data, loopvar) ::= <<
       for (int $loopvar$ = 0; $loopvar$ < $fieldname$_length; $loopvar$++)
       {
       	$if(typecodeArr.contentTypeCode.isType_c)$
-	   		cdr.write_$typecodeArr.contentTypeCode.stType$($data$[$loopvar$].ordinal());
+	   		cdr.write_$typecodeArr.contentTypeCode.stType$((int) $data$[$loopvar$]);
 		$elseif(typecodeArr.contentTypeCode.isType_a)$
 			$typecodeArr.contentTypeCode.pubsubTypename$.write($data$[$loopvar$], cdr);	
 		$else$
@@ -204,7 +217,7 @@ for(int i = 0; i < $fieldname$_length; i++)
    int ordinal = cdr.read_type_c();
    if (ordinal < 0)
 	  ordinal = 0;
-   $data$.Add(($typecodeArr.javaTypename$) ordinal);
+   $data$.Add(($typecodeArr.contentTypeCode.javaTypename$) ordinal);
 $elseif(typecodeArr.contentTypeCode.primitive)$
 	$data$.Add(cdr.read_$typecodeArr.contentTypeCode.stType$());
 $elseif(typecodeArr.contentTypeCode.isType_a)$

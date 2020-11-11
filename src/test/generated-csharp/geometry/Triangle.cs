@@ -9,7 +9,7 @@ public class Triangle
    public geometry.Vector[] points;
 
 
-   public void set(Triangle other)
+   public void Set(Triangle other)
    {
       for(int i5 = 0; i5 < points.Length; ++i5)
       {
@@ -24,9 +24,7 @@ public class Triangle
 
       builder.Append("Triangle {");
       builder.Append("points=");
-	  builder.Append("[");
-      builder.Append(System.String.Join(",", this.points));
-      builder.Append("]");
+      builder.Append(Halodi.CDR.CDRCommon.ArrayToString(",", this.points));
       builder.Append("}");
       return builder.ToString();
    }

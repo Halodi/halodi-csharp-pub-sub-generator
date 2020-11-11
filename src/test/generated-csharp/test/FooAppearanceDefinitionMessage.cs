@@ -12,7 +12,7 @@ public class FooAppearanceDefinitionMessage
    public double transparency;
 
 
-   public void set(FooAppearanceDefinitionMessage other)
+   public void Set(FooAppearanceDefinitionMessage other)
    {
       r = other.r;
 

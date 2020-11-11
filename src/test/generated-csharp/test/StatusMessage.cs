@@ -13,7 +13,7 @@ public class StatusMessage
    public bool pause;
 
 
-   public void set(StatusMessage other)
+   public void Set(StatusMessage other)
    {
       sequence_id = other.sequence_id;
 

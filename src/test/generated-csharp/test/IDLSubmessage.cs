@@ -36,7 +36,7 @@ public class IDLSubmessage
    public int hello;
 
 
-   public void set(IDLSubmessage other)
+   public void Set(IDLSubmessage other)
    {
       num = other.num;
 

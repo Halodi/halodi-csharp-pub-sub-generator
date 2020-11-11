@@ -38,11 +38,11 @@ public class IDLElementTest
    public System.Collections.Generic.List<double> doubleSeqTest;
    public System.Collections.Generic.List<bool> booleanSeqTest;
    public System.Collections.Generic.List<nested.NestedElement> nestedSeqTest;
-   public us.ihmc.idl.IDLSequence.Enum<test.Color> enumSeqTest;
+   public System.Collections.Generic.List<test.Color> enumSeqTest;
    public System.Collections.Generic.List<string> stringSeqTest;
 
 
-   public void set(IDLElementTest other)
+   public void Set(IDLElementTest other)
    {
       charTest = other.charTest;
 
@@ -99,110 +99,207 @@ public class IDLElementTest
       }
 
 
-
-      charSeqTest = new System.Collections.Generic.List<char>(other.charSeqTest.Count);
-      for(int i10 = 0; i10 < other.charSeqTest.Count; i10++)
+      if(other.charSeqTest == null)
       {
-         charSeqTest.Add(other.charSeqTest[i10]);
+      	charSeqTest = null;
+      }
+      else
+      {
+      	charSeqTest = new System.Collections.Generic.List<char>(other.charSeqTest.Count);
+      	for(int i10 = 0; i10 < other.charSeqTest.Count; i10++)
+      	{
+         		charSeqTest.Add(other.charSeqTest[i10]);
+      	}
       }
 
-
-      wcharSeqTest = new System.Collections.Generic.List<char>(other.wcharSeqTest.Count);
-      for(int i11 = 0; i11 < other.wcharSeqTest.Count; i11++)
+      if(other.wcharSeqTest == null)
       {
-         wcharSeqTest.Add(other.wcharSeqTest[i11]);
+      	wcharSeqTest = null;
+      }
+      else
+      {
+      	wcharSeqTest = new System.Collections.Generic.List<char>(other.wcharSeqTest.Count);
+      	for(int i11 = 0; i11 < other.wcharSeqTest.Count; i11++)
+      	{
+         		wcharSeqTest.Add(other.wcharSeqTest[i11]);
+      	}
       }
 
-
-      octetSeqTest = new System.Collections.Generic.List<byte>(other.octetSeqTest.Count);
-      for(int i12 = 0; i12 < other.octetSeqTest.Count; i12++)
+      if(other.octetSeqTest == null)
       {
-         octetSeqTest.Add(other.octetSeqTest[i12]);
+      	octetSeqTest = null;
+      }
+      else
+      {
+      	octetSeqTest = new System.Collections.Generic.List<byte>(other.octetSeqTest.Count);
+      	for(int i12 = 0; i12 < other.octetSeqTest.Count; i12++)
+      	{
+         		octetSeqTest.Add(other.octetSeqTest[i12]);
+      	}
       }
 
-
-      shortSeqTest = new System.Collections.Generic.List<short>(other.shortSeqTest.Count);
-      for(int i13 = 0; i13 < other.shortSeqTest.Count; i13++)
+      if(other.shortSeqTest == null)
       {
-         shortSeqTest.Add(other.shortSeqTest[i13]);
+      	shortSeqTest = null;
+      }
+      else
+      {
+      	shortSeqTest = new System.Collections.Generic.List<short>(other.shortSeqTest.Count);
+      	for(int i13 = 0; i13 < other.shortSeqTest.Count; i13++)
+      	{
+         		shortSeqTest.Add(other.shortSeqTest[i13]);
+      	}
       }
 
-
-      ushortSeqTest = new System.Collections.Generic.List<ushort>(other.ushortSeqTest.Count);
-      for(int i14 = 0; i14 < other.ushortSeqTest.Count; i14++)
+      if(other.ushortSeqTest == null)
       {
-         ushortSeqTest.Add(other.ushortSeqTest[i14]);
+      	ushortSeqTest = null;
+      }
+      else
+      {
+      	ushortSeqTest = new System.Collections.Generic.List<ushort>(other.ushortSeqTest.Count);
+      	for(int i14 = 0; i14 < other.ushortSeqTest.Count; i14++)
+      	{
+         		ushortSeqTest.Add(other.ushortSeqTest[i14]);
+      	}
       }
 
-
-      longSeqTest = new System.Collections.Generic.List<int>(other.longSeqTest.Count);
-      for(int i15 = 0; i15 < other.longSeqTest.Count; i15++)
+      if(other.longSeqTest == null)
       {
-         longSeqTest.Add(other.longSeqTest[i15]);
+      	longSeqTest = null;
+      }
+      else
+      {
+      	longSeqTest = new System.Collections.Generic.List<int>(other.longSeqTest.Count);
+      	for(int i15 = 0; i15 < other.longSeqTest.Count; i15++)
+      	{
+         		longSeqTest.Add(other.longSeqTest[i15]);
+      	}
       }
 
-
-      ulongSeqTest = new System.Collections.Generic.List<uint>(other.ulongSeqTest.Count);
-      for(int i16 = 0; i16 < other.ulongSeqTest.Count; i16++)
+      if(other.ulongSeqTest == null)
       {
-         ulongSeqTest.Add(other.ulongSeqTest[i16]);
+      	ulongSeqTest = null;
+      }
+      else
+      {
+      	ulongSeqTest = new System.Collections.Generic.List<uint>(other.ulongSeqTest.Count);
+      	for(int i16 = 0; i16 < other.ulongSeqTest.Count; i16++)
+      	{
+         		ulongSeqTest.Add(other.ulongSeqTest[i16]);
+      	}
       }
 
-
-      longlongSeqtest = new System.Collections.Generic.List<long>(other.longlongSeqtest.Count);
-      for(int i17 = 0; i17 < other.longlongSeqtest.Count; i17++)
+      if(other.longlongSeqtest == null)
       {
-         longlongSeqtest.Add(other.longlongSeqtest[i17]);
+      	longlongSeqtest = null;
+      }
+      else
+      {
+      	longlongSeqtest = new System.Collections.Generic.List<long>(other.longlongSeqtest.Count);
+      	for(int i17 = 0; i17 < other.longlongSeqtest.Count; i17++)
+      	{
+         		longlongSeqtest.Add(other.longlongSeqtest[i17]);
+      	}
       }
 
-
-      ulonglongSeqTest = new System.Collections.Generic.List<ulong>(other.ulonglongSeqTest.Count);
-      for(int i18 = 0; i18 < other.ulonglongSeqTest.Count; i18++)
+      if(other.ulonglongSeqTest == null)
       {
-         ulonglongSeqTest.Add(other.ulonglongSeqTest[i18]);
+      	ulonglongSeqTest = null;
+      }
+      else
+      {
+      	ulonglongSeqTest = new System.Collections.Generic.List<ulong>(other.ulonglongSeqTest.Count);
+      	for(int i18 = 0; i18 < other.ulonglongSeqTest.Count; i18++)
+      	{
+         		ulonglongSeqTest.Add(other.ulonglongSeqTest[i18]);
+      	}
       }
 
-
-      floatSeqTest = new System.Collections.Generic.List<float>(other.floatSeqTest.Count);
-      for(int i19 = 0; i19 < other.floatSeqTest.Count; i19++)
+      if(other.floatSeqTest == null)
       {
-         floatSeqTest.Add(other.floatSeqTest[i19]);
+      	floatSeqTest = null;
+      }
+      else
+      {
+      	floatSeqTest = new System.Collections.Generic.List<float>(other.floatSeqTest.Count);
+      	for(int i19 = 0; i19 < other.floatSeqTest.Count; i19++)
+      	{
+         		floatSeqTest.Add(other.floatSeqTest[i19]);
+      	}
       }
 
-
-      doubleSeqTest = new System.Collections.Generic.List<double>(other.doubleSeqTest.Count);
-      for(int i20 = 0; i20 < other.doubleSeqTest.Count; i20++)
+      if(other.doubleSeqTest == null)
       {
-         doubleSeqTest.Add(other.doubleSeqTest[i20]);
+      	doubleSeqTest = null;
+      }
+      else
+      {
+      	doubleSeqTest = new System.Collections.Generic.List<double>(other.doubleSeqTest.Count);
+      	for(int i20 = 0; i20 < other.doubleSeqTest.Count; i20++)
+      	{
+         		doubleSeqTest.Add(other.doubleSeqTest[i20]);
+      	}
       }
 
-
-      booleanSeqTest = new System.Collections.Generic.List<bool>(other.booleanSeqTest.Count);
-      for(int i21 = 0; i21 < other.booleanSeqTest.Count; i21++)
+      if(other.booleanSeqTest == null)
       {
-         booleanSeqTest.Add(other.booleanSeqTest[i21]);
+      	booleanSeqTest = null;
+      }
+      else
+      {
+      	booleanSeqTest = new System.Collections.Generic.List<bool>(other.booleanSeqTest.Count);
+      	for(int i21 = 0; i21 < other.booleanSeqTest.Count; i21++)
+      	{
+         		booleanSeqTest.Add(other.booleanSeqTest[i21]);
+      	}
       }
 
-
-      nestedSeqTest = new System.Collections.Generic.List<nested.NestedElement>(other.nestedSeqTest.Count);
-      for(int i22 = 0; i22 < other.nestedSeqTest.Count; i22++)
+      if(other.nestedSeqTest == null)
       {
-      	nested.NestedElement newElement = new nested.NestedElementPubSubType.Create();
-         nested.NestedElementPubSubType.Copy(other.nestedSeqTest, newElement);
-         nestedSeqTest.Add(newElement);}
-
-
-      enumSeqTest = new us.ihmc.idl.IDLSequence.Enum<test.Color>(other.enumSeqTest.Count);
-      for(int i23 = 0; i23 < other.enumSeqTest.Count; i23++)
+      	nestedSeqTest = null;
+      }
+      else
       {
-         enumSeqTest.Add(other.enumSeqTest[i23]);
+      	nestedSeqTest = new System.Collections.Generic.List<nested.NestedElement>(other.nestedSeqTest.Count);
+      	for(int i22 = 0; i22 < other.nestedSeqTest.Count; i22++)
+      	{
+      		if(other.nestedSeqTest[i22] == null)
+      		{
+      			nestedSeqTest.Add(null);
+      		}
+      		else
+      		{
+      			nested.NestedElement newElement = nested.NestedElementPubSubType.Create();
+      	   		nested.NestedElementPubSubType.Copy(other.nestedSeqTest[i22], newElement);
+      	   		nestedSeqTest.Add(newElement);
+      		}	}
       }
 
-
-      stringSeqTest = new System.Collections.Generic.List<string>(other.stringSeqTest.Count);
-      for(int i24 = 0; i24 < other.stringSeqTest.Count; i24++)
+      if(other.enumSeqTest == null)
       {
-         stringSeqTest.Add(other.stringSeqTest[i24]);
+      	enumSeqTest = null;
+      }
+      else
+      {
+      	enumSeqTest = new System.Collections.Generic.List<test.Color>(other.enumSeqTest.Count);
+      	for(int i23 = 0; i23 < other.enumSeqTest.Count; i23++)
+      	{
+         		enumSeqTest.Add(other.enumSeqTest[i23]);
+      	}
+      }
+
+      if(other.stringSeqTest == null)
+      {
+      	stringSeqTest = null;
+      }
+      else
+      {
+      	stringSeqTest = new System.Collections.Generic.List<string>(other.stringSeqTest.Count);
+      	for(int i24 = 0; i24 < other.stringSeqTest.Count; i24++)
+      	{
+         		stringSeqTest.Add(other.stringSeqTest[i24]);
+      	}
       }
    }
 
@@ -244,21 +341,13 @@ public class IDLElementTest
       builder.Append("stringTest=");
       builder.Append(this.stringTest);      builder.Append(", ");
       builder.Append("longArray=");
-	  builder.Append("[");
-      builder.Append(System.String.Join(",", this.longArray));
-      builder.Append("]");      builder.Append(", ");
+      builder.Append(Halodi.CDR.CDRCommon.ArrayToString(",", this.longArray));      builder.Append(", ");
       builder.Append("nestedArray=");
-      builder.Append("[");
-      builder.Append(System.String.Join(",", this.nestedArray));
-      builder.Append("]");      builder.Append(", ");
+      builder.Append(Halodi.CDR.CDRCommon.DeepArrayToString(",", this.nestedArray));      builder.Append(", ");
       builder.Append("stringArray=");
-	  builder.Append("[");
-      builder.Append(System.String.Join(",", this.stringArray));
-      builder.Append("]");      builder.Append(", ");
+      builder.Append(Halodi.CDR.CDRCommon.ArrayToString(",", this.stringArray));      builder.Append(", ");
       builder.Append("enumArray=");
-	  builder.Append("[");
-      builder.Append(System.String.Join(",", this.enumArray));
-      builder.Append("]");      builder.Append(", ");
+      builder.Append(Halodi.CDR.CDRCommon.ArrayToString(",", this.enumArray));      builder.Append(", ");
       builder.Append("charSeqTest=");
       builder.Append(this.charSeqTest);      builder.Append(", ");
       builder.Append("wcharSeqTest=");

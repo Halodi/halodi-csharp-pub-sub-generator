@@ -10,16 +10,22 @@ public class FooEnumType
    public System.Collections.Generic.List<string> enumValues;
 
 
-   public void set(FooEnumType other)
+   public void Set(FooEnumType other)
    {
       name = other.name;
 
 
-
-      enumValues = new System.Collections.Generic.List<string>(other.enumValues.Count);
-      for(int i3 = 0; i3 < other.enumValues.Count; i3++)
+      if(other.enumValues == null)
       {
-         enumValues.Add(other.enumValues[i3]);
+      	enumValues = null;
+      }
+      else
+      {
+      	enumValues = new System.Collections.Generic.List<string>(other.enumValues.Count);
+      	for(int i3 = 0; i3 < other.enumValues.Count; i3++)
+      	{
+         		enumValues.Add(other.enumValues[i3]);
+      	}
       }
    }
 
