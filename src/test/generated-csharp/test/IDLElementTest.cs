@@ -21,10 +21,10 @@ public class IDLElementTest
    public test.Color colorTest;
    public nested.NestedElement nestedElementTest;
    public string stringTest;
-   public int[] longArray;
-   public nested.NestedElement[][] nestedArray;
-   public string[] stringArray;
-   public test.Color[] enumArray;
+   public readonly int[] longArray = new int[10];
+   public readonly nested.NestedElement[,] nestedArray = new nested.NestedElement[5, 3];
+   public readonly string[] stringArray = new string[4];
+   public readonly test.Color[] enumArray = new test.Color[6];
    public System.Collections.Generic.List<char> charSeqTest;
    public System.Collections.Generic.List<char> wcharSeqTest;
    public System.Collections.Generic.List<byte> octetSeqTest;
@@ -74,25 +74,25 @@ public class IDLElementTest
 
       stringTest = other.stringTest;
 
-      for(int i1 = 0; i1 < longArray.Length; ++i1)
+      for(int i1 = 0; i1 < 10; ++i1)
       {
             longArray[i1] = other.longArray[i1];
 
       }
 
-      for(int i3 = 0; i3 < nestedArray.Length; ++i3)
+      for(int i3 = 0; i3 < 5; ++i3)
       {
-         for(int i4 = 0; i4 < nestedArray[i3].Length; ++i4)
+         for(int i4 = 0; i4 < 3; ++i4)
          {
-               nested.NestedElementPubSubType.Copy(other.nestedArray[i3][i4], nestedArray[i3][i4]);}
+               nested.NestedElementPubSubType.Copy(other.nestedArray[i3, i4], nestedArray[i3, i4]);}
       }
 
-      for(int i6 = 0; i6 < stringArray.Length; ++i6)
+      for(int i6 = 0; i6 < 4; ++i6)
       {
             stringArray[i6] = other.stringArray[i6];
       }
 
-      for(int i8 = 0; i8 < enumArray.Length; ++i8)
+      for(int i8 = 0; i8 < 6; ++i8)
       {
             enumArray[i8] = other.enumArray[i8];
 

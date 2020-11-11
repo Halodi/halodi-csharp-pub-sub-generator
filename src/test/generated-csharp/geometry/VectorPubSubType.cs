@@ -81,7 +81,7 @@ public class VectorPubSubType : Halodi.CDR.TopicDataType<geometry.Vector>
             {
       			cdr.write_type_6(data.bla[i0]);
             }
-      for(int i0 = 0; i0 < data.waa.Length; ++i0)
+      for(int i0 = 0; i0 < 3; ++i0)
       {
         	cdr.write_type_6(data.waa[i0]);	
       }
@@ -108,7 +108,7 @@ public class VectorPubSubType : Halodi.CDR.TopicDataType<geometry.Vector>
       }
 
       	
-      for(int i0 = 0; i0 < data.waa.Length; ++i0)
+      for(int i0 = 0; i0 < 3; ++i0)
       {
         	data.waa[i0] = cdr.read_type_6();
         	

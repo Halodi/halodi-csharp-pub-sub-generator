@@ -44,7 +44,7 @@ public class TrianglePubSubType : Halodi.CDR.TopicDataType<geometry.Triangle>
    {
       int initial_alignment = current_alignment;
 
-      for(int i0 = 0; i0 < data.points.Length; ++i0)
+      for(int i0 = 0; i0 < 3; ++i0)
       {
               current_alignment += geometry.VectorPubSubType.getCdrSerializedSize(data.points[i0], current_alignment);
       }
@@ -53,7 +53,7 @@ public class TrianglePubSubType : Halodi.CDR.TopicDataType<geometry.Triangle>
 
    public static void write(geometry.Triangle data, Halodi.CDR.CDRSerializer cdr)
    {
-      for(int i0 = 0; i0 < data.points.Length; ++i0)
+      for(int i0 = 0; i0 < 3; ++i0)
       {
         	geometry.VectorPubSubType.write(data.points[i0], cdr);		
       }
@@ -61,7 +61,7 @@ public class TrianglePubSubType : Halodi.CDR.TopicDataType<geometry.Triangle>
 
    public static void read(geometry.Triangle data, Halodi.CDR.CDRDeserializer cdr)
    {
-      for(int i0 = 0; i0 < data.points.Length; ++i0)
+      for(int i0 = 0; i0 < 3; ++i0)
       {
         	geometry.VectorPubSubType.read(data.points[i0], cdr);	
       }

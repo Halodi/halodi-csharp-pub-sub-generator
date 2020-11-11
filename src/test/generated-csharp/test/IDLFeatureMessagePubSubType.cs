@@ -63,7 +63,7 @@ public class IDLFeatureMessagePubSubType : Halodi.CDR.TopicDataType<test.IDLFeat
       {
           current_alignment += test.IDLSubmessagePubSubType.getCdrSerializedSize(data.num2[i0], current_alignment);}
 
-      for(int i0 = 0; i0 < data.num3.Length; ++i0)
+      for(int i0 = 0; i0 < 3; ++i0)
       {
               current_alignment += test.IDLSubmessagePubSubType.getCdrSerializedSize(data.num3[i0], current_alignment);
       }
@@ -113,7 +113,7 @@ public class IDLFeatureMessagePubSubType : Halodi.CDR.TopicDataType<test.IDLFeat
             for (int i0 = 0; i0 < num2_length; i0++)
             {
       			test.IDLSubmessagePubSubType.write(data.num2[i0], cdr);	      }
-      for(int i0 = 0; i0 < data.num3.Length; ++i0)
+      for(int i0 = 0; i0 < 3; ++i0)
       {
         	test.IDLSubmessagePubSubType.write(data.num3[i0], cdr);		
       }
@@ -176,7 +176,7 @@ public class IDLFeatureMessagePubSubType : Halodi.CDR.TopicDataType<test.IDLFeat
       }
 
       	
-      for(int i0 = 0; i0 < data.num3.Length; ++i0)
+      for(int i0 = 0; i0 < 3; ++i0)
       {
         	test.IDLSubmessagePubSubType.read(data.num3[i0], cdr);	
       }

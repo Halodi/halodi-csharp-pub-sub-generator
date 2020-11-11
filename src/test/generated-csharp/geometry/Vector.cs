@@ -12,7 +12,7 @@ public class Vector
    public double y;
    public double z;
    public System.Collections.Generic.List<double> bla;
-   public double[] waa;
+   public readonly double[] waa = new double[3];
 
 
    public void Set(Vector other)
@@ -38,7 +38,7 @@ public class Vector
          		bla.Add(other.bla[i1]);
       	}
       }
-      for(int i2 = 0; i2 < waa.Length; ++i2)
+      for(int i2 = 0; i2 < 3; ++i2)
       {
             waa[i2] = other.waa[i2];
 

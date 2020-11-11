@@ -24,6 +24,7 @@ public class IDLSubmessage
     * this num should have default value 5
     */
    public long num = 5;
+
    /**
     * I have some doc not relevant to the next
     */

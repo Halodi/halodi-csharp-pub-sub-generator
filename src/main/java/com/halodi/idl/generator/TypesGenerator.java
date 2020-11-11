@@ -435,6 +435,14 @@ class TypesGenerator
    
    private String fixBugs(String original)
    {
-      return original.replace("us.ihmc.idl.IDLSequence.Enum", "System.Collections.Generic.List");
+      String adjusted = original.replace("us.ihmc.idl.IDLSequence.Enum", "System.Collections.Generic.List");
+      
+      adjusted = adjusted.replaceAll("\\[(\\d+)\\]\\[(\\d+)\\]", "[$1, $2]");
+      adjusted = adjusted.replaceAll("\\[\\]\\[\\]", "[,]");
+      
+      adjusted = adjusted.replaceAll("\\[(i\\d+)\\]\\[(i\\d+)\\]", "[$1, $2]");
+      
+      return adjusted;
+      
    }
 }

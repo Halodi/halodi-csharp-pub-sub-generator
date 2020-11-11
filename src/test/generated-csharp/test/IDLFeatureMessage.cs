@@ -25,6 +25,7 @@ public class IDLFeatureMessage
     * this num should have default value 5
     */
    public long num = 5;
+
    /**
     * I have some doc not relevant to the next
     */
@@ -40,7 +41,7 @@ public class IDLFeatureMessage
    /**
     * Should be ros_msgs::msg::dds::Num num3[3];
     */
-   public test.IDLSubmessage[] num3;
+   public readonly test.IDLSubmessage[] num3 = new test.IDLSubmessage[3];
    public System.Collections.Generic.List<test.IDLSubmessage> num4;
    public string str1;
    public string str2;
@@ -82,7 +83,7 @@ public class IDLFeatureMessage
       	   		num2.Add(newElement);
       		}	}
       }
-      for(int i2 = 0; i2 < num3.Length; ++i2)
+      for(int i2 = 0; i2 < 3; ++i2)
       {
             test.IDLSubmessagePubSubType.Copy(other.num3[i2], num3[i2]);}
 

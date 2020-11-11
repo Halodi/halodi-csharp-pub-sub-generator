@@ -88,14 +88,14 @@ public class IDLElementTestPubSubType : Halodi.CDR.TopicDataType<test.IDLElement
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.stringTest.Length + 1;
 
       current_alignment += ((10) * 4) + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
-      for(int i0 = 0; i0 < data.nestedArray.Length; ++i0)
+      for(int i0 = 0; i0 < 5; ++i0)
       {
-          for(int i1 = 0; i1 < data.nestedArray[i0].Length; ++i1)
+          for(int i1 = 0; i1 < 3; ++i1)
           {
-                  current_alignment += nested.NestedElementPubSubType.getCdrSerializedSize(data.nestedArray[i0][i1], current_alignment);
+                  current_alignment += nested.NestedElementPubSubType.getCdrSerializedSize(data.nestedArray[i0, i1], current_alignment);
           }
       }
-      for(int i0 = 0; i0 < data.stringArray.Length; ++i0)
+      for(int i0 = 0; i0 < 4; ++i0)
       {
               current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.stringArray[i0].Length + 1;
 
@@ -200,25 +200,25 @@ public class IDLElementTestPubSubType : Halodi.CDR.TopicDataType<test.IDLElement
 
       cdr.write_type_d(data.stringTest);
 
-      for(int i0 = 0; i0 < data.longArray.Length; ++i0)
+      for(int i0 = 0; i0 < 10; ++i0)
       {
         	cdr.write_type_2(data.longArray[i0]);	
       }
 
-      for(int i0 = 0; i0 < data.nestedArray.Length; ++i0)
+      for(int i0 = 0; i0 < 5; ++i0)
       {
-        for(int i1 = 0; i1 < data.nestedArray[i0].Length; ++i1)
+        for(int i1 = 0; i1 < 3; ++i1)
         {
-          	nested.NestedElementPubSubType.write(data.nestedArray[i0][i1], cdr);		
+          	nested.NestedElementPubSubType.write(data.nestedArray[i0, i1], cdr);		
         }
       }
 
-      for(int i0 = 0; i0 < data.stringArray.Length; ++i0)
+      for(int i0 = 0; i0 < 4; ++i0)
       {
         	cdr.write_type_d(data.stringArray[i0]);	
       }
 
-      for(int i0 = 0; i0 < data.enumArray.Length; ++i0)
+      for(int i0 = 0; i0 < 6; ++i0)
       {
         	   cdr.write_type_c((int)data.enumArray[i0]);
         	
@@ -363,26 +363,26 @@ public class IDLElementTestPubSubType : Halodi.CDR.TopicDataType<test.IDLElement
       nested.NestedElementPubSubType.read(data.nestedElementTest, cdr);
       	
       data.stringTest = cdr.read_type_d();	
-      for(int i0 = 0; i0 < data.longArray.Length; ++i0)
+      for(int i0 = 0; i0 < 10; ++i0)
       {
         	data.longArray[i0] = cdr.read_type_2();
         	
       }
       	
-      for(int i0 = 0; i0 < data.nestedArray.Length; ++i0)
+      for(int i0 = 0; i0 < 5; ++i0)
       {
-        for(int i1 = 0; i1 < data.nestedArray[i0].Length; ++i1)
+        for(int i1 = 0; i1 < 3; ++i1)
         {
-          	nested.NestedElementPubSubType.read(data.nestedArray[i0][i1], cdr);	
+          	nested.NestedElementPubSubType.read(data.nestedArray[i0, i1], cdr);	
         }
       }
       	
-      for(int i0 = 0; i0 < data.stringArray.Length; ++i0)
+      for(int i0 = 0; i0 < 4; ++i0)
       {
         	data.stringArray[i0] = cdr.read_type_d();	
       }
       	
-      for(int i0 = 0; i0 < data.enumArray.Length; ++i0)
+      for(int i0 = 0; i0 < 6; ++i0)
       {
            int ordinal = cdr.read_type_c();
            if (ordinal < 0)

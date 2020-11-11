@@ -39,7 +39,7 @@ $endif$
 
 array_init(ctx, typecodeArr, data, loopvar, elemInit, dimensions) ::= <<
 $if(first(dimensions))$
-for(int $loopvar$ = 0; $loopvar$ < $data$.length; ++$loopvar$)
+for(int $loopvar$ = 0; $loopvar$ < $first(dimensions)$; ++$loopvar$)
 {
   $array_init(ctx=ctx, typecodeArr=typecodeArr, data=[data, "[", loopvar, "]"], elemInit=elemInit, loopvar=ctx.nextLoopVarName, dimensions=rest(dimensions))$
 }
@@ -50,7 +50,7 @@ $endif$
 
 array_copy(ctx, typecodeArr, data, loopvar, other, dimensions) ::= <<
 $if(first(dimensions))$
-for(int $loopvar$ = 0; $loopvar$ < $data$.Length; ++$loopvar$)
+for(int $loopvar$ = 0; $loopvar$ < $first(dimensions)$; ++$loopvar$)
 {
    $array_copy(ctx=ctx, typecodeArr=typecodeArr, data=[data, "[", loopvar, "]"], other=[other, "[", loopvar, "]"], loopvar=ctx.nextLoopVarName, dimensions=rest(dimensions))$
 }
@@ -141,7 +141,7 @@ $endif$
 
 array_serialize(ctx, typecodeArr, data, loopvar, dimensions) ::= <<
 $if(first(dimensions))$
-for(int $loopvar$ = 0; $loopvar$ < $data$.Length; ++$loopvar$)
+for(int $loopvar$ = 0; $loopvar$ < $first(dimensions)$; ++$loopvar$)
 {
   $array_serialize(ctx=ctx, typecodeArr=typecodeArr, data=[data, "[", loopvar, "]"], loopvar=ctx.nextLoopVarName, dimensions=rest(dimensions))$
 }
@@ -187,7 +187,7 @@ $endif$
 
 array_deserialize(ctx, typecodeArr, data, loopvar, dimensions) ::= <<
 $if(first(dimensions))$
-for(int $loopvar$ = 0; $loopvar$ < $data$.Length; ++$loopvar$)
+for(int $loopvar$ = 0; $loopvar$ < $first(dimensions)$; ++$loopvar$)
 {
   $array_deserialize(ctx=ctx, typecodeArr=typecodeArr, data=[data, "[", loopvar, "]"], loopvar=ctx.nextLoopVarName, dimensions=rest(dimensions))$
 }
@@ -334,7 +334,7 @@ $if(typecodeArr.contentTypeCode.primitive)$
 $var$ += ($typecodeArr.size$ * $typecodeArr.contentTypeCode.size$)$if(ctx.cdr)$ + Halodi.CDR.CDRCommon.alignment($var$, $typecodeArr.contentTypeCode.size$)$endif$;
 $else$
 $if(first(dimensions))$
-for(int $loopvar$ = 0; $loopvar$ < $data$.Length; ++$loopvar$)
+for(int $loopvar$ = 0; $loopvar$ < $first(dimensions)$; ++$loopvar$)
 {
     $array_serialized_size(ctx=ctx, typecodeArr=typecodeArr, data=[data, "[", loopvar, "]"], var=var, loopvar=ctx.nextLoopVarName, dimensions=rest(dimensions))$
 }

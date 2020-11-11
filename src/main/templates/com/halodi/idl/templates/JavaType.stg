@@ -41,6 +41,8 @@ $struct.members : { member |
    $member.comments$
 $if(member.hasDefaultValue)$
    public $member.typecode.javaTypename$ $member.name$ = $member.defaultValue$;
+$elseif(member.typecode.isType_f)$
+   public readonly $member.typecode.javaTypename$ $member.name$ = new $member.typecode.contentTypeCode.javaTypename$$member.typecode.arrayExtension$;
 $else$
    public $member.typecode.javaTypename$ $member.name$;
 $endif$
