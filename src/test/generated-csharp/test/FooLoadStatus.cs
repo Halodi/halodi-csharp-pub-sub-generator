@@ -13,15 +13,10 @@ namespace test
 
 public enum FooLoadStatus
 {
-         FooNoParameter,
-      
-         FooUnloaded,
-      
-         FooDefault,
-      
-         FooLoaded,
-      
-   ;
+   FooNoParameter ,
+   FooUnloaded ,
+   FooDefault ,
+   FooLoaded 
  
 }
 

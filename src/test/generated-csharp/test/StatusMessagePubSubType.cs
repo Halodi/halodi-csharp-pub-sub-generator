@@ -30,7 +30,7 @@ public class StatusMessagePubSubType : Halodi.CDR.TopicDataType<test.StatusMessa
    {
    	   using(BinaryReader reader = new BinaryReader(stream))
    	   {
-   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(stream);
+   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(reader);
    	   		read(data, cdr); 
    	   }
    }

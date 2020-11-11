@@ -30,7 +30,7 @@ public class FooHandshakePubSubType : Halodi.CDR.TopicDataType<test.FooHandshake
    {
    	   using(BinaryReader reader = new BinaryReader(stream))
    	   {
-   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(stream);
+   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(reader);
    	   		read(data, cdr); 
    	   }
    }
@@ -48,36 +48,36 @@ public class FooHandshakePubSubType : Halodi.CDR.TopicDataType<test.FooHandshake
 
 
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
-      for(int i0 = 0; i0 < data.getRegistries().size(); ++i0)
+      for(int i0 = 0; i0 < data.registries.Count; ++i0)
       {
-          current_alignment += test.FooYoRegistryDefinitionPubSubType.getCdrSerializedSize(data.getRegistries().get(i0), current_alignment);}
+          current_alignment += test.FooYoRegistryDefinitionPubSubType.getCdrSerializedSize(data.registries[i0], current_alignment);}
 
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
-      for(int i0 = 0; i0 < data.getVariables().size(); ++i0)
+      for(int i0 = 0; i0 < data.variables.Count; ++i0)
       {
-          current_alignment += test.FooYoVariableDefinitionPubSubType.getCdrSerializedSize(data.getVariables().get(i0), current_alignment);}
+          current_alignment += test.FooYoVariableDefinitionPubSubType.getCdrSerializedSize(data.variables[i0], current_alignment);}
 
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
-      for(int i0 = 0; i0 < data.getJoints().size(); ++i0)
+      for(int i0 = 0; i0 < data.joints.Count; ++i0)
       {
-          current_alignment += test.FooJointDefinitionPubSubType.getCdrSerializedSize(data.getJoints().get(i0), current_alignment);}
+          current_alignment += test.FooJointDefinitionPubSubType.getCdrSerializedSize(data.joints[i0], current_alignment);}
 
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
-      for(int i0 = 0; i0 < data.getGraphicObjects().size(); ++i0)
+      for(int i0 = 0; i0 < data.graphicObjects.Count; ++i0)
       {
-          current_alignment += test.FooGraphicObjectMessagePubSubType.getCdrSerializedSize(data.getGraphicObjects().get(i0), current_alignment);}
+          current_alignment += test.FooGraphicObjectMessagePubSubType.getCdrSerializedSize(data.graphicObjects[i0], current_alignment);}
 
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
-      for(int i0 = 0; i0 < data.getArtifacts().size(); ++i0)
+      for(int i0 = 0; i0 < data.artifacts.Count; ++i0)
       {
-          current_alignment += test.FooGraphicObjectMessagePubSubType.getCdrSerializedSize(data.getArtifacts().get(i0), current_alignment);}
+          current_alignment += test.FooGraphicObjectMessagePubSubType.getCdrSerializedSize(data.artifacts[i0], current_alignment);}
 
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
-      for(int i0 = 0; i0 < data.getEnumTypes().size(); ++i0)
+      for(int i0 = 0; i0 < data.enumTypes.Count; ++i0)
       {
-          current_alignment += test.FooEnumTypePubSubType.getCdrSerializedSize(data.getEnumTypes().get(i0), current_alignment);}
+          current_alignment += test.FooEnumTypePubSubType.getCdrSerializedSize(data.enumTypes[i0], current_alignment);}
 
-      current_alignment += test.FooSummaryPubSubType.getCdrSerializedSize(data.getSummary(), current_alignment);
+      current_alignment += test.FooSummaryPubSubType.getCdrSerializedSize(data.summary, current_alignment);
 
 
       return current_alignment - initial_alignment;

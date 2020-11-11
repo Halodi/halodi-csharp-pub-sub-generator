@@ -30,7 +30,7 @@ public class IDLSubmessagePubSubType : Halodi.CDR.TopicDataType<test.IDLSubmessa
    {
    	   using(BinaryReader reader = new BinaryReader(stream))
    	   {
-   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(stream);
+   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(reader);
    	   		read(data, cdr); 
    	   }
    }

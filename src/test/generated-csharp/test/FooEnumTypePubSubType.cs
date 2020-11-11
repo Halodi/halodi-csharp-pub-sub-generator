@@ -30,7 +30,7 @@ public class FooEnumTypePubSubType : Halodi.CDR.TopicDataType<test.FooEnumType>
    {
    	   using(BinaryReader reader = new BinaryReader(stream))
    	   {
-   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(stream);
+   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(reader);
    	   		read(data, cdr); 
    	   }
    }
@@ -44,12 +44,12 @@ public class FooEnumTypePubSubType : Halodi.CDR.TopicDataType<test.FooEnumType>
    {
       int initial_alignment = current_alignment;
 
-      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.getName().length() + 1;
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.name.Length + 1;
 
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
-      for(int i0 = 0; i0 < data.getEnumValues().size(); ++i0)
+      for(int i0 = 0; i0 < data.enumValues.Count; ++i0)
       {
-          current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.getEnumValues().get(i0).length() + 1;
+          current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.enumValues[i0].Length + 1;
       }
 
       return current_alignment - initial_alignment;

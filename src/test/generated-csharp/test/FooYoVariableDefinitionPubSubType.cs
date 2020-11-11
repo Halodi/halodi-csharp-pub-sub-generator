@@ -30,7 +30,7 @@ public class FooYoVariableDefinitionPubSubType : Halodi.CDR.TopicDataType<test.F
    {
    	   using(BinaryReader reader = new BinaryReader(stream))
    	   {
-   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(stream);
+   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(reader);
    	   		read(data, cdr); 
    	   }
    }
@@ -44,9 +44,9 @@ public class FooYoVariableDefinitionPubSubType : Halodi.CDR.TopicDataType<test.F
    {
       int initial_alignment = current_alignment;
 
-      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.getName().length() + 1;
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.name.Length + 1;
 
-      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.getDescription().length() + 1;
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.description.Length + 1;
 
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
 
@@ -82,7 +82,7 @@ public class FooYoVariableDefinitionPubSubType : Halodi.CDR.TopicDataType<test.F
 
       cdr.write_type_d(data.description);
 
-      cdr.write_type_c(data.type.ordinal());
+      cdr.write_type_c((int)data.type);
 
 
       cdr.write_type_3(data.registry);
@@ -97,7 +97,7 @@ public class FooYoVariableDefinitionPubSubType : Halodi.CDR.TopicDataType<test.F
 
       cdr.write_type_6(data.max);
 
-      cdr.write_type_c(data.loadStatus.ordinal());
+      cdr.write_type_c((int)data.loadStatus);
 
 
    }

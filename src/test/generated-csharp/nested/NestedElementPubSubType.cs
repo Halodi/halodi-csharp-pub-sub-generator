@@ -30,7 +30,7 @@ public class NestedElementPubSubType : Halodi.CDR.TopicDataType<nested.NestedEle
    {
    	   using(BinaryReader reader = new BinaryReader(stream))
    	   {
-   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(stream);
+   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(reader);
    	   		read(data, cdr); 
    	   }
    }
@@ -44,7 +44,7 @@ public class NestedElementPubSubType : Halodi.CDR.TopicDataType<nested.NestedEle
    {
       int initial_alignment = current_alignment;
 
-      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.getStringTest().length() + 1;
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.stringTest.Length + 1;
 
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
 

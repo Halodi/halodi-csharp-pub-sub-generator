@@ -30,7 +30,7 @@ public class FooSummaryPubSubType : Halodi.CDR.TopicDataType<test.FooSummary>
    {
    	   using(BinaryReader reader = new BinaryReader(stream))
    	   {
-   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(stream);
+   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(reader);
    	   		read(data, cdr); 
    	   }
    }
@@ -47,12 +47,12 @@ public class FooSummaryPubSubType : Halodi.CDR.TopicDataType<test.FooSummary>
       current_alignment += 1 + Halodi.CDR.CDRCommon.alignment(current_alignment, 1);
 
 
-      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.getSummaryTriggerVariable().length() + 1;
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.summaryTriggerVariable.Length + 1;
 
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
-      for(int i0 = 0; i0 < data.getSummarizedVariables().size(); ++i0)
+      for(int i0 = 0; i0 < data.summarizedVariables.Count; ++i0)
       {
-          current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.getSummarizedVariables().get(i0).length() + 1;
+          current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.summarizedVariables[i0].Length + 1;
       }
 
       return current_alignment - initial_alignment;

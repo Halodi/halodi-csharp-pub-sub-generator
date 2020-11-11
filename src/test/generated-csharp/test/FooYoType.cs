@@ -13,17 +13,11 @@ namespace test
 
 public enum FooYoType
 {
-         FooDoubleYoVariable,
-      
-         FooBooleanYoVariable,
-      
-         FooIntegerYoVariable,
-      
-         FooLongYoVariable,
-      
-         FooEnumYoVariable,
-      
-   ;
+   FooDoubleYoVariable ,
+   FooBooleanYoVariable ,
+   FooIntegerYoVariable ,
+   FooLongYoVariable ,
+   FooEnumYoVariable 
  
 }
 

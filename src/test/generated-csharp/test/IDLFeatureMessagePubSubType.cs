@@ -30,7 +30,7 @@ public class IDLFeatureMessagePubSubType : Halodi.CDR.TopicDataType<test.IDLFeat
    {
    	   using(BinaryReader reader = new BinaryReader(stream))
    	   {
-   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(stream);
+   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(reader);
    	   		read(data, cdr); 
    	   }
    }
@@ -56,40 +56,40 @@ public class IDLFeatureMessagePubSubType : Halodi.CDR.TopicDataType<test.IDLFeat
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
 
 
-      current_alignment += test.IDLSubmessagePubSubType.getCdrSerializedSize(data.getNum1(), current_alignment);
+      current_alignment += test.IDLSubmessagePubSubType.getCdrSerializedSize(data.num1, current_alignment);
 
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
-      for(int i0 = 0; i0 < data.getNum2().size(); ++i0)
+      for(int i0 = 0; i0 < data.num2.Count; ++i0)
       {
-          current_alignment += test.IDLSubmessagePubSubType.getCdrSerializedSize(data.getNum2().get(i0), current_alignment);}
+          current_alignment += test.IDLSubmessagePubSubType.getCdrSerializedSize(data.num2[i0], current_alignment);}
 
-      for(int i0 = 0; i0 < data.getNum3().Length; ++i0)
+      for(int i0 = 0; i0 < data.num3.Length; ++i0)
       {
-              current_alignment += test.IDLSubmessagePubSubType.getCdrSerializedSize(data.getNum3()[i0], current_alignment);
+              current_alignment += test.IDLSubmessagePubSubType.getCdrSerializedSize(data.num3[i0], current_alignment);
       }
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
-      for(int i0 = 0; i0 < data.getNum4().size(); ++i0)
+      for(int i0 = 0; i0 < data.num4.Count; ++i0)
       {
-          current_alignment += test.IDLSubmessagePubSubType.getCdrSerializedSize(data.getNum4().get(i0), current_alignment);}
+          current_alignment += test.IDLSubmessagePubSubType.getCdrSerializedSize(data.num4[i0], current_alignment);}
 
-      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.getStr1().length() + 1;
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.str1.Length + 1;
 
-      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.getStr2().length() + 1;
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.str2.Length + 1;
 
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
-      for(int i0 = 0; i0 < data.getStr3().size(); ++i0)
+      for(int i0 = 0; i0 < data.str3.Count; ++i0)
       {
-          current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.getStr3().get(i0).length() + 1;
+          current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.str3[i0].Length + 1;
       }
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
-      for(int i0 = 0; i0 < data.getStr4().size(); ++i0)
+      for(int i0 = 0; i0 < data.str4.Count; ++i0)
       {
-          current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.getStr4().get(i0).length() + 1;
+          current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.str4[i0].Length + 1;
       }
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
-      for(int i0 = 0; i0 < data.getStr5().size(); ++i0)
+      for(int i0 = 0; i0 < data.str5.Count; ++i0)
       {
-          current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.getStr5().get(i0).length() + 1;
+          current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.str5[i0].Length + 1;
       }
 
       return current_alignment - initial_alignment;
@@ -113,7 +113,7 @@ public class IDLFeatureMessagePubSubType : Halodi.CDR.TopicDataType<test.IDLFeat
             for (int i0 = 0; i0 < num2_length; i0++)
             {
       			test.IDLSubmessagePubSubType.write(data.num2[i0], cdr);	      }
-      for(int i0 = 0; i0 < data.num3.length; ++i0)
+      for(int i0 = 0; i0 < data.num3.Length; ++i0)
       {
         	test.IDLSubmessagePubSubType.write(data.num3[i0], cdr);		
       }

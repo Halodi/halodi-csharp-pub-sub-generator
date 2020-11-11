@@ -30,7 +30,7 @@ public class FooYoRegistryDefinitionPubSubType : Halodi.CDR.TopicDataType<test.F
    {
    	   using(BinaryReader reader = new BinaryReader(stream))
    	   {
-   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(stream);
+   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(reader);
    	   		read(data, cdr); 
    	   }
    }
@@ -47,7 +47,7 @@ public class FooYoRegistryDefinitionPubSubType : Halodi.CDR.TopicDataType<test.F
       current_alignment += 2 + Halodi.CDR.CDRCommon.alignment(current_alignment, 2);
 
 
-      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.getName().length() + 1;
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.name.Length + 1;
 
 
       return current_alignment - initial_alignment;

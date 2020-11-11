@@ -30,7 +30,7 @@ public class IDLElementTestPubSubType : Halodi.CDR.TopicDataType<test.IDLElement
    {
    	   using(BinaryReader reader = new BinaryReader(stream))
    	   {
-   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(stream);
+   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(reader);
    	   		read(data, cdr); 
    	   }
    }
@@ -83,85 +83,85 @@ public class IDLElementTestPubSubType : Halodi.CDR.TopicDataType<test.IDLElement
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
 
 
-      current_alignment += nested.NestedElementPubSubType.getCdrSerializedSize(data.getNestedElementTest(), current_alignment);
+      current_alignment += nested.NestedElementPubSubType.getCdrSerializedSize(data.nestedElementTest, current_alignment);
 
-      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.getStringTest().length() + 1;
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.stringTest.Length + 1;
 
       current_alignment += ((10) * 4) + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
-      for(int i0 = 0; i0 < data.getNestedArray().Length; ++i0)
+      for(int i0 = 0; i0 < data.nestedArray.Length; ++i0)
       {
-          for(int i1 = 0; i1 < data.getNestedArray()[i0].Length; ++i1)
+          for(int i1 = 0; i1 < data.nestedArray[i0].Length; ++i1)
           {
-                  current_alignment += nested.NestedElementPubSubType.getCdrSerializedSize(data.getNestedArray()[i0][i1], current_alignment);
+                  current_alignment += nested.NestedElementPubSubType.getCdrSerializedSize(data.nestedArray[i0][i1], current_alignment);
           }
       }
-      for(int i0 = 0; i0 < data.getStringArray().Length; ++i0)
+      for(int i0 = 0; i0 < data.stringArray.Length; ++i0)
       {
-              current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.getStringArray()[i0].Length + 1;
+              current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.stringArray[i0].Length + 1;
 
       }
       current_alignment += ((6) * 4) + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
-      current_alignment += (data.getCharSeqTest().size() * 1) + Halodi.CDR.CDRCommon.alignment(current_alignment, 1);
+      current_alignment += (data.charSeqTest.Count * 1) + Halodi.CDR.CDRCommon.alignment(current_alignment, 1);
 
 
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
-      current_alignment += (data.getWcharSeqTest().size() * 4) + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
+      current_alignment += (data.wcharSeqTest.Count * 4) + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
 
 
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
-      current_alignment += (data.getOctetSeqTest().size() * 1) + Halodi.CDR.CDRCommon.alignment(current_alignment, 1);
+      current_alignment += (data.octetSeqTest.Count * 1) + Halodi.CDR.CDRCommon.alignment(current_alignment, 1);
 
 
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
-      current_alignment += (data.getShortSeqTest().size() * 2) + Halodi.CDR.CDRCommon.alignment(current_alignment, 2);
+      current_alignment += (data.shortSeqTest.Count * 2) + Halodi.CDR.CDRCommon.alignment(current_alignment, 2);
 
 
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
-      current_alignment += (data.getUshortSeqTest().size() * 2) + Halodi.CDR.CDRCommon.alignment(current_alignment, 2);
+      current_alignment += (data.ushortSeqTest.Count * 2) + Halodi.CDR.CDRCommon.alignment(current_alignment, 2);
 
 
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
-      current_alignment += (data.getLongSeqTest().size() * 4) + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
+      current_alignment += (data.longSeqTest.Count * 4) + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
 
 
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
-      current_alignment += (data.getUlongSeqTest().size() * 4) + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
+      current_alignment += (data.ulongSeqTest.Count * 4) + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
 
 
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
-      current_alignment += (data.getLonglongSeqtest().size() * 8) + Halodi.CDR.CDRCommon.alignment(current_alignment, 8);
+      current_alignment += (data.longlongSeqtest.Count * 8) + Halodi.CDR.CDRCommon.alignment(current_alignment, 8);
 
 
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
-      current_alignment += (data.getUlonglongSeqTest().size() * 8) + Halodi.CDR.CDRCommon.alignment(current_alignment, 8);
+      current_alignment += (data.ulonglongSeqTest.Count * 8) + Halodi.CDR.CDRCommon.alignment(current_alignment, 8);
 
 
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
-      current_alignment += (data.getFloatSeqTest().size() * 4) + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
+      current_alignment += (data.floatSeqTest.Count * 4) + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
 
 
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
-      current_alignment += (data.getDoubleSeqTest().size() * 8) + Halodi.CDR.CDRCommon.alignment(current_alignment, 8);
+      current_alignment += (data.doubleSeqTest.Count * 8) + Halodi.CDR.CDRCommon.alignment(current_alignment, 8);
 
 
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
-      current_alignment += (data.getBooleanSeqTest().size() * 1) + Halodi.CDR.CDRCommon.alignment(current_alignment, 1);
+      current_alignment += (data.booleanSeqTest.Count * 1) + Halodi.CDR.CDRCommon.alignment(current_alignment, 1);
 
 
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
-      for(int i0 = 0; i0 < data.getNestedSeqTest().size(); ++i0)
+      for(int i0 = 0; i0 < data.nestedSeqTest.Count; ++i0)
       {
-          current_alignment += nested.NestedElementPubSubType.getCdrSerializedSize(data.getNestedSeqTest().get(i0), current_alignment);}
+          current_alignment += nested.NestedElementPubSubType.getCdrSerializedSize(data.nestedSeqTest[i0], current_alignment);}
 
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
-      current_alignment += (data.getEnumSeqTest().size() * 4) + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
+      current_alignment += (data.enumSeqTest.Count * 4) + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
 
 
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
-      for(int i0 = 0; i0 < data.getStringSeqTest().size(); ++i0)
+      for(int i0 = 0; i0 < data.stringSeqTest.Count; ++i0)
       {
-          current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.getStringSeqTest().get(i0).length() + 1;
+          current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.stringSeqTest[i0].Length + 1;
       }
 
       return current_alignment - initial_alignment;
@@ -193,37 +193,34 @@ public class IDLElementTestPubSubType : Halodi.CDR.TopicDataType<test.IDLElement
 
       cdr.write_type_7(data.booleanTest);
 
-      cdr.write_type_c(data.colorTest.ordinal());
+      cdr.write_type_c((int)data.colorTest);
 
 
       nested.NestedElementPubSubType.write(data.nestedElementTest, cdr);
 
       cdr.write_type_d(data.stringTest);
 
-      for(int i0 = 0; i0 < data.longArray.length; ++i0)
+      for(int i0 = 0; i0 < data.longArray.Length; ++i0)
       {
         	cdr.write_type_2(data.longArray[i0]);	
       }
 
-      for(int i0 = 0; i0 < data.nestedArray.length; ++i0)
+      for(int i0 = 0; i0 < data.nestedArray.Length; ++i0)
       {
-        for(int i1 = 0; i1 < data.nestedArray[i0].length; ++i1)
+        for(int i1 = 0; i1 < data.nestedArray[i0].Length; ++i1)
         {
           	nested.NestedElementPubSubType.write(data.nestedArray[i0][i1], cdr);		
         }
       }
 
-      for(int i0 = 0; i0 < data.stringArray.length; ++i0)
+      for(int i0 = 0; i0 < data.stringArray.Length; ++i0)
       {
         	cdr.write_type_d(data.stringArray[i0]);	
       }
 
-      for(int i0 = 0; i0 < data.enumArray.length; ++i0)
+      for(int i0 = 0; i0 < data.enumArray.Length; ++i0)
       {
-            if (data.enumArray[i0] == null)
-        	   cdr.write_type_c(-1);
-            else
-        	   cdr.write_type_c(data.enumArray[i0].ordinal());
+        	   cdr.write_type_c((int)data.enumArray[i0]);
         	
       }
 
@@ -381,7 +378,7 @@ public class IDLElementTestPubSubType : Halodi.CDR.TopicDataType<test.IDLElement
       	
       for(int i0 = 0; i0 < data.stringArray.Length; ++i0)
       {
-        	data.stringArray[i0].Add(cdr.read_type_d());	
+        	data.stringArray[i0] = cdr.read_type_d();	
       }
       	
       for(int i0 = 0; i0 < data.enumArray.Length; ++i0)

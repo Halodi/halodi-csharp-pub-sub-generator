@@ -30,7 +30,7 @@ public class PolygonPubSubType : Halodi.CDR.TopicDataType<geometry.Polygon>
    {
    	   using(BinaryReader reader = new BinaryReader(stream))
    	   {
-   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(stream);
+   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(reader);
    	   		read(data, cdr); 
    	   }
    }
@@ -45,9 +45,9 @@ public class PolygonPubSubType : Halodi.CDR.TopicDataType<geometry.Polygon>
       int initial_alignment = current_alignment;
 
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
-      for(int i0 = 0; i0 < data.getPoints().size(); ++i0)
+      for(int i0 = 0; i0 < data.points.Count; ++i0)
       {
-          current_alignment += geometry.VectorPubSubType.getCdrSerializedSize(data.getPoints().get(i0), current_alignment);}
+          current_alignment += geometry.VectorPubSubType.getCdrSerializedSize(data.points[i0], current_alignment);}
 
       return current_alignment - initial_alignment;
    }

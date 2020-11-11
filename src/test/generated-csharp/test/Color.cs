@@ -13,13 +13,9 @@ namespace test
 
 public enum Color
 {
-         red,
-      
-         green,
-      
-         blue,
-      
-   ;
+   red ,
+   green ,
+   blue 
  
 }
 

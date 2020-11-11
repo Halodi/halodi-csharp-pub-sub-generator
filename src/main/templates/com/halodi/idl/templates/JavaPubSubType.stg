@@ -47,7 +47,7 @@ public class $struct.name$PubSubType : Halodi.CDR.TopicDataType<$struct.javaType
    {
    	   using(BinaryReader reader = new BinaryReader(stream))
    	   {
-   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(stream);
+   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(reader);
    	   		read(data, cdr); 
    	   }
    }
@@ -62,7 +62,7 @@ public class $struct.name$PubSubType : Halodi.CDR.TopicDataType<$struct.javaType
       int initial_alignment = current_alignment;
 
 $struct.members : { member |
-      $serialized_size(ctx=ctx, object=member, data=["data.get", member.javaName, "()"], var="current_alignment")$
+      $serialized_size(ctx=ctx, object=member, data=["data.", member.name], var="current_alignment")$
 }; separator="\n"$
 
       return current_alignment - initial_alignment;

@@ -30,7 +30,7 @@ public class BoxPubSubType : Halodi.CDR.TopicDataType<geometry.Box>
    {
    	   using(BinaryReader reader = new BinaryReader(stream))
    	   {
-   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(stream);
+   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(reader);
    	   		read(data, cdr); 
    	   }
    }
@@ -44,7 +44,7 @@ public class BoxPubSubType : Halodi.CDR.TopicDataType<geometry.Box>
    {
       int initial_alignment = current_alignment;
 
-      current_alignment += geometry.VectorPubSubType.getCdrSerializedSize(data.getCenter(), current_alignment);
+      current_alignment += geometry.VectorPubSubType.getCdrSerializedSize(data.center, current_alignment);
 
       current_alignment += 8 + Halodi.CDR.CDRCommon.alignment(current_alignment, 8);
 

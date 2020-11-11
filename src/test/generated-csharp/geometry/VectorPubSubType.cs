@@ -30,7 +30,7 @@ public class VectorPubSubType : Halodi.CDR.TopicDataType<geometry.Vector>
    {
    	   using(BinaryReader reader = new BinaryReader(stream))
    	   {
-   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(stream);
+   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(reader);
    	   		read(data, cdr); 
    	   }
    }
@@ -44,7 +44,7 @@ public class VectorPubSubType : Halodi.CDR.TopicDataType<geometry.Vector>
    {
       int initial_alignment = current_alignment;
 
-      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.getFrame().length() + 1;
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.frame.Length + 1;
 
       current_alignment += 8 + Halodi.CDR.CDRCommon.alignment(current_alignment, 8);
 
@@ -56,7 +56,7 @@ public class VectorPubSubType : Halodi.CDR.TopicDataType<geometry.Vector>
 
 
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
-      current_alignment += (data.getBla().size() * 8) + Halodi.CDR.CDRCommon.alignment(current_alignment, 8);
+      current_alignment += (data.bla.Count * 8) + Halodi.CDR.CDRCommon.alignment(current_alignment, 8);
 
 
       current_alignment += ((3) * 8) + Halodi.CDR.CDRCommon.alignment(current_alignment, 8);
@@ -81,7 +81,7 @@ public class VectorPubSubType : Halodi.CDR.TopicDataType<geometry.Vector>
             {
       			cdr.write_type_6(data.bla[i0]);
             }
-      for(int i0 = 0; i0 < data.waa.length; ++i0)
+      for(int i0 = 0; i0 < data.waa.Length; ++i0)
       {
         	cdr.write_type_6(data.waa[i0]);	
       }

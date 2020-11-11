@@ -30,7 +30,7 @@ public class ChatMessagePubSubType : Halodi.CDR.TopicDataType<chat.ChatMessage>
    {
    	   using(BinaryReader reader = new BinaryReader(stream))
    	   {
-   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(stream);
+   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(reader);
    	   		read(data, cdr); 
    	   }
    }
@@ -47,9 +47,9 @@ public class ChatMessagePubSubType : Halodi.CDR.TopicDataType<chat.ChatMessage>
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
 
 
-      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.getSender().length() + 1;
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.sender.Length + 1;
 
-      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.getMsg().length() + 1;
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.msg.Length + 1;
 
 
       return current_alignment - initial_alignment;

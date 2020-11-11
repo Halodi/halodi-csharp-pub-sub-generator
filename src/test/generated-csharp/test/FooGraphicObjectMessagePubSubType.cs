@@ -30,7 +30,7 @@ public class FooGraphicObjectMessagePubSubType : Halodi.CDR.TopicDataType<test.F
    {
    	   using(BinaryReader reader = new BinaryReader(stream))
    	   {
-   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(stream);
+   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(reader);
    	   		read(data, cdr); 
    	   }
    }
@@ -47,19 +47,19 @@ public class FooGraphicObjectMessagePubSubType : Halodi.CDR.TopicDataType<test.F
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
 
 
-      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.getName().length() + 1;
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.name.Length + 1;
 
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
-      current_alignment += (data.getYoVariableIndex().size() * 2) + Halodi.CDR.CDRCommon.alignment(current_alignment, 2);
+      current_alignment += (data.yoVariableIndex.Count * 2) + Halodi.CDR.CDRCommon.alignment(current_alignment, 2);
 
 
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
-      current_alignment += (data.getConstants().size() * 8) + Halodi.CDR.CDRCommon.alignment(current_alignment, 8);
+      current_alignment += (data.constants.Count * 8) + Halodi.CDR.CDRCommon.alignment(current_alignment, 8);
 
 
-      current_alignment += test.FooAppearanceDefinitionMessagePubSubType.getCdrSerializedSize(data.getAppearance(), current_alignment);
+      current_alignment += test.FooAppearanceDefinitionMessagePubSubType.getCdrSerializedSize(data.appearance, current_alignment);
 
-      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.getListName().length() + 1;
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.listName.Length + 1;
 
 
       return current_alignment - initial_alignment;

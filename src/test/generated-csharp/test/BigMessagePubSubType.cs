@@ -30,7 +30,7 @@ public class BigMessagePubSubType : Halodi.CDR.TopicDataType<test.BigMessage>
    {
    	   using(BinaryReader reader = new BinaryReader(stream))
    	   {
-   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(stream);
+   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(reader);
    	   		read(data, cdr); 
    	   }
    }
@@ -48,9 +48,9 @@ public class BigMessagePubSubType : Halodi.CDR.TopicDataType<test.BigMessage>
 
 
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
-      for(int i0 = 0; i0 < data.getLargeSequence().size(); ++i0)
+      for(int i0 = 0; i0 < data.largeSequence.Count; ++i0)
       {
-          current_alignment += test.IDLSubmessagePubSubType.getCdrSerializedSize(data.getLargeSequence().get(i0), current_alignment);}
+          current_alignment += test.IDLSubmessagePubSubType.getCdrSerializedSize(data.largeSequence[i0], current_alignment);}
 
 
       return current_alignment - initial_alignment;

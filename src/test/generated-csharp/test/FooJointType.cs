@@ -13,11 +13,8 @@ namespace test
 
 public enum FooJointType
 {
-         FooSiXDoFJoint,
-      
-         FooOneDoFJoint,
-      
-   ;
+   FooSiXDoFJoint ,
+   FooOneDoFJoint 
  
 }
 
