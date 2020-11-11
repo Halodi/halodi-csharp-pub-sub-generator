@@ -13,7 +13,7 @@ ihmc {
 
    configureDependencyResolution()
    resourceDirectory("main", "templates")
-   javaDirectory("test", "generated-java")
+   resourceDirectory("test", "generated-csharp")
    resourceDirectory("test", "idl")
    configurePublications()
 }

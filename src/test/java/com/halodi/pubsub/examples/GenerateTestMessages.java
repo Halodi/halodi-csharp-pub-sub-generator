@@ -26,7 +26,7 @@ public class GenerateTestMessages
       {
          IDLCSharpGenerator.execute(idl.toFile(),
                               "",
-                              Paths.get("generated-java").toFile(),
+                              Paths.get("generated-csharp").toFile(),
                               Arrays.asList(Paths.get("idl").toFile()));
       }
    }
