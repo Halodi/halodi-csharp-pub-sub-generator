@@ -10,13 +10,13 @@ namespace geometry
 * Do not update this file directly, edit Vector.idl instead.
 *
 */
-public class TrianglePubSubType : Halodi.TopicDataType<geometry.Triangle>
+public class TrianglePubSubType : Halodi.CDR.TopicDataType<geometry.Triangle>
 {
    public const string name = "geometry::Triangle";
 
 
-   @Override
-   public void serialize(geometry.Triangle data, MemoryStream stream) throws java.io.IOException
+   
+   public override void serialize(geometry.Triangle data, MemoryStream stream)
    {
    	  using(BinaryWriter writer = new BinaryWriter(stream))
    	  {
@@ -25,8 +25,8 @@ public class TrianglePubSubType : Halodi.TopicDataType<geometry.Triangle>
    	  }
    }
 
-   @Override
-   public void deserialize(MemoryStream stream, geometry.Triangle data) throws java.io.IOException
+   
+   public override void deserialize(MemoryStream stream, geometry.Triangle data)
    {
    	   using(BinaryReader reader = new BinaryReader(stream))
    	   {
@@ -35,16 +35,16 @@ public class TrianglePubSubType : Halodi.TopicDataType<geometry.Triangle>
    	   }
    }
 
-   public final static int getCdrSerializedSize(geometry.Triangle data)
+   public static int getCdrSerializedSize(geometry.Triangle data)
    {
       return getCdrSerializedSize(data, 0);
    }
 
-   public final static int getCdrSerializedSize(geometry.Triangle data, int current_alignment)
+   public static int getCdrSerializedSize(geometry.Triangle data, int current_alignment)
    {
       int initial_alignment = current_alignment;
 
-      for(int i0 = 0; i0 < data.getPoints().length; ++i0)
+      for(int i0 = 0; i0 < data.getPoints().Length; ++i0)
       {
               current_alignment += geometry.VectorPubSubType.getCdrSerializedSize(data.getPoints()[i0], current_alignment);
       }
@@ -53,17 +53,17 @@ public class TrianglePubSubType : Halodi.TopicDataType<geometry.Triangle>
 
    public static void write(geometry.Triangle data, Halodi.CDR.CDRSerializer cdr)
    {
-      for(int i0 = 0; i0 < data.getPoints().length; ++i0)
+      for(int i0 = 0; i0 < data.points.length; ++i0)
       {
-        	geometry.VectorPubSubType.write(data.getPoints()[i0], cdr);		
+        	geometry.VectorPubSubType.write(data.points[i0], cdr);		
       }
    }
 
    public static void read(geometry.Triangle data, Halodi.CDR.CDRDeserializer cdr)
    {
-      for(int i0 = 0; i0 < data.Points.length; ++i0)
+      for(int i0 = 0; i0 < data.points.length; ++i0)
       {
-        	geometry.VectorPubSubType.read(data.Points[i0], cdr);	
+        	geometry.VectorPubSubType.read(data.points[i0], cdr);	
       }
       	
 

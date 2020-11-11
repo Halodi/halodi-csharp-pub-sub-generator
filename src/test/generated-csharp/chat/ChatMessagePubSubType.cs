@@ -10,13 +10,13 @@ namespace chat
 * Do not update this file directly, edit ChatMessage.idl instead.
 *
 */
-public class ChatMessagePubSubType : Halodi.TopicDataType<chat.ChatMessage>
+public class ChatMessagePubSubType : Halodi.CDR.TopicDataType<chat.ChatMessage>
 {
    public const string name = "chat::ChatMessage";
 
 
-   @Override
-   public void serialize(chat.ChatMessage data, MemoryStream stream) throws java.io.IOException
+   
+   public override void serialize(chat.ChatMessage data, MemoryStream stream)
    {
    	  using(BinaryWriter writer = new BinaryWriter(stream))
    	  {
@@ -25,8 +25,8 @@ public class ChatMessagePubSubType : Halodi.TopicDataType<chat.ChatMessage>
    	  }
    }
 
-   @Override
-   public void deserialize(MemoryStream stream, chat.ChatMessage data) throws java.io.IOException
+   
+   public override void deserialize(MemoryStream stream, chat.ChatMessage data)
    {
    	   using(BinaryReader reader = new BinaryReader(stream))
    	   {
@@ -35,12 +35,12 @@ public class ChatMessagePubSubType : Halodi.TopicDataType<chat.ChatMessage>
    	   }
    }
 
-   public final static int getCdrSerializedSize(chat.ChatMessage data)
+   public static int getCdrSerializedSize(chat.ChatMessage data)
    {
       return getCdrSerializedSize(data, 0);
    }
 
-   public final static int getCdrSerializedSize(chat.ChatMessage data, int current_alignment)
+   public static int getCdrSerializedSize(chat.ChatMessage data, int current_alignment)
    {
       int initial_alignment = current_alignment;
 
@@ -57,20 +57,20 @@ public class ChatMessagePubSubType : Halodi.TopicDataType<chat.ChatMessage>
 
    public static void write(chat.ChatMessage data, Halodi.CDR.CDRSerializer cdr)
    {
-      cdr.write_type_2(data.getKey());
+      cdr.write_type_2(data.key);
 
-      cdr.write_type_d(data.getSender());
+      cdr.write_type_d(data.sender);
 
-      cdr.write_type_d(data.getMsg());
+      cdr.write_type_d(data.msg);
 
    }
 
    public static void read(chat.ChatMessage data, Halodi.CDR.CDRDeserializer cdr)
    {
-      data.Key=cdr.read_type_2());
+      data.key=cdr.read_type_2();
       	
-      cdr.read_type_d(data.getSender());	
-      cdr.read_type_d(data.getMsg());	
+      cdr.read_type_d(data.sender);	
+      cdr.read_type_d(data.msg);	
 
    }
 

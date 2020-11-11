@@ -10,13 +10,13 @@ namespace nested
 * Do not update this file directly, edit NestedElement.idl instead.
 *
 */
-public class NestedElementPubSubType : Halodi.TopicDataType<nested.NestedElement>
+public class NestedElementPubSubType : Halodi.CDR.TopicDataType<nested.NestedElement>
 {
    public const string name = "nested::NestedElement";
 
 
-   @Override
-   public void serialize(nested.NestedElement data, MemoryStream stream) throws java.io.IOException
+   
+   public override void serialize(nested.NestedElement data, MemoryStream stream)
    {
    	  using(BinaryWriter writer = new BinaryWriter(stream))
    	  {
@@ -25,8 +25,8 @@ public class NestedElementPubSubType : Halodi.TopicDataType<nested.NestedElement
    	  }
    }
 
-   @Override
-   public void deserialize(MemoryStream stream, nested.NestedElement data) throws java.io.IOException
+   
+   public override void deserialize(MemoryStream stream, nested.NestedElement data)
    {
    	   using(BinaryReader reader = new BinaryReader(stream))
    	   {
@@ -35,12 +35,12 @@ public class NestedElementPubSubType : Halodi.TopicDataType<nested.NestedElement
    	   }
    }
 
-   public final static int getCdrSerializedSize(nested.NestedElement data)
+   public static int getCdrSerializedSize(nested.NestedElement data)
    {
       return getCdrSerializedSize(data, 0);
    }
 
-   public final static int getCdrSerializedSize(nested.NestedElement data, int current_alignment)
+   public static int getCdrSerializedSize(nested.NestedElement data, int current_alignment)
    {
       int initial_alignment = current_alignment;
 
@@ -55,16 +55,16 @@ public class NestedElementPubSubType : Halodi.TopicDataType<nested.NestedElement
 
    public static void write(nested.NestedElement data, Halodi.CDR.CDRSerializer cdr)
    {
-      cdr.write_type_d(data.getStringTest());
+      cdr.write_type_d(data.stringTest);
 
-      cdr.write_type_2(data.getLongTest());
+      cdr.write_type_2(data.longTest);
 
    }
 
    public static void read(nested.NestedElement data, Halodi.CDR.CDRDeserializer cdr)
    {
-      cdr.read_type_d(data.getStringTest());	
-      data.LongTest=cdr.read_type_2());
+      cdr.read_type_d(data.stringTest);	
+      data.longTest=cdr.read_type_2();
       	
 
    }

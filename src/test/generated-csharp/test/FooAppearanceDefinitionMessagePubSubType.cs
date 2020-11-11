@@ -10,13 +10,13 @@ namespace test
 * Do not update this file directly, edit FooHandshake.idl instead.
 *
 */
-public class FooAppearanceDefinitionMessagePubSubType : Halodi.TopicDataType<test.FooAppearanceDefinitionMessage>
+public class FooAppearanceDefinitionMessagePubSubType : Halodi.CDR.TopicDataType<test.FooAppearanceDefinitionMessage>
 {
    public const string name = "test::FooAppearanceDefinitionMessage";
 
 
-   @Override
-   public void serialize(test.FooAppearanceDefinitionMessage data, MemoryStream stream) throws java.io.IOException
+   
+   public override void serialize(test.FooAppearanceDefinitionMessage data, MemoryStream stream)
    {
    	  using(BinaryWriter writer = new BinaryWriter(stream))
    	  {
@@ -25,8 +25,8 @@ public class FooAppearanceDefinitionMessagePubSubType : Halodi.TopicDataType<tes
    	  }
    }
 
-   @Override
-   public void deserialize(MemoryStream stream, test.FooAppearanceDefinitionMessage data) throws java.io.IOException
+   
+   public override void deserialize(MemoryStream stream, test.FooAppearanceDefinitionMessage data)
    {
    	   using(BinaryReader reader = new BinaryReader(stream))
    	   {
@@ -35,12 +35,12 @@ public class FooAppearanceDefinitionMessagePubSubType : Halodi.TopicDataType<tes
    	   }
    }
 
-   public final static int getCdrSerializedSize(test.FooAppearanceDefinitionMessage data)
+   public static int getCdrSerializedSize(test.FooAppearanceDefinitionMessage data)
    {
       return getCdrSerializedSize(data, 0);
    }
 
-   public final static int getCdrSerializedSize(test.FooAppearanceDefinitionMessage data, int current_alignment)
+   public static int getCdrSerializedSize(test.FooAppearanceDefinitionMessage data, int current_alignment)
    {
       int initial_alignment = current_alignment;
 
@@ -62,25 +62,25 @@ public class FooAppearanceDefinitionMessagePubSubType : Halodi.TopicDataType<tes
 
    public static void write(test.FooAppearanceDefinitionMessage data, Halodi.CDR.CDRSerializer cdr)
    {
-      cdr.write_type_6(data.getR());
+      cdr.write_type_6(data.r);
 
-      cdr.write_type_6(data.getG());
+      cdr.write_type_6(data.g);
 
-      cdr.write_type_6(data.getB());
+      cdr.write_type_6(data.b);
 
-      cdr.write_type_6(data.getTransparency());
+      cdr.write_type_6(data.transparency);
 
    }
 
    public static void read(test.FooAppearanceDefinitionMessage data, Halodi.CDR.CDRDeserializer cdr)
    {
-      data.R=cdr.read_type_6());
+      data.r=cdr.read_type_6();
       	
-      data.G=cdr.read_type_6());
+      data.g=cdr.read_type_6();
       	
-      data.B=cdr.read_type_6());
+      data.b=cdr.read_type_6();
       	
-      data.Transparency=cdr.read_type_6());
+      data.transparency=cdr.read_type_6();
       	
 
    }

@@ -10,13 +10,13 @@ namespace geometry
 * Do not update this file directly, edit Vector.idl instead.
 *
 */
-public class PolygonPubSubType : Halodi.TopicDataType<geometry.Polygon>
+public class PolygonPubSubType : Halodi.CDR.TopicDataType<geometry.Polygon>
 {
    public const string name = "geometry::Polygon";
 
 
-   @Override
-   public void serialize(geometry.Polygon data, MemoryStream stream) throws java.io.IOException
+   
+   public override void serialize(geometry.Polygon data, MemoryStream stream)
    {
    	  using(BinaryWriter writer = new BinaryWriter(stream))
    	  {
@@ -25,8 +25,8 @@ public class PolygonPubSubType : Halodi.TopicDataType<geometry.Polygon>
    	  }
    }
 
-   @Override
-   public void deserialize(MemoryStream stream, geometry.Polygon data) throws java.io.IOException
+   
+   public override void deserialize(MemoryStream stream, geometry.Polygon data)
    {
    	   using(BinaryReader reader = new BinaryReader(stream))
    	   {
@@ -35,12 +35,12 @@ public class PolygonPubSubType : Halodi.TopicDataType<geometry.Polygon>
    	   }
    }
 
-   public final static int getCdrSerializedSize(geometry.Polygon data)
+   public static int getCdrSerializedSize(geometry.Polygon data)
    {
       return getCdrSerializedSize(data, 0);
    }
 
-   public final static int getCdrSerializedSize(geometry.Polygon data, int current_alignment)
+   public static int getCdrSerializedSize(geometry.Polygon data, int current_alignment)
    {
       int initial_alignment = current_alignment;
 
@@ -54,18 +54,18 @@ public class PolygonPubSubType : Halodi.TopicDataType<geometry.Polygon>
 
    public static void write(geometry.Polygon data, Halodi.CDR.CDRSerializer cdr)
    {
-      cdr.write_type_e(data.getPoints());
+      cdr.write_type_e(data.points);
 
    }
 
    public static void read(geometry.Polygon data, Halodi.CDR.CDRDeserializer cdr)
    {
 
-      int Points_length = cdr.read_type_2();
-      data.Points = new System.Collections.Generic.List<geometry.Vector>(Points_length);
-      for(int i = 0; i < Points_length; i++)
+      int points_length = cdr.read_type_2();
+      data.points = new System.Collections.Generic.List<geometry.Vector>(points_length);
+      for(int i = 0; i < points_length; i++)
       {
-      	geometry.VectorPubSubType.read(data.Points, cdr);	
+      	geometry.VectorPubSubType.read(data.points, cdr);	
       	
       }
       	

@@ -10,13 +10,13 @@ namespace test
 * Do not update this file directly, edit FooHandshake.idl instead.
 *
 */
-public class FooJointDefinitionPubSubType : Halodi.TopicDataType<test.FooJointDefinition>
+public class FooJointDefinitionPubSubType : Halodi.CDR.TopicDataType<test.FooJointDefinition>
 {
    public const string name = "test::FooJointDefinition";
 
 
-   @Override
-   public void serialize(test.FooJointDefinition data, MemoryStream stream) throws java.io.IOException
+   
+   public override void serialize(test.FooJointDefinition data, MemoryStream stream)
    {
    	  using(BinaryWriter writer = new BinaryWriter(stream))
    	  {
@@ -25,8 +25,8 @@ public class FooJointDefinitionPubSubType : Halodi.TopicDataType<test.FooJointDe
    	  }
    }
 
-   @Override
-   public void deserialize(MemoryStream stream, test.FooJointDefinition data) throws java.io.IOException
+   
+   public override void deserialize(MemoryStream stream, test.FooJointDefinition data)
    {
    	   using(BinaryReader reader = new BinaryReader(stream))
    	   {
@@ -35,12 +35,12 @@ public class FooJointDefinitionPubSubType : Halodi.TopicDataType<test.FooJointDe
    	   }
    }
 
-   public final static int getCdrSerializedSize(test.FooJointDefinition data)
+   public static int getCdrSerializedSize(test.FooJointDefinition data)
    {
       return getCdrSerializedSize(data, 0);
    }
 
-   public final static int getCdrSerializedSize(test.FooJointDefinition data, int current_alignment)
+   public static int getCdrSerializedSize(test.FooJointDefinition data, int current_alignment)
    {
       int initial_alignment = current_alignment;
 
@@ -55,17 +55,17 @@ public class FooJointDefinitionPubSubType : Halodi.TopicDataType<test.FooJointDe
 
    public static void write(test.FooJointDefinition data, Halodi.CDR.CDRSerializer cdr)
    {
-      cdr.write_type_d(data.getName());
+      cdr.write_type_d(data.name);
 
-      cdr.write_type_c(data.getType().ordinal());
+      cdr.write_type_c(data.type.ordinal());
 
 
    }
 
    public static void read(test.FooJointDefinition data, Halodi.CDR.CDRDeserializer cdr)
    {
-      cdr.read_type_d(data.getName());	
-      data.Type = (test.FooJointType) cdr.read_type_c();
+      cdr.read_type_d(data.name);	
+      data.type = (test.FooJointType) cdr.read_type_c();
       	
 
    }

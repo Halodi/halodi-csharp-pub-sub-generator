@@ -10,13 +10,13 @@ namespace test
 * Do not update this file directly, edit BigMessage.idl instead.
 *
 */
-public class BigMessagePubSubType : Halodi.TopicDataType<test.BigMessage>
+public class BigMessagePubSubType : Halodi.CDR.TopicDataType<test.BigMessage>
 {
    public const string name = "test::BigMessage";
 
 
-   @Override
-   public void serialize(test.BigMessage data, MemoryStream stream) throws java.io.IOException
+   
+   public override void serialize(test.BigMessage data, MemoryStream stream)
    {
    	  using(BinaryWriter writer = new BinaryWriter(stream))
    	  {
@@ -25,8 +25,8 @@ public class BigMessagePubSubType : Halodi.TopicDataType<test.BigMessage>
    	  }
    }
 
-   @Override
-   public void deserialize(MemoryStream stream, test.BigMessage data) throws java.io.IOException
+   
+   public override void deserialize(MemoryStream stream, test.BigMessage data)
    {
    	   using(BinaryReader reader = new BinaryReader(stream))
    	   {
@@ -35,12 +35,12 @@ public class BigMessagePubSubType : Halodi.TopicDataType<test.BigMessage>
    	   }
    }
 
-   public final static int getCdrSerializedSize(test.BigMessage data)
+   public static int getCdrSerializedSize(test.BigMessage data)
    {
       return getCdrSerializedSize(data, 0);
    }
 
-   public final static int getCdrSerializedSize(test.BigMessage data, int current_alignment)
+   public static int getCdrSerializedSize(test.BigMessage data, int current_alignment)
    {
       int initial_alignment = current_alignment;
 
@@ -58,22 +58,22 @@ public class BigMessagePubSubType : Halodi.TopicDataType<test.BigMessage>
 
    public static void write(test.BigMessage data, Halodi.CDR.CDRSerializer cdr)
    {
-      cdr.write_type_2(data.getId());
+      cdr.write_type_2(data.id);
 
-      cdr.write_type_e(data.getLargeSequence());
+      cdr.write_type_e(data.largeSequence);
 
    }
 
    public static void read(test.BigMessage data, Halodi.CDR.CDRDeserializer cdr)
    {
-      data.Id=cdr.read_type_2());
+      data.id=cdr.read_type_2();
       	
 
-      int LargeSequence_length = cdr.read_type_2();
-      data.LargeSequence = new System.Collections.Generic.List<test.IDLSubmessage>(LargeSequence_length);
-      for(int i = 0; i < LargeSequence_length; i++)
+      int largeSequence_length = cdr.read_type_2();
+      data.largeSequence = new System.Collections.Generic.List<test.IDLSubmessage>(largeSequence_length);
+      for(int i = 0; i < largeSequence_length; i++)
       {
-      	test.IDLSubmessagePubSubType.read(data.LargeSequence, cdr);	
+      	test.IDLSubmessagePubSubType.read(data.largeSequence, cdr);	
       	
       }
       	

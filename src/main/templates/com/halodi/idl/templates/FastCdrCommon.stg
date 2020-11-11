@@ -29,10 +29,10 @@ $if(params)$$separatorInicial$$endif$$params : {param | /*$param.comment$*/ $par
 >>
 
 object_serialization(ctx, object, arg, element) ::= <<
-$if(object.typecode.isType_c)$cdr.write_$object.typecode.stType$($element$get$object.javaName$($arg$).ordinal());
-$elseif(object.typecode.isType_f)$$array_serialize(ctx=ctx, typecodeArr=object.typecode, data=[element, "get", object.javaName, "(", arg, ")"], loopvar=ctx.newLoopVarName, dimensions=object.typecode.dimensions)$
-$elseif(object.typecode.isType_a)$$object.typecode.pubsubTypename$.write($element$get$object.javaName$($arg$), cdr);
-$else$cdr.write_$object.typecode.stType$($element$get$object.javaName$($arg$));
+$if(object.typecode.isType_c)$cdr.write_$object.typecode.stType$($element$$object.name$.ordinal());
+$elseif(object.typecode.isType_f)$$array_serialize(ctx=ctx, typecodeArr=object.typecode, data=[element, object.name], loopvar=ctx.newLoopVarName, dimensions=object.typecode.dimensions)$
+$elseif(object.typecode.isType_a)$$object.typecode.pubsubTypename$.write($element$$object.name$, cdr);
+$else$cdr.write_$object.typecode.stType$($element$$object.name$);
 $endif$
 >>
 
@@ -127,12 +127,13 @@ $endif$
 >>
 
 object_deserialization(ctx, object, arg, argsep, element) ::= <<
-$if(object.typecode.isType_c)$$element$$object.javaName$ = ($object.typecode.javaTypename$) cdr.read_$object.typecode.stType$();
-$elseif(object.typecode.isType_f)$$array_deserialize(ctx=ctx, typecodeArr=object.typecode, data=[element, object.javaName], loopvar=ctx.newLoopVarName, dimensions=object.typecode.dimensions)$
-$elseif(object.typecode.primitive)$$element$$object.javaName$=cdr.read_$object.typecode.stType$());
-$elseif(object.typecode.isType_a)$$object.typecode.pubsubTypename$.read($element$$object.javaName$, cdr);
-$elseif(object.typecode.isType_e)$$sequence_deserialize(ctx=ctx, typecodeArr=object.typecode, fieldname=object.javaName, data=[element, object.javaName], loopvar=ctx.newLoopVarName)$
-$else$cdr.read_$object.typecode.stType$($element$get$object.javaName$($arg$));
+$if(object.typecode.isType_c)$$element$$object.name$ = ($object.typecode.javaTypename$) cdr.read_$object.typecode.stType$();
+$elseif(object.typecode.isType_f)$$array_deserialize(ctx=ctx, typecodeArr=object.typecode, data=[element, object.name], loopvar=ctx.newLoopVarName, dimensions=object.typecode.dimensions)$
+$elseif(object.typecode.primitive)$$element$$object.name$=cdr.read_$object.typecode.stType$();
+$elseif(object.typecode.isType_a)$$object.typecode.pubsubTypename$.read($element$$object.name$, cdr);
+$elseif(object.typecode.isType_e)$$sequence_deserialize(ctx=ctx, typecodeArr=object.typecode, fieldname=object.name, data=[element, object.name], loopvar=ctx.newLoopVarName)$
+$elseif(object.typecode.isType_d)$$element$$object.name$ = cdr.read_$object.typecode.stType$();
+$else$cdr.read_$object.typecode.stType$($element$$object.name$);
 $endif$	
 >>
 
@@ -283,13 +284,13 @@ $if(typecodeArr.contentTypeCode.primitive)$
 $var$ += ($typecodeArr.size$ * $typecodeArr.contentTypeCode.size$)$if(ctx.cdr)$ + Halodi.CDR.CDRCommon.alignment($var$, $typecodeArr.contentTypeCode.size$)$endif$;
 $else$
 $if(first(dimensions))$
-for(int $loopvar$ = 0; $loopvar$ < $data$.length; ++$loopvar$)
+for(int $loopvar$ = 0; $loopvar$ < $data$.Length; ++$loopvar$)
 {
     $array_serialized_size(ctx=ctx, typecodeArr=typecodeArr, data=[data, "[", loopvar, "]"], var=var, loopvar=ctx.nextLoopVarName, dimensions=rest(dimensions))$
 }
 $else$
 $if(typecodeArr.contentTypeCode.isType_d)$
-    $var$ += 4$if(ctx.cdr)$ + Halodi.CDR.CDRCommon.alignment($var$, 4)$endif$ + $data$.length() + 1;
+    $var$ += 4$if(ctx.cdr)$ + Halodi.CDR.CDRCommon.alignment($var$, 4)$endif$ + $data$.Length + 1;
 $elseif(typecodeArr.contentTypeCode.isType_e)$
     $var$ += 4$if(ctx.cdr)$ + Halodi.CDR.CDRCommon.alignment($var$, 4)$endif$;
     $sequence_serialized_size(ctx=ctx, typecodeArr=typecodeArr.contentTypeCode, data=[data, "[", loopvar, "]"], var=var, loopvar=ctx.nextLoopVarName)$
@@ -315,8 +316,8 @@ $endif$
 >>
 
 sizeFunction ::= [
-        "type_e":"size()",
-        "type_d":"length()",
-        "type_15":"length()",
+        "type_e":"Length",
+        "type_d":"Length",
+        "type_15":"Length",
         default: // not basic type.
 ]

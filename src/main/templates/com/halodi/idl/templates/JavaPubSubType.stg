@@ -27,13 +27,13 @@ public class $interface.name$PubSubType
 
 struct_type(ctx, parent, struct, extension, typecode) ::= <<
 $javadocpubsub(type="struct", name=struct.name, filename=[ctx.filename, ".idl"])$
-public class $struct.name$PubSubType : Halodi.TopicDataType<$struct.javaTypename$>
+public class $struct.name$PubSubType : Halodi.CDR.TopicDataType<$struct.javaTypename$>
 {
    public const string name = "$typecode$";
 
 
-   @Override
-   public void serialize($struct.javaTypename$ data, MemoryStream stream) throws java.io.IOException
+   
+   public override void serialize($struct.javaTypename$ data, MemoryStream stream)
    {
    	  using(BinaryWriter writer = new BinaryWriter(stream))
    	  {
@@ -42,8 +42,8 @@ public class $struct.name$PubSubType : Halodi.TopicDataType<$struct.javaTypename
    	  }
    }
 
-   @Override
-   public void deserialize(MemoryStream stream, $struct.javaTypename$ data) throws java.io.IOException
+   
+   public override void deserialize(MemoryStream stream, $struct.javaTypename$ data)
    {
    	   using(BinaryReader reader = new BinaryReader(stream))
    	   {
@@ -52,12 +52,12 @@ public class $struct.name$PubSubType : Halodi.TopicDataType<$struct.javaTypename
    	   }
    }
 
-   public final static int getCdrSerializedSize($struct.javaTypename$ data)
+   public static int getCdrSerializedSize($struct.javaTypename$ data)
    {
       return getCdrSerializedSize(data, 0);
    }
 
-   public final static int getCdrSerializedSize($struct.javaTypename$ data, int current_alignment)
+   public static int getCdrSerializedSize($struct.javaTypename$ data, int current_alignment)
    {
       int initial_alignment = current_alignment;
 

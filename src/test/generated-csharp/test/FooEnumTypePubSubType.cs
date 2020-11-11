@@ -10,13 +10,13 @@ namespace test
 * Do not update this file directly, edit FooHandshake.idl instead.
 *
 */
-public class FooEnumTypePubSubType : Halodi.TopicDataType<test.FooEnumType>
+public class FooEnumTypePubSubType : Halodi.CDR.TopicDataType<test.FooEnumType>
 {
    public const string name = "test::FooEnumType";
 
 
-   @Override
-   public void serialize(test.FooEnumType data, MemoryStream stream) throws java.io.IOException
+   
+   public override void serialize(test.FooEnumType data, MemoryStream stream)
    {
    	  using(BinaryWriter writer = new BinaryWriter(stream))
    	  {
@@ -25,8 +25,8 @@ public class FooEnumTypePubSubType : Halodi.TopicDataType<test.FooEnumType>
    	  }
    }
 
-   @Override
-   public void deserialize(MemoryStream stream, test.FooEnumType data) throws java.io.IOException
+   
+   public override void deserialize(MemoryStream stream, test.FooEnumType data)
    {
    	   using(BinaryReader reader = new BinaryReader(stream))
    	   {
@@ -35,12 +35,12 @@ public class FooEnumTypePubSubType : Halodi.TopicDataType<test.FooEnumType>
    	   }
    }
 
-   public final static int getCdrSerializedSize(test.FooEnumType data)
+   public static int getCdrSerializedSize(test.FooEnumType data)
    {
       return getCdrSerializedSize(data, 0);
    }
 
-   public final static int getCdrSerializedSize(test.FooEnumType data, int current_alignment)
+   public static int getCdrSerializedSize(test.FooEnumType data, int current_alignment)
    {
       int initial_alignment = current_alignment;
 
@@ -57,21 +57,21 @@ public class FooEnumTypePubSubType : Halodi.TopicDataType<test.FooEnumType>
 
    public static void write(test.FooEnumType data, Halodi.CDR.CDRSerializer cdr)
    {
-      cdr.write_type_d(data.getName());
+      cdr.write_type_d(data.name);
 
-      cdr.write_type_e(data.getEnumValues());
+      cdr.write_type_e(data.enumValues);
 
    }
 
    public static void read(test.FooEnumType data, Halodi.CDR.CDRDeserializer cdr)
    {
-      cdr.read_type_d(data.getName());	
+      cdr.read_type_d(data.name);	
 
-      int EnumValues_length = cdr.read_type_2();
-      data.EnumValues = new System.Collections.Generic.List<string>(EnumValues_length);
-      for(int i = 0; i < EnumValues_length; i++)
+      int enumValues_length = cdr.read_type_2();
+      data.enumValues = new System.Collections.Generic.List<string>(enumValues_length);
+      for(int i = 0; i < enumValues_length; i++)
       {
-      	data.EnumValues.Add(cdr.read_type_d());	
+      	data.enumValues.Add(cdr.read_type_d());	
       	
       }
       	

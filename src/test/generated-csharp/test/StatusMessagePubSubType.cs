@@ -10,13 +10,13 @@ namespace test
 * Do not update this file directly, edit StatusMessage.idl instead.
 *
 */
-public class StatusMessagePubSubType : Halodi.TopicDataType<test.StatusMessage>
+public class StatusMessagePubSubType : Halodi.CDR.TopicDataType<test.StatusMessage>
 {
    public const string name = "test::StatusMessage";
 
 
-   @Override
-   public void serialize(test.StatusMessage data, MemoryStream stream) throws java.io.IOException
+   
+   public override void serialize(test.StatusMessage data, MemoryStream stream)
    {
    	  using(BinaryWriter writer = new BinaryWriter(stream))
    	  {
@@ -25,8 +25,8 @@ public class StatusMessagePubSubType : Halodi.TopicDataType<test.StatusMessage>
    	  }
    }
 
-   @Override
-   public void deserialize(MemoryStream stream, test.StatusMessage data) throws java.io.IOException
+   
+   public override void deserialize(MemoryStream stream, test.StatusMessage data)
    {
    	   using(BinaryReader reader = new BinaryReader(stream))
    	   {
@@ -35,12 +35,12 @@ public class StatusMessagePubSubType : Halodi.TopicDataType<test.StatusMessage>
    	   }
    }
 
-   public final static int getCdrSerializedSize(test.StatusMessage data)
+   public static int getCdrSerializedSize(test.StatusMessage data)
    {
       return getCdrSerializedSize(data, 0);
    }
 
-   public final static int getCdrSerializedSize(test.StatusMessage data, int current_alignment)
+   public static int getCdrSerializedSize(test.StatusMessage data, int current_alignment)
    {
       int initial_alignment = current_alignment;
 
@@ -56,17 +56,17 @@ public class StatusMessagePubSubType : Halodi.TopicDataType<test.StatusMessage>
 
    public static void write(test.StatusMessage data, Halodi.CDR.CDRSerializer cdr)
    {
-      cdr.write_type_12(data.getSequenceId());
+      cdr.write_type_12(data.sequence_id);
 
-      cdr.write_type_7(data.getPause());
+      cdr.write_type_7(data.pause);
 
    }
 
    public static void read(test.StatusMessage data, Halodi.CDR.CDRDeserializer cdr)
    {
-      data.SequenceId=cdr.read_type_12());
+      data.sequence_id=cdr.read_type_12();
       	
-      data.Pause=cdr.read_type_7());
+      data.pause=cdr.read_type_7();
       	
 
    }

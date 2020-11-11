@@ -10,13 +10,13 @@ namespace test
 * Do not update this file directly, edit FooHandshake.idl instead.
 *
 */
-public class FooYoRegistryDefinitionPubSubType : Halodi.TopicDataType<test.FooYoRegistryDefinition>
+public class FooYoRegistryDefinitionPubSubType : Halodi.CDR.TopicDataType<test.FooYoRegistryDefinition>
 {
    public const string name = "test::FooYoRegistryDefinition";
 
 
-   @Override
-   public void serialize(test.FooYoRegistryDefinition data, MemoryStream stream) throws java.io.IOException
+   
+   public override void serialize(test.FooYoRegistryDefinition data, MemoryStream stream)
    {
    	  using(BinaryWriter writer = new BinaryWriter(stream))
    	  {
@@ -25,8 +25,8 @@ public class FooYoRegistryDefinitionPubSubType : Halodi.TopicDataType<test.FooYo
    	  }
    }
 
-   @Override
-   public void deserialize(MemoryStream stream, test.FooYoRegistryDefinition data) throws java.io.IOException
+   
+   public override void deserialize(MemoryStream stream, test.FooYoRegistryDefinition data)
    {
    	   using(BinaryReader reader = new BinaryReader(stream))
    	   {
@@ -35,12 +35,12 @@ public class FooYoRegistryDefinitionPubSubType : Halodi.TopicDataType<test.FooYo
    	   }
    }
 
-   public final static int getCdrSerializedSize(test.FooYoRegistryDefinition data)
+   public static int getCdrSerializedSize(test.FooYoRegistryDefinition data)
    {
       return getCdrSerializedSize(data, 0);
    }
 
-   public final static int getCdrSerializedSize(test.FooYoRegistryDefinition data, int current_alignment)
+   public static int getCdrSerializedSize(test.FooYoRegistryDefinition data, int current_alignment)
    {
       int initial_alignment = current_alignment;
 
@@ -55,17 +55,17 @@ public class FooYoRegistryDefinitionPubSubType : Halodi.TopicDataType<test.FooYo
 
    public static void write(test.FooYoRegistryDefinition data, Halodi.CDR.CDRSerializer cdr)
    {
-      cdr.write_type_3(data.getParent());
+      cdr.write_type_3(data.parent);
 
-      cdr.write_type_d(data.getName());
+      cdr.write_type_d(data.name);
 
    }
 
    public static void read(test.FooYoRegistryDefinition data, Halodi.CDR.CDRDeserializer cdr)
    {
-      data.Parent=cdr.read_type_3());
+      data.parent=cdr.read_type_3();
       	
-      cdr.read_type_d(data.getName());	
+      cdr.read_type_d(data.name);	
 
    }
 

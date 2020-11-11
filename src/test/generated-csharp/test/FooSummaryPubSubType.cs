@@ -10,13 +10,13 @@ namespace test
 * Do not update this file directly, edit FooHandshake.idl instead.
 *
 */
-public class FooSummaryPubSubType : Halodi.TopicDataType<test.FooSummary>
+public class FooSummaryPubSubType : Halodi.CDR.TopicDataType<test.FooSummary>
 {
    public const string name = "test::FooSummary";
 
 
-   @Override
-   public void serialize(test.FooSummary data, MemoryStream stream) throws java.io.IOException
+   
+   public override void serialize(test.FooSummary data, MemoryStream stream)
    {
    	  using(BinaryWriter writer = new BinaryWriter(stream))
    	  {
@@ -25,8 +25,8 @@ public class FooSummaryPubSubType : Halodi.TopicDataType<test.FooSummary>
    	  }
    }
 
-   @Override
-   public void deserialize(MemoryStream stream, test.FooSummary data) throws java.io.IOException
+   
+   public override void deserialize(MemoryStream stream, test.FooSummary data)
    {
    	   using(BinaryReader reader = new BinaryReader(stream))
    	   {
@@ -35,12 +35,12 @@ public class FooSummaryPubSubType : Halodi.TopicDataType<test.FooSummary>
    	   }
    }
 
-   public final static int getCdrSerializedSize(test.FooSummary data)
+   public static int getCdrSerializedSize(test.FooSummary data)
    {
       return getCdrSerializedSize(data, 0);
    }
 
-   public final static int getCdrSerializedSize(test.FooSummary data, int current_alignment)
+   public static int getCdrSerializedSize(test.FooSummary data, int current_alignment)
    {
       int initial_alignment = current_alignment;
 
@@ -60,25 +60,25 @@ public class FooSummaryPubSubType : Halodi.TopicDataType<test.FooSummary>
 
    public static void write(test.FooSummary data, Halodi.CDR.CDRSerializer cdr)
    {
-      cdr.write_type_7(data.getCreateSummary());
+      cdr.write_type_7(data.createSummary);
 
-      cdr.write_type_d(data.getSummaryTriggerVariable());
+      cdr.write_type_d(data.summaryTriggerVariable);
 
-      cdr.write_type_e(data.getSummarizedVariables());
+      cdr.write_type_e(data.summarizedVariables);
 
    }
 
    public static void read(test.FooSummary data, Halodi.CDR.CDRDeserializer cdr)
    {
-      data.CreateSummary=cdr.read_type_7());
+      data.createSummary=cdr.read_type_7();
       	
-      cdr.read_type_d(data.getSummaryTriggerVariable());	
+      cdr.read_type_d(data.summaryTriggerVariable);	
 
-      int SummarizedVariables_length = cdr.read_type_2();
-      data.SummarizedVariables = new System.Collections.Generic.List<string>(SummarizedVariables_length);
-      for(int i = 0; i < SummarizedVariables_length; i++)
+      int summarizedVariables_length = cdr.read_type_2();
+      data.summarizedVariables = new System.Collections.Generic.List<string>(summarizedVariables_length);
+      for(int i = 0; i < summarizedVariables_length; i++)
       {
-      	data.SummarizedVariables.Add(cdr.read_type_d());	
+      	data.summarizedVariables.Add(cdr.read_type_d());	
       	
       }
       	

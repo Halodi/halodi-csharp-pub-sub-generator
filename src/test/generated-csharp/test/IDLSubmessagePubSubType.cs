@@ -10,13 +10,13 @@ namespace test
 * Do not update this file directly, edit IDLSubmessage.idl instead.
 *
 */
-public class IDLSubmessagePubSubType : Halodi.TopicDataType<test.IDLSubmessage>
+public class IDLSubmessagePubSubType : Halodi.CDR.TopicDataType<test.IDLSubmessage>
 {
    public const string name = "test::IDLSubmessage";
 
 
-   @Override
-   public void serialize(test.IDLSubmessage data, MemoryStream stream) throws java.io.IOException
+   
+   public override void serialize(test.IDLSubmessage data, MemoryStream stream)
    {
    	  using(BinaryWriter writer = new BinaryWriter(stream))
    	  {
@@ -25,8 +25,8 @@ public class IDLSubmessagePubSubType : Halodi.TopicDataType<test.IDLSubmessage>
    	  }
    }
 
-   @Override
-   public void deserialize(MemoryStream stream, test.IDLSubmessage data) throws java.io.IOException
+   
+   public override void deserialize(MemoryStream stream, test.IDLSubmessage data)
    {
    	   using(BinaryReader reader = new BinaryReader(stream))
    	   {
@@ -35,12 +35,12 @@ public class IDLSubmessagePubSubType : Halodi.TopicDataType<test.IDLSubmessage>
    	   }
    }
 
-   public final static int getCdrSerializedSize(test.IDLSubmessage data)
+   public static int getCdrSerializedSize(test.IDLSubmessage data)
    {
       return getCdrSerializedSize(data, 0);
    }
 
-   public final static int getCdrSerializedSize(test.IDLSubmessage data, int current_alignment)
+   public static int getCdrSerializedSize(test.IDLSubmessage data, int current_alignment)
    {
       int initial_alignment = current_alignment;
 
@@ -62,25 +62,25 @@ public class IDLSubmessagePubSubType : Halodi.TopicDataType<test.IDLSubmessage>
 
    public static void write(test.IDLSubmessage data, Halodi.CDR.CDRSerializer cdr)
    {
-      cdr.write_type_11(data.getNum());
+      cdr.write_type_11(data.num);
 
-      cdr.write_type_11(data.getNoDefaultWithDoc());
+      cdr.write_type_11(data.no_default_with_doc);
 
-      cdr.write_type_11(data.getNoDocNum());
+      cdr.write_type_11(data.no_doc_num);
 
-      cdr.write_type_2(data.getHello());
+      cdr.write_type_2(data.hello);
 
    }
 
    public static void read(test.IDLSubmessage data, Halodi.CDR.CDRDeserializer cdr)
    {
-      data.Num=cdr.read_type_11());
+      data.num=cdr.read_type_11();
       	
-      data.NoDefaultWithDoc=cdr.read_type_11());
+      data.no_default_with_doc=cdr.read_type_11();
       	
-      data.NoDocNum=cdr.read_type_11());
+      data.no_doc_num=cdr.read_type_11();
       	
-      data.Hello=cdr.read_type_2());
+      data.hello=cdr.read_type_2();
       	
 
    }

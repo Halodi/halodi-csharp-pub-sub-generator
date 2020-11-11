@@ -2,6 +2,7 @@ group JavaType;
 
 main(ctx, definitions, package) ::= <<
 $fileHeader()$
+using System.Text;
 $if(package)$
 namespace $package$$\n${$\n\n$
 $endif$

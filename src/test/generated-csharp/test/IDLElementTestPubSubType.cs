@@ -10,13 +10,13 @@ namespace test
 * Do not update this file directly, edit IDLElementTest.idl instead.
 *
 */
-public class IDLElementTestPubSubType : Halodi.TopicDataType<test.IDLElementTest>
+public class IDLElementTestPubSubType : Halodi.CDR.TopicDataType<test.IDLElementTest>
 {
    public const string name = "test::IDLElementTest";
 
 
-   @Override
-   public void serialize(test.IDLElementTest data, MemoryStream stream) throws java.io.IOException
+   
+   public override void serialize(test.IDLElementTest data, MemoryStream stream)
    {
    	  using(BinaryWriter writer = new BinaryWriter(stream))
    	  {
@@ -25,8 +25,8 @@ public class IDLElementTestPubSubType : Halodi.TopicDataType<test.IDLElementTest
    	  }
    }
 
-   @Override
-   public void deserialize(MemoryStream stream, test.IDLElementTest data) throws java.io.IOException
+   
+   public override void deserialize(MemoryStream stream, test.IDLElementTest data)
    {
    	   using(BinaryReader reader = new BinaryReader(stream))
    	   {
@@ -35,12 +35,12 @@ public class IDLElementTestPubSubType : Halodi.TopicDataType<test.IDLElementTest
    	   }
    }
 
-   public final static int getCdrSerializedSize(test.IDLElementTest data)
+   public static int getCdrSerializedSize(test.IDLElementTest data)
    {
       return getCdrSerializedSize(data, 0);
    }
 
-   public final static int getCdrSerializedSize(test.IDLElementTest data, int current_alignment)
+   public static int getCdrSerializedSize(test.IDLElementTest data, int current_alignment)
    {
       int initial_alignment = current_alignment;
 
@@ -88,16 +88,16 @@ public class IDLElementTestPubSubType : Halodi.TopicDataType<test.IDLElementTest
       current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.getStringTest().length() + 1;
 
       current_alignment += ((10) * 4) + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
-      for(int i0 = 0; i0 < data.getNestedArray().length; ++i0)
+      for(int i0 = 0; i0 < data.getNestedArray().Length; ++i0)
       {
-          for(int i1 = 0; i1 < data.getNestedArray()[i0].length; ++i1)
+          for(int i1 = 0; i1 < data.getNestedArray()[i0].Length; ++i1)
           {
                   current_alignment += nested.NestedElementPubSubType.getCdrSerializedSize(data.getNestedArray()[i0][i1], current_alignment);
           }
       }
-      for(int i0 = 0; i0 < data.getStringArray().length; ++i0)
+      for(int i0 = 0; i0 < data.getStringArray().Length; ++i0)
       {
-              current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.getStringArray()[i0].length() + 1;
+              current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.getStringArray()[i0].Length + 1;
 
       }
       current_alignment += ((6) * 4) + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
@@ -169,302 +169,302 @@ public class IDLElementTestPubSubType : Halodi.TopicDataType<test.IDLElementTest
 
    public static void write(test.IDLElementTest data, Halodi.CDR.CDRSerializer cdr)
    {
-      cdr.write_type_8(data.getCharTest());
+      cdr.write_type_8(data.charTest);
 
-      cdr.write_type_14(data.getWcharTest());
+      cdr.write_type_14(data.wcharTest);
 
-      cdr.write_type_9(data.getOctetTest());
+      cdr.write_type_9(data.octetTest);
 
-      cdr.write_type_1(data.getShortTest());
+      cdr.write_type_1(data.shortTest);
 
-      cdr.write_type_3(data.getUshortTest());
+      cdr.write_type_3(data.ushortTest);
 
-      cdr.write_type_2(data.getLongTest());
+      cdr.write_type_2(data.longTest);
 
-      cdr.write_type_4(data.getUlongTest());
+      cdr.write_type_4(data.ulongTest);
 
-      cdr.write_type_11(data.getLonglongTest());
+      cdr.write_type_11(data.longlongTest);
 
-      cdr.write_type_12(data.getUlonglongTest());
+      cdr.write_type_12(data.ulonglongTest);
 
-      cdr.write_type_5(data.getFloatTest());
+      cdr.write_type_5(data.floatTest);
 
-      cdr.write_type_6(data.getDoubleTest());
+      cdr.write_type_6(data.doubleTest);
 
-      cdr.write_type_7(data.getBooleanTest());
+      cdr.write_type_7(data.booleanTest);
 
-      cdr.write_type_c(data.getColorTest().ordinal());
+      cdr.write_type_c(data.colorTest.ordinal());
 
 
-      nested.NestedElementPubSubType.write(data.getNestedElementTest(), cdr);
-      cdr.write_type_d(data.getStringTest());
+      nested.NestedElementPubSubType.write(data.nestedElementTest, cdr);
+      cdr.write_type_d(data.stringTest);
 
-      for(int i0 = 0; i0 < data.getLongArray().length; ++i0)
+      for(int i0 = 0; i0 < data.longArray.length; ++i0)
       {
-        	cdr.write_type_2(data.getLongArray()[i0]);	
+        	cdr.write_type_2(data.longArray[i0]);	
       }
 
-      for(int i0 = 0; i0 < data.getNestedArray().length; ++i0)
+      for(int i0 = 0; i0 < data.nestedArray.length; ++i0)
       {
-        for(int i1 = 0; i1 < data.getNestedArray()[i0].length; ++i1)
+        for(int i1 = 0; i1 < data.nestedArray[i0].length; ++i1)
         {
-          	nested.NestedElementPubSubType.write(data.getNestedArray()[i0][i1], cdr);		
+          	nested.NestedElementPubSubType.write(data.nestedArray[i0][i1], cdr);		
         }
       }
 
-      for(int i0 = 0; i0 < data.getStringArray().length; ++i0)
+      for(int i0 = 0; i0 < data.stringArray.length; ++i0)
       {
-        	cdr.write_type_d(data.getStringArray()[i0]);	
+        	cdr.write_type_d(data.stringArray[i0]);	
       }
 
-      for(int i0 = 0; i0 < data.getEnumArray().length; ++i0)
+      for(int i0 = 0; i0 < data.enumArray.length; ++i0)
       {
-            if (data.getEnumArray()[i0] == null)
+            if (data.enumArray[i0] == null)
         	   cdr.write_type_c(-1);
             else
-        	   cdr.write_type_c(data.getEnumArray()[i0].ordinal());
+        	   cdr.write_type_c(data.enumArray[i0].ordinal());
         	
       }
 
-      cdr.write_type_e(data.getCharSeqTest());
+      cdr.write_type_e(data.charSeqTest);
 
-      cdr.write_type_e(data.getWcharSeqTest());
+      cdr.write_type_e(data.wcharSeqTest);
 
-      cdr.write_type_e(data.getOctetSeqTest());
+      cdr.write_type_e(data.octetSeqTest);
 
-      cdr.write_type_e(data.getShortSeqTest());
+      cdr.write_type_e(data.shortSeqTest);
 
-      cdr.write_type_e(data.getUshortSeqTest());
+      cdr.write_type_e(data.ushortSeqTest);
 
-      cdr.write_type_e(data.getLongSeqTest());
+      cdr.write_type_e(data.longSeqTest);
 
-      cdr.write_type_e(data.getUlongSeqTest());
+      cdr.write_type_e(data.ulongSeqTest);
 
-      cdr.write_type_e(data.getLonglongSeqtest());
+      cdr.write_type_e(data.longlongSeqtest);
 
-      cdr.write_type_e(data.getUlonglongSeqTest());
+      cdr.write_type_e(data.ulonglongSeqTest);
 
-      cdr.write_type_e(data.getFloatSeqTest());
+      cdr.write_type_e(data.floatSeqTest);
 
-      cdr.write_type_e(data.getDoubleSeqTest());
+      cdr.write_type_e(data.doubleSeqTest);
 
-      cdr.write_type_e(data.getBooleanSeqTest());
+      cdr.write_type_e(data.booleanSeqTest);
 
-      cdr.write_type_e(data.getNestedSeqTest());
+      cdr.write_type_e(data.nestedSeqTest);
 
-      cdr.write_type_e(data.getEnumSeqTest());
+      cdr.write_type_e(data.enumSeqTest);
 
-      cdr.write_type_e(data.getStringSeqTest());
+      cdr.write_type_e(data.stringSeqTest);
 
    }
 
    public static void read(test.IDLElementTest data, Halodi.CDR.CDRDeserializer cdr)
    {
-      data.CharTest=cdr.read_type_8());
+      data.charTest=cdr.read_type_8();
       	
-      data.WcharTest=cdr.read_type_14());
+      data.wcharTest=cdr.read_type_14();
       	
-      data.OctetTest=cdr.read_type_9());
+      data.octetTest=cdr.read_type_9();
       	
-      data.ShortTest=cdr.read_type_1());
+      data.shortTest=cdr.read_type_1();
       	
-      data.UshortTest=cdr.read_type_3());
+      data.ushortTest=cdr.read_type_3();
       	
-      data.LongTest=cdr.read_type_2());
+      data.longTest=cdr.read_type_2();
       	
-      data.UlongTest=cdr.read_type_4());
+      data.ulongTest=cdr.read_type_4();
       	
-      data.LonglongTest=cdr.read_type_11());
+      data.longlongTest=cdr.read_type_11();
       	
-      data.UlonglongTest=cdr.read_type_12());
+      data.ulonglongTest=cdr.read_type_12();
       	
-      data.FloatTest=cdr.read_type_5());
+      data.floatTest=cdr.read_type_5();
       	
-      data.DoubleTest=cdr.read_type_6());
+      data.doubleTest=cdr.read_type_6();
       	
-      data.BooleanTest=cdr.read_type_7());
+      data.booleanTest=cdr.read_type_7();
       	
-      data.ColorTest = (test.Color) cdr.read_type_c();
+      data.colorTest = (test.Color) cdr.read_type_c();
       	
-      nested.NestedElementPubSubType.read(data.NestedElementTest, cdr);
+      nested.NestedElementPubSubType.read(data.nestedElementTest, cdr);
       	
-      cdr.read_type_d(data.getStringTest());	
-      for(int i0 = 0; i0 < data.LongArray.length; ++i0)
+      cdr.read_type_d(data.stringTest);	
+      for(int i0 = 0; i0 < data.longArray.length; ++i0)
       {
-        	data.LongArray[i0] = cdr.read_type_2();
+        	data.longArray[i0] = cdr.read_type_2();
         	
       }
       	
-      for(int i0 = 0; i0 < data.NestedArray.length; ++i0)
+      for(int i0 = 0; i0 < data.nestedArray.length; ++i0)
       {
-        for(int i1 = 0; i1 < data.NestedArray[i0].length; ++i1)
+        for(int i1 = 0; i1 < data.nestedArray[i0].length; ++i1)
         {
-          	nested.NestedElementPubSubType.read(data.NestedArray[i0][i1], cdr);	
+          	nested.NestedElementPubSubType.read(data.nestedArray[i0][i1], cdr);	
         }
       }
       	
-      for(int i0 = 0; i0 < data.StringArray.length; ++i0)
+      for(int i0 = 0; i0 < data.stringArray.length; ++i0)
       {
-        	data.StringArray[i0].Add(cdr.read_type_d());	
+        	data.stringArray[i0].Add(cdr.read_type_d());	
       }
       	
-      for(int i0 = 0; i0 < data.EnumArray.length; ++i0)
+      for(int i0 = 0; i0 < data.enumArray.length; ++i0)
       {
            int ordinal = cdr.read_type_c();
            if (ordinal < 0)
         	  ordinal = 0;
-          data.EnumArray[i0] = (test.Color) ordinal;
+          data.enumArray[i0] = (test.Color) ordinal;
         	
       }
       	
 
-      int CharSeqTest_length = cdr.read_type_2();
-      data.CharSeqTest = new System.Collections.Generic.List<char>(CharSeqTest_length);
-      for(int i = 0; i < CharSeqTest_length; i++)
+      int charSeqTest_length = cdr.read_type_2();
+      data.charSeqTest = new System.Collections.Generic.List<char>(charSeqTest_length);
+      for(int i = 0; i < charSeqTest_length; i++)
       {
-      	data.CharSeqTest.Add(cdr.read_type_8());
+      	data.charSeqTest.Add(cdr.read_type_8());
       	
       	
       }
       	
 
-      int WcharSeqTest_length = cdr.read_type_2();
-      data.WcharSeqTest = new System.Collections.Generic.List<char>(WcharSeqTest_length);
-      for(int i = 0; i < WcharSeqTest_length; i++)
+      int wcharSeqTest_length = cdr.read_type_2();
+      data.wcharSeqTest = new System.Collections.Generic.List<char>(wcharSeqTest_length);
+      for(int i = 0; i < wcharSeqTest_length; i++)
       {
-      	data.WcharSeqTest.Add(cdr.read_type_14());
+      	data.wcharSeqTest.Add(cdr.read_type_14());
       	
       	
       }
       	
 
-      int OctetSeqTest_length = cdr.read_type_2();
-      data.OctetSeqTest = new System.Collections.Generic.List<byte>(OctetSeqTest_length);
-      for(int i = 0; i < OctetSeqTest_length; i++)
+      int octetSeqTest_length = cdr.read_type_2();
+      data.octetSeqTest = new System.Collections.Generic.List<byte>(octetSeqTest_length);
+      for(int i = 0; i < octetSeqTest_length; i++)
       {
-      	data.OctetSeqTest.Add(cdr.read_type_9());
+      	data.octetSeqTest.Add(cdr.read_type_9());
       	
       	
       }
       	
 
-      int ShortSeqTest_length = cdr.read_type_2();
-      data.ShortSeqTest = new System.Collections.Generic.List<short>(ShortSeqTest_length);
-      for(int i = 0; i < ShortSeqTest_length; i++)
+      int shortSeqTest_length = cdr.read_type_2();
+      data.shortSeqTest = new System.Collections.Generic.List<short>(shortSeqTest_length);
+      for(int i = 0; i < shortSeqTest_length; i++)
       {
-      	data.ShortSeqTest.Add(cdr.read_type_1());
+      	data.shortSeqTest.Add(cdr.read_type_1());
       	
       	
       }
       	
 
-      int UshortSeqTest_length = cdr.read_type_2();
-      data.UshortSeqTest = new System.Collections.Generic.List<ushort>(UshortSeqTest_length);
-      for(int i = 0; i < UshortSeqTest_length; i++)
+      int ushortSeqTest_length = cdr.read_type_2();
+      data.ushortSeqTest = new System.Collections.Generic.List<ushort>(ushortSeqTest_length);
+      for(int i = 0; i < ushortSeqTest_length; i++)
       {
-      	data.UshortSeqTest.Add(cdr.read_type_3());
+      	data.ushortSeqTest.Add(cdr.read_type_3());
       	
       	
       }
       	
 
-      int LongSeqTest_length = cdr.read_type_2();
-      data.LongSeqTest = new System.Collections.Generic.List<int>(LongSeqTest_length);
-      for(int i = 0; i < LongSeqTest_length; i++)
+      int longSeqTest_length = cdr.read_type_2();
+      data.longSeqTest = new System.Collections.Generic.List<int>(longSeqTest_length);
+      for(int i = 0; i < longSeqTest_length; i++)
       {
-      	data.LongSeqTest.Add(cdr.read_type_2());
+      	data.longSeqTest.Add(cdr.read_type_2());
       	
       	
       }
       	
 
-      int UlongSeqTest_length = cdr.read_type_2();
-      data.UlongSeqTest = new System.Collections.Generic.List<uint>(UlongSeqTest_length);
-      for(int i = 0; i < UlongSeqTest_length; i++)
+      int ulongSeqTest_length = cdr.read_type_2();
+      data.ulongSeqTest = new System.Collections.Generic.List<uint>(ulongSeqTest_length);
+      for(int i = 0; i < ulongSeqTest_length; i++)
       {
-      	data.UlongSeqTest.Add(cdr.read_type_4());
+      	data.ulongSeqTest.Add(cdr.read_type_4());
       	
       	
       }
       	
 
-      int LonglongSeqtest_length = cdr.read_type_2();
-      data.LonglongSeqtest = new System.Collections.Generic.List<long>(LonglongSeqtest_length);
-      for(int i = 0; i < LonglongSeqtest_length; i++)
+      int longlongSeqtest_length = cdr.read_type_2();
+      data.longlongSeqtest = new System.Collections.Generic.List<long>(longlongSeqtest_length);
+      for(int i = 0; i < longlongSeqtest_length; i++)
       {
-      	data.LonglongSeqtest.Add(cdr.read_type_11());
+      	data.longlongSeqtest.Add(cdr.read_type_11());
       	
       	
       }
       	
 
-      int UlonglongSeqTest_length = cdr.read_type_2();
-      data.UlonglongSeqTest = new System.Collections.Generic.List<ulong>(UlonglongSeqTest_length);
-      for(int i = 0; i < UlonglongSeqTest_length; i++)
+      int ulonglongSeqTest_length = cdr.read_type_2();
+      data.ulonglongSeqTest = new System.Collections.Generic.List<ulong>(ulonglongSeqTest_length);
+      for(int i = 0; i < ulonglongSeqTest_length; i++)
       {
-      	data.UlonglongSeqTest.Add(cdr.read_type_12());
+      	data.ulonglongSeqTest.Add(cdr.read_type_12());
       	
       	
       }
       	
 
-      int FloatSeqTest_length = cdr.read_type_2();
-      data.FloatSeqTest = new System.Collections.Generic.List<float>(FloatSeqTest_length);
-      for(int i = 0; i < FloatSeqTest_length; i++)
+      int floatSeqTest_length = cdr.read_type_2();
+      data.floatSeqTest = new System.Collections.Generic.List<float>(floatSeqTest_length);
+      for(int i = 0; i < floatSeqTest_length; i++)
       {
-      	data.FloatSeqTest.Add(cdr.read_type_5());
+      	data.floatSeqTest.Add(cdr.read_type_5());
       	
       	
       }
       	
 
-      int DoubleSeqTest_length = cdr.read_type_2();
-      data.DoubleSeqTest = new System.Collections.Generic.List<double>(DoubleSeqTest_length);
-      for(int i = 0; i < DoubleSeqTest_length; i++)
+      int doubleSeqTest_length = cdr.read_type_2();
+      data.doubleSeqTest = new System.Collections.Generic.List<double>(doubleSeqTest_length);
+      for(int i = 0; i < doubleSeqTest_length; i++)
       {
-      	data.DoubleSeqTest.Add(cdr.read_type_6());
+      	data.doubleSeqTest.Add(cdr.read_type_6());
       	
       	
       }
       	
 
-      int BooleanSeqTest_length = cdr.read_type_2();
-      data.BooleanSeqTest = new System.Collections.Generic.List<bool>(BooleanSeqTest_length);
-      for(int i = 0; i < BooleanSeqTest_length; i++)
+      int booleanSeqTest_length = cdr.read_type_2();
+      data.booleanSeqTest = new System.Collections.Generic.List<bool>(booleanSeqTest_length);
+      for(int i = 0; i < booleanSeqTest_length; i++)
       {
-      	data.BooleanSeqTest.Add(cdr.read_type_7());
+      	data.booleanSeqTest.Add(cdr.read_type_7());
       	
       	
       }
       	
 
-      int NestedSeqTest_length = cdr.read_type_2();
-      data.NestedSeqTest = new System.Collections.Generic.List<nested.NestedElement>(NestedSeqTest_length);
-      for(int i = 0; i < NestedSeqTest_length; i++)
+      int nestedSeqTest_length = cdr.read_type_2();
+      data.nestedSeqTest = new System.Collections.Generic.List<nested.NestedElement>(nestedSeqTest_length);
+      for(int i = 0; i < nestedSeqTest_length; i++)
       {
-      	nested.NestedElementPubSubType.read(data.NestedSeqTest, cdr);	
+      	nested.NestedElementPubSubType.read(data.nestedSeqTest, cdr);	
       	
       }
       	
 
-      int EnumSeqTest_length = cdr.read_type_2();
-      data.EnumSeqTest = new us.ihmc.idl.IDLSequence.Enum<test.Color>(EnumSeqTest_length);
-      for(int i = 0; i < EnumSeqTest_length; i++)
+      int enumSeqTest_length = cdr.read_type_2();
+      data.enumSeqTest = new us.ihmc.idl.IDLSequence.Enum<test.Color>(enumSeqTest_length);
+      for(int i = 0; i < enumSeqTest_length; i++)
       {
          int ordinal = cdr.read_type_c();
          if (ordinal < 0)
       	  ordinal = 0;
-         data.EnumSeqTest.Add((us.ihmc.idl.IDLSequence.Enum<test.Color>) ordinal);
+         data.enumSeqTest.Add((us.ihmc.idl.IDLSequence.Enum<test.Color>) ordinal);
       	
       	
       }
       	
 
-      int StringSeqTest_length = cdr.read_type_2();
-      data.StringSeqTest = new System.Collections.Generic.List<string>(StringSeqTest_length);
-      for(int i = 0; i < StringSeqTest_length; i++)
+      int stringSeqTest_length = cdr.read_type_2();
+      data.stringSeqTest = new System.Collections.Generic.List<string>(stringSeqTest_length);
+      for(int i = 0; i < stringSeqTest_length; i++)
       {
-      	data.StringSeqTest.Add(cdr.read_type_d());	
+      	data.stringSeqTest.Add(cdr.read_type_d());	
       	
       }
       	

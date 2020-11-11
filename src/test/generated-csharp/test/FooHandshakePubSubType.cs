@@ -10,13 +10,13 @@ namespace test
 * Do not update this file directly, edit FooHandshake.idl instead.
 *
 */
-public class FooHandshakePubSubType : Halodi.TopicDataType<test.FooHandshake>
+public class FooHandshakePubSubType : Halodi.CDR.TopicDataType<test.FooHandshake>
 {
    public const string name = "test::FooHandshake";
 
 
-   @Override
-   public void serialize(test.FooHandshake data, MemoryStream stream) throws java.io.IOException
+   
+   public override void serialize(test.FooHandshake data, MemoryStream stream)
    {
    	  using(BinaryWriter writer = new BinaryWriter(stream))
    	  {
@@ -25,8 +25,8 @@ public class FooHandshakePubSubType : Halodi.TopicDataType<test.FooHandshake>
    	  }
    }
 
-   @Override
-   public void deserialize(MemoryStream stream, test.FooHandshake data) throws java.io.IOException
+   
+   public override void deserialize(MemoryStream stream, test.FooHandshake data)
    {
    	   using(BinaryReader reader = new BinaryReader(stream))
    	   {
@@ -35,12 +35,12 @@ public class FooHandshakePubSubType : Halodi.TopicDataType<test.FooHandshake>
    	   }
    }
 
-   public final static int getCdrSerializedSize(test.FooHandshake data)
+   public static int getCdrSerializedSize(test.FooHandshake data)
    {
       return getCdrSerializedSize(data, 0);
    }
 
-   public final static int getCdrSerializedSize(test.FooHandshake data, int current_alignment)
+   public static int getCdrSerializedSize(test.FooHandshake data, int current_alignment)
    {
       int initial_alignment = current_alignment;
 
@@ -85,82 +85,82 @@ public class FooHandshakePubSubType : Halodi.TopicDataType<test.FooHandshake>
 
    public static void write(test.FooHandshake data, Halodi.CDR.CDRSerializer cdr)
    {
-      cdr.write_type_6(data.getDt());
+      cdr.write_type_6(data.dt);
 
-      cdr.write_type_e(data.getRegistries());
+      cdr.write_type_e(data.registries);
 
-      cdr.write_type_e(data.getVariables());
+      cdr.write_type_e(data.variables);
 
-      cdr.write_type_e(data.getJoints());
+      cdr.write_type_e(data.joints);
 
-      cdr.write_type_e(data.getGraphicObjects());
+      cdr.write_type_e(data.graphicObjects);
 
-      cdr.write_type_e(data.getArtifacts());
+      cdr.write_type_e(data.artifacts);
 
-      cdr.write_type_e(data.getEnumTypes());
+      cdr.write_type_e(data.enumTypes);
 
-      test.FooSummaryPubSubType.write(data.getSummary(), cdr);
+      test.FooSummaryPubSubType.write(data.summary, cdr);
    }
 
    public static void read(test.FooHandshake data, Halodi.CDR.CDRDeserializer cdr)
    {
-      data.Dt=cdr.read_type_6());
+      data.dt=cdr.read_type_6();
       	
 
-      int Registries_length = cdr.read_type_2();
-      data.Registries = new System.Collections.Generic.List<test.FooYoRegistryDefinition>(Registries_length);
-      for(int i = 0; i < Registries_length; i++)
+      int registries_length = cdr.read_type_2();
+      data.registries = new System.Collections.Generic.List<test.FooYoRegistryDefinition>(registries_length);
+      for(int i = 0; i < registries_length; i++)
       {
-      	test.FooYoRegistryDefinitionPubSubType.read(data.Registries, cdr);	
+      	test.FooYoRegistryDefinitionPubSubType.read(data.registries, cdr);	
       	
       }
       	
 
-      int Variables_length = cdr.read_type_2();
-      data.Variables = new System.Collections.Generic.List<test.FooYoVariableDefinition>(Variables_length);
-      for(int i = 0; i < Variables_length; i++)
+      int variables_length = cdr.read_type_2();
+      data.variables = new System.Collections.Generic.List<test.FooYoVariableDefinition>(variables_length);
+      for(int i = 0; i < variables_length; i++)
       {
-      	test.FooYoVariableDefinitionPubSubType.read(data.Variables, cdr);	
+      	test.FooYoVariableDefinitionPubSubType.read(data.variables, cdr);	
       	
       }
       	
 
-      int Joints_length = cdr.read_type_2();
-      data.Joints = new System.Collections.Generic.List<test.FooJointDefinition>(Joints_length);
-      for(int i = 0; i < Joints_length; i++)
+      int joints_length = cdr.read_type_2();
+      data.joints = new System.Collections.Generic.List<test.FooJointDefinition>(joints_length);
+      for(int i = 0; i < joints_length; i++)
       {
-      	test.FooJointDefinitionPubSubType.read(data.Joints, cdr);	
+      	test.FooJointDefinitionPubSubType.read(data.joints, cdr);	
       	
       }
       	
 
-      int GraphicObjects_length = cdr.read_type_2();
-      data.GraphicObjects = new System.Collections.Generic.List<test.FooGraphicObjectMessage>(GraphicObjects_length);
-      for(int i = 0; i < GraphicObjects_length; i++)
+      int graphicObjects_length = cdr.read_type_2();
+      data.graphicObjects = new System.Collections.Generic.List<test.FooGraphicObjectMessage>(graphicObjects_length);
+      for(int i = 0; i < graphicObjects_length; i++)
       {
-      	test.FooGraphicObjectMessagePubSubType.read(data.GraphicObjects, cdr);	
+      	test.FooGraphicObjectMessagePubSubType.read(data.graphicObjects, cdr);	
       	
       }
       	
 
-      int Artifacts_length = cdr.read_type_2();
-      data.Artifacts = new System.Collections.Generic.List<test.FooGraphicObjectMessage>(Artifacts_length);
-      for(int i = 0; i < Artifacts_length; i++)
+      int artifacts_length = cdr.read_type_2();
+      data.artifacts = new System.Collections.Generic.List<test.FooGraphicObjectMessage>(artifacts_length);
+      for(int i = 0; i < artifacts_length; i++)
       {
-      	test.FooGraphicObjectMessagePubSubType.read(data.Artifacts, cdr);	
+      	test.FooGraphicObjectMessagePubSubType.read(data.artifacts, cdr);	
       	
       }
       	
 
-      int EnumTypes_length = cdr.read_type_2();
-      data.EnumTypes = new System.Collections.Generic.List<test.FooEnumType>(EnumTypes_length);
-      for(int i = 0; i < EnumTypes_length; i++)
+      int enumTypes_length = cdr.read_type_2();
+      data.enumTypes = new System.Collections.Generic.List<test.FooEnumType>(enumTypes_length);
+      for(int i = 0; i < enumTypes_length; i++)
       {
-      	test.FooEnumTypePubSubType.read(data.EnumTypes, cdr);	
+      	test.FooEnumTypePubSubType.read(data.enumTypes, cdr);	
       	
       }
       	
-      test.FooSummaryPubSubType.read(data.Summary, cdr);
+      test.FooSummaryPubSubType.read(data.summary, cdr);
       	
 
    }

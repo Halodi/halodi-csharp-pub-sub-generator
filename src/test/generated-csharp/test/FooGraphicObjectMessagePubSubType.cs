@@ -10,13 +10,13 @@ namespace test
 * Do not update this file directly, edit FooHandshake.idl instead.
 *
 */
-public class FooGraphicObjectMessagePubSubType : Halodi.TopicDataType<test.FooGraphicObjectMessage>
+public class FooGraphicObjectMessagePubSubType : Halodi.CDR.TopicDataType<test.FooGraphicObjectMessage>
 {
    public const string name = "test::FooGraphicObjectMessage";
 
 
-   @Override
-   public void serialize(test.FooGraphicObjectMessage data, MemoryStream stream) throws java.io.IOException
+   
+   public override void serialize(test.FooGraphicObjectMessage data, MemoryStream stream)
    {
    	  using(BinaryWriter writer = new BinaryWriter(stream))
    	  {
@@ -25,8 +25,8 @@ public class FooGraphicObjectMessagePubSubType : Halodi.TopicDataType<test.FooGr
    	  }
    }
 
-   @Override
-   public void deserialize(MemoryStream stream, test.FooGraphicObjectMessage data) throws java.io.IOException
+   
+   public override void deserialize(MemoryStream stream, test.FooGraphicObjectMessage data)
    {
    	   using(BinaryReader reader = new BinaryReader(stream))
    	   {
@@ -35,12 +35,12 @@ public class FooGraphicObjectMessagePubSubType : Halodi.TopicDataType<test.FooGr
    	   }
    }
 
-   public final static int getCdrSerializedSize(test.FooGraphicObjectMessage data)
+   public static int getCdrSerializedSize(test.FooGraphicObjectMessage data)
    {
       return getCdrSerializedSize(data, 0);
    }
 
-   public final static int getCdrSerializedSize(test.FooGraphicObjectMessage data, int current_alignment)
+   public static int getCdrSerializedSize(test.FooGraphicObjectMessage data, int current_alignment)
    {
       int initial_alignment = current_alignment;
 
@@ -67,47 +67,47 @@ public class FooGraphicObjectMessagePubSubType : Halodi.TopicDataType<test.FooGr
 
    public static void write(test.FooGraphicObjectMessage data, Halodi.CDR.CDRSerializer cdr)
    {
-      cdr.write_type_2(data.getRegistrationID());
+      cdr.write_type_2(data.registrationID);
 
-      cdr.write_type_d(data.getName());
+      cdr.write_type_d(data.name);
 
-      cdr.write_type_e(data.getYoVariableIndex());
+      cdr.write_type_e(data.yoVariableIndex);
 
-      cdr.write_type_e(data.getConstants());
+      cdr.write_type_e(data.constants);
 
-      test.FooAppearanceDefinitionMessagePubSubType.write(data.getAppearance(), cdr);
-      cdr.write_type_d(data.getListName());
+      test.FooAppearanceDefinitionMessagePubSubType.write(data.appearance, cdr);
+      cdr.write_type_d(data.listName);
 
    }
 
    public static void read(test.FooGraphicObjectMessage data, Halodi.CDR.CDRDeserializer cdr)
    {
-      data.RegistrationID=cdr.read_type_2());
+      data.registrationID=cdr.read_type_2();
       	
-      cdr.read_type_d(data.getName());	
+      cdr.read_type_d(data.name);	
 
-      int YoVariableIndex_length = cdr.read_type_2();
-      data.YoVariableIndex = new System.Collections.Generic.List<ushort>(YoVariableIndex_length);
-      for(int i = 0; i < YoVariableIndex_length; i++)
+      int yoVariableIndex_length = cdr.read_type_2();
+      data.yoVariableIndex = new System.Collections.Generic.List<ushort>(yoVariableIndex_length);
+      for(int i = 0; i < yoVariableIndex_length; i++)
       {
-      	data.YoVariableIndex.Add(cdr.read_type_3());
+      	data.yoVariableIndex.Add(cdr.read_type_3());
       	
       	
       }
       	
 
-      int Constants_length = cdr.read_type_2();
-      data.Constants = new System.Collections.Generic.List<double>(Constants_length);
-      for(int i = 0; i < Constants_length; i++)
+      int constants_length = cdr.read_type_2();
+      data.constants = new System.Collections.Generic.List<double>(constants_length);
+      for(int i = 0; i < constants_length; i++)
       {
-      	data.Constants.Add(cdr.read_type_6());
+      	data.constants.Add(cdr.read_type_6());
       	
       	
       }
       	
-      test.FooAppearanceDefinitionMessagePubSubType.read(data.Appearance, cdr);
+      test.FooAppearanceDefinitionMessagePubSubType.read(data.appearance, cdr);
       	
-      cdr.read_type_d(data.getListName());	
+      cdr.read_type_d(data.listName);	
 
    }
 

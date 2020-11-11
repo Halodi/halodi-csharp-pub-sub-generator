@@ -10,13 +10,13 @@ namespace geometry
 * Do not update this file directly, edit Vector.idl instead.
 *
 */
-public class VectorPubSubType : Halodi.TopicDataType<geometry.Vector>
+public class VectorPubSubType : Halodi.CDR.TopicDataType<geometry.Vector>
 {
    public const string name = "geometry::Vector";
 
 
-   @Override
-   public void serialize(geometry.Vector data, MemoryStream stream) throws java.io.IOException
+   
+   public override void serialize(geometry.Vector data, MemoryStream stream)
    {
    	  using(BinaryWriter writer = new BinaryWriter(stream))
    	  {
@@ -25,8 +25,8 @@ public class VectorPubSubType : Halodi.TopicDataType<geometry.Vector>
    	  }
    }
 
-   @Override
-   public void deserialize(MemoryStream stream, geometry.Vector data) throws java.io.IOException
+   
+   public override void deserialize(MemoryStream stream, geometry.Vector data)
    {
    	   using(BinaryReader reader = new BinaryReader(stream))
    	   {
@@ -35,12 +35,12 @@ public class VectorPubSubType : Halodi.TopicDataType<geometry.Vector>
    	   }
    }
 
-   public final static int getCdrSerializedSize(geometry.Vector data)
+   public static int getCdrSerializedSize(geometry.Vector data)
    {
       return getCdrSerializedSize(data, 0);
    }
 
-   public final static int getCdrSerializedSize(geometry.Vector data, int current_alignment)
+   public static int getCdrSerializedSize(geometry.Vector data, int current_alignment)
    {
       int initial_alignment = current_alignment;
 
@@ -66,45 +66,45 @@ public class VectorPubSubType : Halodi.TopicDataType<geometry.Vector>
 
    public static void write(geometry.Vector data, Halodi.CDR.CDRSerializer cdr)
    {
-      cdr.write_type_d(data.getFrame());
+      cdr.write_type_d(data.frame);
 
-      cdr.write_type_6(data.getX());
+      cdr.write_type_6(data.x);
 
-      cdr.write_type_6(data.getY());
+      cdr.write_type_6(data.y);
 
-      cdr.write_type_6(data.getZ());
+      cdr.write_type_6(data.z);
 
-      cdr.write_type_e(data.getBla());
+      cdr.write_type_e(data.bla);
 
-      for(int i0 = 0; i0 < data.getWaa().length; ++i0)
+      for(int i0 = 0; i0 < data.waa.length; ++i0)
       {
-        	cdr.write_type_6(data.getWaa()[i0]);	
+        	cdr.write_type_6(data.waa[i0]);	
       }
 
    }
 
    public static void read(geometry.Vector data, Halodi.CDR.CDRDeserializer cdr)
    {
-      cdr.read_type_d(data.getFrame());	
-      data.X=cdr.read_type_6());
+      cdr.read_type_d(data.frame);	
+      data.x=cdr.read_type_6();
       	
-      data.Y=cdr.read_type_6());
+      data.y=cdr.read_type_6();
       	
-      data.Z=cdr.read_type_6());
+      data.z=cdr.read_type_6();
       	
 
-      int Bla_length = cdr.read_type_2();
-      data.Bla = new System.Collections.Generic.List<double>(Bla_length);
-      for(int i = 0; i < Bla_length; i++)
+      int bla_length = cdr.read_type_2();
+      data.bla = new System.Collections.Generic.List<double>(bla_length);
+      for(int i = 0; i < bla_length; i++)
       {
-      	data.Bla.Add(cdr.read_type_6());
+      	data.bla.Add(cdr.read_type_6());
       	
       	
       }
       	
-      for(int i0 = 0; i0 < data.Waa.length; ++i0)
+      for(int i0 = 0; i0 < data.waa.length; ++i0)
       {
-        	data.Waa[i0] = cdr.read_type_6();
+        	data.waa[i0] = cdr.read_type_6();
         	
       }
       	

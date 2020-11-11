@@ -10,13 +10,13 @@ namespace geometry
 * Do not update this file directly, edit Vector.idl instead.
 *
 */
-public class BoxPubSubType : Halodi.TopicDataType<geometry.Box>
+public class BoxPubSubType : Halodi.CDR.TopicDataType<geometry.Box>
 {
    public const string name = "geometry::Box";
 
 
-   @Override
-   public void serialize(geometry.Box data, MemoryStream stream) throws java.io.IOException
+   
+   public override void serialize(geometry.Box data, MemoryStream stream)
    {
    	  using(BinaryWriter writer = new BinaryWriter(stream))
    	  {
@@ -25,8 +25,8 @@ public class BoxPubSubType : Halodi.TopicDataType<geometry.Box>
    	  }
    }
 
-   @Override
-   public void deserialize(MemoryStream stream, geometry.Box data) throws java.io.IOException
+   
+   public override void deserialize(MemoryStream stream, geometry.Box data)
    {
    	   using(BinaryReader reader = new BinaryReader(stream))
    	   {
@@ -35,12 +35,12 @@ public class BoxPubSubType : Halodi.TopicDataType<geometry.Box>
    	   }
    }
 
-   public final static int getCdrSerializedSize(geometry.Box data)
+   public static int getCdrSerializedSize(geometry.Box data)
    {
       return getCdrSerializedSize(data, 0);
    }
 
-   public final static int getCdrSerializedSize(geometry.Box data, int current_alignment)
+   public static int getCdrSerializedSize(geometry.Box data, int current_alignment)
    {
       int initial_alignment = current_alignment;
 
@@ -61,24 +61,24 @@ public class BoxPubSubType : Halodi.TopicDataType<geometry.Box>
 
    public static void write(geometry.Box data, Halodi.CDR.CDRSerializer cdr)
    {
-      geometry.VectorPubSubType.write(data.getCenter(), cdr);
-      cdr.write_type_6(data.getW());
+      geometry.VectorPubSubType.write(data.center, cdr);
+      cdr.write_type_6(data.w);
 
-      cdr.write_type_6(data.getL());
+      cdr.write_type_6(data.l);
 
-      cdr.write_type_6(data.getH());
+      cdr.write_type_6(data.h);
 
    }
 
    public static void read(geometry.Box data, Halodi.CDR.CDRDeserializer cdr)
    {
-      geometry.VectorPubSubType.read(data.Center, cdr);
+      geometry.VectorPubSubType.read(data.center, cdr);
       	
-      data.W=cdr.read_type_6());
+      data.w=cdr.read_type_6();
       	
-      data.L=cdr.read_type_6());
+      data.l=cdr.read_type_6();
       	
-      data.H=cdr.read_type_6());
+      data.h=cdr.read_type_6();
       	
 
    }
