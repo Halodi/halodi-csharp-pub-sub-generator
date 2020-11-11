@@ -157,8 +157,14 @@ $endif$
 >>
 
 sequence_serialize(ctx, typecodeArr, fieldname, data, loopvar) ::= <<
+	if($data$ == null)
+	{
+		cdr.write_type_2(0);
+	}
+	else
+	{
 
-	int $fieldname$_length = $data$.Count;
+	  int $fieldname$_length = $data$.Count;
       cdr.write_type_2($fieldname$_length);
       for (int $loopvar$ = 0; $loopvar$ < $fieldname$_length; $loopvar$++)
       {
@@ -170,6 +176,7 @@ sequence_serialize(ctx, typecodeArr, fieldname, data, loopvar) ::= <<
 			cdr.write_$typecodeArr.contentTypeCode.stType$($data$[$loopvar$]);
 		$endif$
       }
+  }
 >>
 
 object_deserialization(ctx, object, arg, argsep, element) ::= <<

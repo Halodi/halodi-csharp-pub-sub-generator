@@ -224,111 +224,216 @@ public class IDLElementTestPubSubType : Halodi.CDR.TopicDataType<test.IDLElement
         	
       }
 
+      	if(data.charSeqTest == null)
+      	{
+      		cdr.write_type_2(0);
+      	}
+      	else
+      	{
 
-      	int charSeqTest_length = data.charSeqTest.Count;
+      	  int charSeqTest_length = data.charSeqTest.Count;
             cdr.write_type_2(charSeqTest_length);
             for (int i0 = 0; i0 < charSeqTest_length; i0++)
             {
       			cdr.write_type_8(data.charSeqTest[i0]);
             }
+        }
+      	if(data.wcharSeqTest == null)
+      	{
+      		cdr.write_type_2(0);
+      	}
+      	else
+      	{
 
-      	int wcharSeqTest_length = data.wcharSeqTest.Count;
+      	  int wcharSeqTest_length = data.wcharSeqTest.Count;
             cdr.write_type_2(wcharSeqTest_length);
             for (int i0 = 0; i0 < wcharSeqTest_length; i0++)
             {
       			cdr.write_type_14(data.wcharSeqTest[i0]);
             }
+        }
+      	if(data.octetSeqTest == null)
+      	{
+      		cdr.write_type_2(0);
+      	}
+      	else
+      	{
 
-      	int octetSeqTest_length = data.octetSeqTest.Count;
+      	  int octetSeqTest_length = data.octetSeqTest.Count;
             cdr.write_type_2(octetSeqTest_length);
             for (int i0 = 0; i0 < octetSeqTest_length; i0++)
             {
       			cdr.write_type_9(data.octetSeqTest[i0]);
             }
+        }
+      	if(data.shortSeqTest == null)
+      	{
+      		cdr.write_type_2(0);
+      	}
+      	else
+      	{
 
-      	int shortSeqTest_length = data.shortSeqTest.Count;
+      	  int shortSeqTest_length = data.shortSeqTest.Count;
             cdr.write_type_2(shortSeqTest_length);
             for (int i0 = 0; i0 < shortSeqTest_length; i0++)
             {
       			cdr.write_type_1(data.shortSeqTest[i0]);
             }
+        }
+      	if(data.ushortSeqTest == null)
+      	{
+      		cdr.write_type_2(0);
+      	}
+      	else
+      	{
 
-      	int ushortSeqTest_length = data.ushortSeqTest.Count;
+      	  int ushortSeqTest_length = data.ushortSeqTest.Count;
             cdr.write_type_2(ushortSeqTest_length);
             for (int i0 = 0; i0 < ushortSeqTest_length; i0++)
             {
       			cdr.write_type_3(data.ushortSeqTest[i0]);
             }
+        }
+      	if(data.longSeqTest == null)
+      	{
+      		cdr.write_type_2(0);
+      	}
+      	else
+      	{
 
-      	int longSeqTest_length = data.longSeqTest.Count;
+      	  int longSeqTest_length = data.longSeqTest.Count;
             cdr.write_type_2(longSeqTest_length);
             for (int i0 = 0; i0 < longSeqTest_length; i0++)
             {
       			cdr.write_type_2(data.longSeqTest[i0]);
             }
+        }
+      	if(data.ulongSeqTest == null)
+      	{
+      		cdr.write_type_2(0);
+      	}
+      	else
+      	{
 
-      	int ulongSeqTest_length = data.ulongSeqTest.Count;
+      	  int ulongSeqTest_length = data.ulongSeqTest.Count;
             cdr.write_type_2(ulongSeqTest_length);
             for (int i0 = 0; i0 < ulongSeqTest_length; i0++)
             {
       			cdr.write_type_4(data.ulongSeqTest[i0]);
             }
+        }
+      	if(data.longlongSeqtest == null)
+      	{
+      		cdr.write_type_2(0);
+      	}
+      	else
+      	{
 
-      	int longlongSeqtest_length = data.longlongSeqtest.Count;
+      	  int longlongSeqtest_length = data.longlongSeqtest.Count;
             cdr.write_type_2(longlongSeqtest_length);
             for (int i0 = 0; i0 < longlongSeqtest_length; i0++)
             {
       			cdr.write_type_11(data.longlongSeqtest[i0]);
             }
+        }
+      	if(data.ulonglongSeqTest == null)
+      	{
+      		cdr.write_type_2(0);
+      	}
+      	else
+      	{
 
-      	int ulonglongSeqTest_length = data.ulonglongSeqTest.Count;
+      	  int ulonglongSeqTest_length = data.ulonglongSeqTest.Count;
             cdr.write_type_2(ulonglongSeqTest_length);
             for (int i0 = 0; i0 < ulonglongSeqTest_length; i0++)
             {
       			cdr.write_type_12(data.ulonglongSeqTest[i0]);
             }
+        }
+      	if(data.floatSeqTest == null)
+      	{
+      		cdr.write_type_2(0);
+      	}
+      	else
+      	{
 
-      	int floatSeqTest_length = data.floatSeqTest.Count;
+      	  int floatSeqTest_length = data.floatSeqTest.Count;
             cdr.write_type_2(floatSeqTest_length);
             for (int i0 = 0; i0 < floatSeqTest_length; i0++)
             {
       			cdr.write_type_5(data.floatSeqTest[i0]);
             }
+        }
+      	if(data.doubleSeqTest == null)
+      	{
+      		cdr.write_type_2(0);
+      	}
+      	else
+      	{
 
-      	int doubleSeqTest_length = data.doubleSeqTest.Count;
+      	  int doubleSeqTest_length = data.doubleSeqTest.Count;
             cdr.write_type_2(doubleSeqTest_length);
             for (int i0 = 0; i0 < doubleSeqTest_length; i0++)
             {
       			cdr.write_type_6(data.doubleSeqTest[i0]);
             }
+        }
+      	if(data.booleanSeqTest == null)
+      	{
+      		cdr.write_type_2(0);
+      	}
+      	else
+      	{
 
-      	int booleanSeqTest_length = data.booleanSeqTest.Count;
+      	  int booleanSeqTest_length = data.booleanSeqTest.Count;
             cdr.write_type_2(booleanSeqTest_length);
             for (int i0 = 0; i0 < booleanSeqTest_length; i0++)
             {
       			cdr.write_type_7(data.booleanSeqTest[i0]);
             }
+        }
+      	if(data.nestedSeqTest == null)
+      	{
+      		cdr.write_type_2(0);
+      	}
+      	else
+      	{
 
-      	int nestedSeqTest_length = data.nestedSeqTest.Count;
+      	  int nestedSeqTest_length = data.nestedSeqTest.Count;
             cdr.write_type_2(nestedSeqTest_length);
             for (int i0 = 0; i0 < nestedSeqTest_length; i0++)
             {
       			nested.NestedElementPubSubType.write(data.nestedSeqTest[i0], cdr);	      }
+        }
+      	if(data.enumSeqTest == null)
+      	{
+      		cdr.write_type_2(0);
+      	}
+      	else
+      	{
 
-      	int enumSeqTest_length = data.enumSeqTest.Count;
+      	  int enumSeqTest_length = data.enumSeqTest.Count;
             cdr.write_type_2(enumSeqTest_length);
             for (int i0 = 0; i0 < enumSeqTest_length; i0++)
             {
       	   		cdr.write_type_c((int) data.enumSeqTest[i0]);
 
             }
+        }
+      	if(data.stringSeqTest == null)
+      	{
+      		cdr.write_type_2(0);
+      	}
+      	else
+      	{
 
-      	int stringSeqTest_length = data.stringSeqTest.Count;
+      	  int stringSeqTest_length = data.stringSeqTest.Count;
             cdr.write_type_2(stringSeqTest_length);
             for (int i0 = 0; i0 < stringSeqTest_length; i0++)
             {
       			cdr.write_type_d(data.stringSeqTest[i0]);
             }
+        }
    }
 
    public static void read(test.IDLElementTest data, Halodi.CDR.CDRDeserializer cdr)

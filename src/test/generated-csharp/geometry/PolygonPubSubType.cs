@@ -54,12 +54,19 @@ public class PolygonPubSubType : Halodi.CDR.TopicDataType<geometry.Polygon>
 
    public static void write(geometry.Polygon data, Halodi.CDR.CDRSerializer cdr)
    {
+      	if(data.points == null)
+      	{
+      		cdr.write_type_2(0);
+      	}
+      	else
+      	{
 
-      	int points_length = data.points.Count;
+      	  int points_length = data.points.Count;
             cdr.write_type_2(points_length);
             for (int i0 = 0; i0 < points_length; i0++)
             {
-      			geometry.VectorPubSubType.write(data.points[i0], cdr);	      }   }
+      			geometry.VectorPubSubType.write(data.points[i0], cdr);	      }
+        }   }
 
    public static void read(geometry.Polygon data, Halodi.CDR.CDRDeserializer cdr)
    {

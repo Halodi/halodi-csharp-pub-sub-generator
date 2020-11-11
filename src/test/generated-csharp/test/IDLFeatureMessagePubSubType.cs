@@ -107,48 +107,83 @@ public class IDLFeatureMessagePubSubType : Halodi.CDR.TopicDataType<test.IDLFeat
 
       test.IDLSubmessagePubSubType.write(data.num1, cdr);
 
+      	if(data.num2 == null)
+      	{
+      		cdr.write_type_2(0);
+      	}
+      	else
+      	{
 
-      	int num2_length = data.num2.Count;
+      	  int num2_length = data.num2.Count;
             cdr.write_type_2(num2_length);
             for (int i0 = 0; i0 < num2_length; i0++)
             {
       			test.IDLSubmessagePubSubType.write(data.num2[i0], cdr);	      }
+        }
       for(int i0 = 0; i0 < 3; ++i0)
       {
         	test.IDLSubmessagePubSubType.write(data.num3[i0], cdr);		
       }
 
+      	if(data.num4 == null)
+      	{
+      		cdr.write_type_2(0);
+      	}
+      	else
+      	{
 
-      	int num4_length = data.num4.Count;
+      	  int num4_length = data.num4.Count;
             cdr.write_type_2(num4_length);
             for (int i0 = 0; i0 < num4_length; i0++)
             {
       			test.IDLSubmessagePubSubType.write(data.num4[i0], cdr);	      }
+        }
       cdr.write_type_d(data.str1);
 
       cdr.write_type_d(data.str2);
 
+      	if(data.str3 == null)
+      	{
+      		cdr.write_type_2(0);
+      	}
+      	else
+      	{
 
-      	int str3_length = data.str3.Count;
+      	  int str3_length = data.str3.Count;
             cdr.write_type_2(str3_length);
             for (int i0 = 0; i0 < str3_length; i0++)
             {
       			cdr.write_type_d(data.str3[i0]);
             }
+        }
+      	if(data.str4 == null)
+      	{
+      		cdr.write_type_2(0);
+      	}
+      	else
+      	{
 
-      	int str4_length = data.str4.Count;
+      	  int str4_length = data.str4.Count;
             cdr.write_type_2(str4_length);
             for (int i0 = 0; i0 < str4_length; i0++)
             {
       			cdr.write_type_d(data.str4[i0]);
             }
+        }
+      	if(data.str5 == null)
+      	{
+      		cdr.write_type_2(0);
+      	}
+      	else
+      	{
 
-      	int str5_length = data.str5.Count;
+      	  int str5_length = data.str5.Count;
             cdr.write_type_2(str5_length);
             for (int i0 = 0; i0 < str5_length; i0++)
             {
       			cdr.write_type_d(data.str5[i0]);
             }
+        }
    }
 
    public static void read(test.IDLFeatureMessage data, Halodi.CDR.CDRDeserializer cdr)

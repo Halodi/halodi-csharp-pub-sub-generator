@@ -71,20 +71,34 @@ public class FooGraphicObjectMessagePubSubType : Halodi.CDR.TopicDataType<test.F
 
       cdr.write_type_d(data.name);
 
+      	if(data.yoVariableIndex == null)
+      	{
+      		cdr.write_type_2(0);
+      	}
+      	else
+      	{
 
-      	int yoVariableIndex_length = data.yoVariableIndex.Count;
+      	  int yoVariableIndex_length = data.yoVariableIndex.Count;
             cdr.write_type_2(yoVariableIndex_length);
             for (int i0 = 0; i0 < yoVariableIndex_length; i0++)
             {
       			cdr.write_type_3(data.yoVariableIndex[i0]);
             }
+        }
+      	if(data.constants == null)
+      	{
+      		cdr.write_type_2(0);
+      	}
+      	else
+      	{
 
-      	int constants_length = data.constants.Count;
+      	  int constants_length = data.constants.Count;
             cdr.write_type_2(constants_length);
             for (int i0 = 0; i0 < constants_length; i0++)
             {
       			cdr.write_type_6(data.constants[i0]);
             }
+        }
       test.FooAppearanceDefinitionMessagePubSubType.write(data.appearance, cdr);
 
       cdr.write_type_d(data.listName);

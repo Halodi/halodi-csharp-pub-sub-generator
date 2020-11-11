@@ -64,13 +64,20 @@ public class FooSummaryPubSubType : Halodi.CDR.TopicDataType<test.FooSummary>
 
       cdr.write_type_d(data.summaryTriggerVariable);
 
+      	if(data.summarizedVariables == null)
+      	{
+      		cdr.write_type_2(0);
+      	}
+      	else
+      	{
 
-      	int summarizedVariables_length = data.summarizedVariables.Count;
+      	  int summarizedVariables_length = data.summarizedVariables.Count;
             cdr.write_type_2(summarizedVariables_length);
             for (int i0 = 0; i0 < summarizedVariables_length; i0++)
             {
       			cdr.write_type_d(data.summarizedVariables[i0]);
             }
+        }
    }
 
    public static void read(test.FooSummary data, Halodi.CDR.CDRDeserializer cdr)

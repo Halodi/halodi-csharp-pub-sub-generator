@@ -60,12 +60,19 @@ public class BigMessagePubSubType : Halodi.CDR.TopicDataType<test.BigMessage>
    {
       cdr.write_type_2(data.id);
 
+      	if(data.largeSequence == null)
+      	{
+      		cdr.write_type_2(0);
+      	}
+      	else
+      	{
 
-      	int largeSequence_length = data.largeSequence.Count;
+      	  int largeSequence_length = data.largeSequence.Count;
             cdr.write_type_2(largeSequence_length);
             for (int i0 = 0; i0 < largeSequence_length; i0++)
             {
       			test.IDLSubmessagePubSubType.write(data.largeSequence[i0], cdr);	      }
+        }
    }
 
    public static void read(test.BigMessage data, Halodi.CDR.CDRDeserializer cdr)

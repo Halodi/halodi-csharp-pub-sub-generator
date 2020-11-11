@@ -59,13 +59,20 @@ public class FooEnumTypePubSubType : Halodi.CDR.TopicDataType<test.FooEnumType>
    {
       cdr.write_type_d(data.name);
 
+      	if(data.enumValues == null)
+      	{
+      		cdr.write_type_2(0);
+      	}
+      	else
+      	{
 
-      	int enumValues_length = data.enumValues.Count;
+      	  int enumValues_length = data.enumValues.Count;
             cdr.write_type_2(enumValues_length);
             for (int i0 = 0; i0 < enumValues_length; i0++)
             {
       			cdr.write_type_d(data.enumValues[i0]);
             }
+        }
    }
 
    public static void read(test.FooEnumType data, Halodi.CDR.CDRDeserializer cdr)

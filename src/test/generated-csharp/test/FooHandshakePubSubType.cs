@@ -87,42 +87,84 @@ public class FooHandshakePubSubType : Halodi.CDR.TopicDataType<test.FooHandshake
    {
       cdr.write_type_6(data.dt);
 
+      	if(data.registries == null)
+      	{
+      		cdr.write_type_2(0);
+      	}
+      	else
+      	{
 
-      	int registries_length = data.registries.Count;
+      	  int registries_length = data.registries.Count;
             cdr.write_type_2(registries_length);
             for (int i0 = 0; i0 < registries_length; i0++)
             {
       			test.FooYoRegistryDefinitionPubSubType.write(data.registries[i0], cdr);	      }
+        }
+      	if(data.variables == null)
+      	{
+      		cdr.write_type_2(0);
+      	}
+      	else
+      	{
 
-      	int variables_length = data.variables.Count;
+      	  int variables_length = data.variables.Count;
             cdr.write_type_2(variables_length);
             for (int i0 = 0; i0 < variables_length; i0++)
             {
       			test.FooYoVariableDefinitionPubSubType.write(data.variables[i0], cdr);	      }
+        }
+      	if(data.joints == null)
+      	{
+      		cdr.write_type_2(0);
+      	}
+      	else
+      	{
 
-      	int joints_length = data.joints.Count;
+      	  int joints_length = data.joints.Count;
             cdr.write_type_2(joints_length);
             for (int i0 = 0; i0 < joints_length; i0++)
             {
       			test.FooJointDefinitionPubSubType.write(data.joints[i0], cdr);	      }
+        }
+      	if(data.graphicObjects == null)
+      	{
+      		cdr.write_type_2(0);
+      	}
+      	else
+      	{
 
-      	int graphicObjects_length = data.graphicObjects.Count;
+      	  int graphicObjects_length = data.graphicObjects.Count;
             cdr.write_type_2(graphicObjects_length);
             for (int i0 = 0; i0 < graphicObjects_length; i0++)
             {
       			test.FooGraphicObjectMessagePubSubType.write(data.graphicObjects[i0], cdr);	      }
+        }
+      	if(data.artifacts == null)
+      	{
+      		cdr.write_type_2(0);
+      	}
+      	else
+      	{
 
-      	int artifacts_length = data.artifacts.Count;
+      	  int artifacts_length = data.artifacts.Count;
             cdr.write_type_2(artifacts_length);
             for (int i0 = 0; i0 < artifacts_length; i0++)
             {
       			test.FooGraphicObjectMessagePubSubType.write(data.artifacts[i0], cdr);	      }
+        }
+      	if(data.enumTypes == null)
+      	{
+      		cdr.write_type_2(0);
+      	}
+      	else
+      	{
 
-      	int enumTypes_length = data.enumTypes.Count;
+      	  int enumTypes_length = data.enumTypes.Count;
             cdr.write_type_2(enumTypes_length);
             for (int i0 = 0; i0 < enumTypes_length; i0++)
             {
       			test.FooEnumTypePubSubType.write(data.enumTypes[i0], cdr);	      }
+        }
       test.FooSummaryPubSubType.write(data.summary, cdr);
 
    }

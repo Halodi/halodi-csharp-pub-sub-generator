@@ -74,13 +74,20 @@ public class VectorPubSubType : Halodi.CDR.TopicDataType<geometry.Vector>
 
       cdr.write_type_6(data.z);
 
+      	if(data.bla == null)
+      	{
+      		cdr.write_type_2(0);
+      	}
+      	else
+      	{
 
-      	int bla_length = data.bla.Count;
+      	  int bla_length = data.bla.Count;
             cdr.write_type_2(bla_length);
             for (int i0 = 0; i0 < bla_length; i0++)
             {
       			cdr.write_type_6(data.bla[i0]);
             }
+        }
       for(int i0 = 0; i0 < 3; ++i0)
       {
         	cdr.write_type_6(data.waa[i0]);	
