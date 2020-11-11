@@ -1,3 +1,4 @@
+using System.IO;
 namespace geometry
 {
 
@@ -5,7 +6,7 @@ namespace geometry
 * 
 * Topic data type of the struct "Polygon" defined in "Vector.idl". Use this class to provide the TopicDataType to a Participant. 
 *
-* This file was automatically generated from Vector.idl by us.ihmc.idl.generator.IDLGenerator. 
+* This file was automatically generated from Vector.idl by com.halodi.idl.generator.IDLCSharpGenerator. 
 * Do not update this file directly, edit Vector.idl instead.
 *
 */
@@ -14,23 +15,24 @@ public class PolygonPubSubType : Halodi.TopicDataType<geometry.Polygon>
    public const string name = "geometry::Polygon";
 
 
-   private final us.ihmc.idl.CDR serializeCDR = new us.ihmc.idl.CDR();
-   private final us.ihmc.idl.CDR deserializeCDR = new us.ihmc.idl.CDR();
-
    @Override
-   public void serialize(geometry.Polygon data, us.ihmc.pubsub.common.SerializedPayload serializedPayload) throws java.io.IOException
+   public void serialize(geometry.Polygon data, MemoryStream stream) throws java.io.IOException
    {
-      serializeCDR.serialize(serializedPayload);
-      write(data, serializeCDR);
-      serializeCDR.finishSerialize();
+   	  using(BinaryWriter writer = new BinaryWriter(stream))
+   	  {
+   	  	  Halodi.CDR.CDRSerializer cdr = new Halodi.CDR.CDRSerializer(writer);
+   	  	  write(data, cdr); 
+   	  }
    }
 
    @Override
-   public void deserialize(us.ihmc.pubsub.common.SerializedPayload serializedPayload, geometry.Polygon data) throws java.io.IOException
+   public void deserialize(MemoryStream stream, geometry.Polygon data) throws java.io.IOException
    {
-      deserializeCDR.deserialize(serializedPayload);
-      read(data, deserializeCDR);
-      deserializeCDR.finishDeserialize();
+   	   using(BinaryReader reader = new BinaryReader(stream))
+   	   {
+   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(stream);
+   	   		read(data, cdr); 
+   	   }
    }
 
    public final static int getCdrSerializedSize(geometry.Polygon data)
@@ -42,7 +44,7 @@ public class PolygonPubSubType : Halodi.TopicDataType<geometry.Polygon>
    {
       int initial_alignment = current_alignment;
 
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
       for(int i0 = 0; i0 < data.getPoints().size(); ++i0)
       {
           current_alignment += geometry.VectorPubSubType.getCdrSerializedSize(data.getPoints().get(i0), current_alignment);}
@@ -50,13 +52,13 @@ public class PolygonPubSubType : Halodi.TopicDataType<geometry.Polygon>
       return current_alignment - initial_alignment;
    }
 
-   public static void write(geometry.Polygon data, us.ihmc.idl.CDR cdr)
+   public static void write(geometry.Polygon data, Halodi.CDR.CDRSerializer cdr)
    {
       cdr.write_type_e(data.getPoints());
 
    }
 
-   public static void read(geometry.Polygon data, us.ihmc.idl.CDR cdr)
+   public static void read(geometry.Polygon data, Halodi.CDR.CDRDeserializer cdr)
    {
 
       int Points_length = cdr.read_type_2();
@@ -77,15 +79,7 @@ public class PolygonPubSubType : Halodi.TopicDataType<geometry.Polygon>
       return name;
    }
    
-   public void serialize(geometry.Polygon data, us.ihmc.idl.CDR cdr)
-   {
-      write(data, cdr);
-   }
 
-   public void deserialize(geometry.Polygon data, us.ihmc.idl.CDR cdr)
-   {
-      read(data, cdr);
-   }
 }
 
 

@@ -1,3 +1,4 @@
+using System.IO;
 namespace test
 {
 
@@ -5,7 +6,7 @@ namespace test
 * 
 * Topic data type of the struct "FooEnumType" defined in "FooHandshake.idl". Use this class to provide the TopicDataType to a Participant. 
 *
-* This file was automatically generated from FooHandshake.idl by us.ihmc.idl.generator.IDLGenerator. 
+* This file was automatically generated from FooHandshake.idl by com.halodi.idl.generator.IDLCSharpGenerator. 
 * Do not update this file directly, edit FooHandshake.idl instead.
 *
 */
@@ -14,23 +15,24 @@ public class FooEnumTypePubSubType : Halodi.TopicDataType<test.FooEnumType>
    public const string name = "test::FooEnumType";
 
 
-   private final us.ihmc.idl.CDR serializeCDR = new us.ihmc.idl.CDR();
-   private final us.ihmc.idl.CDR deserializeCDR = new us.ihmc.idl.CDR();
-
    @Override
-   public void serialize(test.FooEnumType data, us.ihmc.pubsub.common.SerializedPayload serializedPayload) throws java.io.IOException
+   public void serialize(test.FooEnumType data, MemoryStream stream) throws java.io.IOException
    {
-      serializeCDR.serialize(serializedPayload);
-      write(data, serializeCDR);
-      serializeCDR.finishSerialize();
+   	  using(BinaryWriter writer = new BinaryWriter(stream))
+   	  {
+   	  	  Halodi.CDR.CDRSerializer cdr = new Halodi.CDR.CDRSerializer(writer);
+   	  	  write(data, cdr); 
+   	  }
    }
 
    @Override
-   public void deserialize(us.ihmc.pubsub.common.SerializedPayload serializedPayload, test.FooEnumType data) throws java.io.IOException
+   public void deserialize(MemoryStream stream, test.FooEnumType data) throws java.io.IOException
    {
-      deserializeCDR.deserialize(serializedPayload);
-      read(data, deserializeCDR);
-      deserializeCDR.finishDeserialize();
+   	   using(BinaryReader reader = new BinaryReader(stream))
+   	   {
+   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(stream);
+   	   		read(data, cdr); 
+   	   }
    }
 
    public final static int getCdrSerializedSize(test.FooEnumType data)
@@ -42,18 +44,18 @@ public class FooEnumTypePubSubType : Halodi.TopicDataType<test.FooEnumType>
    {
       int initial_alignment = current_alignment;
 
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4) + data.getName().length() + 1;
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.getName().length() + 1;
 
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
       for(int i0 = 0; i0 < data.getEnumValues().size(); ++i0)
       {
-          current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4) + data.getEnumValues().get(i0).length() + 1;
+          current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.getEnumValues().get(i0).length() + 1;
       }
 
       return current_alignment - initial_alignment;
    }
 
-   public static void write(test.FooEnumType data, us.ihmc.idl.CDR cdr)
+   public static void write(test.FooEnumType data, Halodi.CDR.CDRSerializer cdr)
    {
       cdr.write_type_d(data.getName());
 
@@ -61,7 +63,7 @@ public class FooEnumTypePubSubType : Halodi.TopicDataType<test.FooEnumType>
 
    }
 
-   public static void read(test.FooEnumType data, us.ihmc.idl.CDR cdr)
+   public static void read(test.FooEnumType data, Halodi.CDR.CDRDeserializer cdr)
    {
       cdr.read_type_d(data.getName());	
 
@@ -83,15 +85,7 @@ public class FooEnumTypePubSubType : Halodi.TopicDataType<test.FooEnumType>
       return name;
    }
    
-   public void serialize(test.FooEnumType data, us.ihmc.idl.CDR cdr)
-   {
-      write(data, cdr);
-   }
 
-   public void deserialize(test.FooEnumType data, us.ihmc.idl.CDR cdr)
-   {
-      read(data, cdr);
-   }
 }
 
 

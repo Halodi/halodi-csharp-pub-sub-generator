@@ -8,7 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
-import com.halodi.idl.generator.IDLGenerator;
+import com.halodi.idl.generator.IDLCSharpGenerator;
 
 public class GenerateTestMessages
 {
@@ -24,7 +24,7 @@ public class GenerateTestMessages
        */
       for (Path idl : Files.list(Paths.get("idl")).toArray(Path[]::new))
       {
-         IDLGenerator.execute(idl.toFile(),
+         IDLCSharpGenerator.execute(idl.toFile(),
                               "",
                               Paths.get("generated-java").toFile(),
                               Arrays.asList(Paths.get("idl").toFile()));

@@ -47,7 +47,7 @@ import java.util.List;
  *
  * @author Jesper Smith
  */
-public class IDLGenerator
+public class IDLCSharpGenerator
 {
    public static void main(String[] args) throws IOException
    {

@@ -1,3 +1,4 @@
+using System.IO;
 namespace geometry
 {
 
@@ -5,7 +6,7 @@ namespace geometry
 * 
 * Topic data type of the struct "Triangle" defined in "Vector.idl". Use this class to provide the TopicDataType to a Participant. 
 *
-* This file was automatically generated from Vector.idl by us.ihmc.idl.generator.IDLGenerator. 
+* This file was automatically generated from Vector.idl by com.halodi.idl.generator.IDLCSharpGenerator. 
 * Do not update this file directly, edit Vector.idl instead.
 *
 */
@@ -14,23 +15,24 @@ public class TrianglePubSubType : Halodi.TopicDataType<geometry.Triangle>
    public const string name = "geometry::Triangle";
 
 
-   private final us.ihmc.idl.CDR serializeCDR = new us.ihmc.idl.CDR();
-   private final us.ihmc.idl.CDR deserializeCDR = new us.ihmc.idl.CDR();
-
    @Override
-   public void serialize(geometry.Triangle data, us.ihmc.pubsub.common.SerializedPayload serializedPayload) throws java.io.IOException
+   public void serialize(geometry.Triangle data, MemoryStream stream) throws java.io.IOException
    {
-      serializeCDR.serialize(serializedPayload);
-      write(data, serializeCDR);
-      serializeCDR.finishSerialize();
+   	  using(BinaryWriter writer = new BinaryWriter(stream))
+   	  {
+   	  	  Halodi.CDR.CDRSerializer cdr = new Halodi.CDR.CDRSerializer(writer);
+   	  	  write(data, cdr); 
+   	  }
    }
 
    @Override
-   public void deserialize(us.ihmc.pubsub.common.SerializedPayload serializedPayload, geometry.Triangle data) throws java.io.IOException
+   public void deserialize(MemoryStream stream, geometry.Triangle data) throws java.io.IOException
    {
-      deserializeCDR.deserialize(serializedPayload);
-      read(data, deserializeCDR);
-      deserializeCDR.finishDeserialize();
+   	   using(BinaryReader reader = new BinaryReader(stream))
+   	   {
+   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(stream);
+   	   		read(data, cdr); 
+   	   }
    }
 
    public final static int getCdrSerializedSize(geometry.Triangle data)
@@ -49,7 +51,7 @@ public class TrianglePubSubType : Halodi.TopicDataType<geometry.Triangle>
       return current_alignment - initial_alignment;
    }
 
-   public static void write(geometry.Triangle data, us.ihmc.idl.CDR cdr)
+   public static void write(geometry.Triangle data, Halodi.CDR.CDRSerializer cdr)
    {
       for(int i0 = 0; i0 < data.getPoints().length; ++i0)
       {
@@ -57,7 +59,7 @@ public class TrianglePubSubType : Halodi.TopicDataType<geometry.Triangle>
       }
    }
 
-   public static void read(geometry.Triangle data, us.ihmc.idl.CDR cdr)
+   public static void read(geometry.Triangle data, Halodi.CDR.CDRDeserializer cdr)
    {
       for(int i0 = 0; i0 < data.Points.length; ++i0)
       {
@@ -74,15 +76,7 @@ public class TrianglePubSubType : Halodi.TopicDataType<geometry.Triangle>
       return name;
    }
    
-   public void serialize(geometry.Triangle data, us.ihmc.idl.CDR cdr)
-   {
-      write(data, cdr);
-   }
 
-   public void deserialize(geometry.Triangle data, us.ihmc.idl.CDR cdr)
-   {
-      read(data, cdr);
-   }
 }
 
 

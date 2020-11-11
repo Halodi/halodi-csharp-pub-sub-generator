@@ -1,3 +1,4 @@
+using System.IO;
 namespace chat
 {
 
@@ -5,7 +6,7 @@ namespace chat
 * 
 * Topic data type of the struct "ChatMessage" defined in "ChatMessage.idl". Use this class to provide the TopicDataType to a Participant. 
 *
-* This file was automatically generated from ChatMessage.idl by us.ihmc.idl.generator.IDLGenerator. 
+* This file was automatically generated from ChatMessage.idl by com.halodi.idl.generator.IDLCSharpGenerator. 
 * Do not update this file directly, edit ChatMessage.idl instead.
 *
 */
@@ -14,23 +15,24 @@ public class ChatMessagePubSubType : Halodi.TopicDataType<chat.ChatMessage>
    public const string name = "chat::ChatMessage";
 
 
-   private final us.ihmc.idl.CDR serializeCDR = new us.ihmc.idl.CDR();
-   private final us.ihmc.idl.CDR deserializeCDR = new us.ihmc.idl.CDR();
-
    @Override
-   public void serialize(chat.ChatMessage data, us.ihmc.pubsub.common.SerializedPayload serializedPayload) throws java.io.IOException
+   public void serialize(chat.ChatMessage data, MemoryStream stream) throws java.io.IOException
    {
-      serializeCDR.serialize(serializedPayload);
-      write(data, serializeCDR);
-      serializeCDR.finishSerialize();
+   	  using(BinaryWriter writer = new BinaryWriter(stream))
+   	  {
+   	  	  Halodi.CDR.CDRSerializer cdr = new Halodi.CDR.CDRSerializer(writer);
+   	  	  write(data, cdr); 
+   	  }
    }
 
    @Override
-   public void deserialize(us.ihmc.pubsub.common.SerializedPayload serializedPayload, chat.ChatMessage data) throws java.io.IOException
+   public void deserialize(MemoryStream stream, chat.ChatMessage data) throws java.io.IOException
    {
-      deserializeCDR.deserialize(serializedPayload);
-      read(data, deserializeCDR);
-      deserializeCDR.finishDeserialize();
+   	   using(BinaryReader reader = new BinaryReader(stream))
+   	   {
+   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(stream);
+   	   		read(data, cdr); 
+   	   }
    }
 
    public final static int getCdrSerializedSize(chat.ChatMessage data)
@@ -42,18 +44,18 @@ public class ChatMessagePubSubType : Halodi.TopicDataType<chat.ChatMessage>
    {
       int initial_alignment = current_alignment;
 
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
 
 
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4) + data.getSender().length() + 1;
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.getSender().length() + 1;
 
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4) + data.getMsg().length() + 1;
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.getMsg().length() + 1;
 
 
       return current_alignment - initial_alignment;
    }
 
-   public static void write(chat.ChatMessage data, us.ihmc.idl.CDR cdr)
+   public static void write(chat.ChatMessage data, Halodi.CDR.CDRSerializer cdr)
    {
       cdr.write_type_2(data.getKey());
 
@@ -63,7 +65,7 @@ public class ChatMessagePubSubType : Halodi.TopicDataType<chat.ChatMessage>
 
    }
 
-   public static void read(chat.ChatMessage data, us.ihmc.idl.CDR cdr)
+   public static void read(chat.ChatMessage data, Halodi.CDR.CDRDeserializer cdr)
    {
       data.Key=cdr.read_type_2());
       	
@@ -79,15 +81,7 @@ public class ChatMessagePubSubType : Halodi.TopicDataType<chat.ChatMessage>
       return name;
    }
    
-   public void serialize(chat.ChatMessage data, us.ihmc.idl.CDR cdr)
-   {
-      write(data, cdr);
-   }
 
-   public void deserialize(chat.ChatMessage data, us.ihmc.idl.CDR cdr)
-   {
-      read(data, cdr);
-   }
 }
 
 

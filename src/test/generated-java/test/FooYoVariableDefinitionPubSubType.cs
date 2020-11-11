@@ -1,3 +1,4 @@
+using System.IO;
 namespace test
 {
 
@@ -5,7 +6,7 @@ namespace test
 * 
 * Topic data type of the struct "FooYoVariableDefinition" defined in "FooHandshake.idl". Use this class to provide the TopicDataType to a Participant. 
 *
-* This file was automatically generated from FooHandshake.idl by us.ihmc.idl.generator.IDLGenerator. 
+* This file was automatically generated from FooHandshake.idl by com.halodi.idl.generator.IDLCSharpGenerator. 
 * Do not update this file directly, edit FooHandshake.idl instead.
 *
 */
@@ -14,23 +15,24 @@ public class FooYoVariableDefinitionPubSubType : Halodi.TopicDataType<test.FooYo
    public const string name = "test::FooYoVariableDefinition";
 
 
-   private final us.ihmc.idl.CDR serializeCDR = new us.ihmc.idl.CDR();
-   private final us.ihmc.idl.CDR deserializeCDR = new us.ihmc.idl.CDR();
-
    @Override
-   public void serialize(test.FooYoVariableDefinition data, us.ihmc.pubsub.common.SerializedPayload serializedPayload) throws java.io.IOException
+   public void serialize(test.FooYoVariableDefinition data, MemoryStream stream) throws java.io.IOException
    {
-      serializeCDR.serialize(serializedPayload);
-      write(data, serializeCDR);
-      serializeCDR.finishSerialize();
+   	  using(BinaryWriter writer = new BinaryWriter(stream))
+   	  {
+   	  	  Halodi.CDR.CDRSerializer cdr = new Halodi.CDR.CDRSerializer(writer);
+   	  	  write(data, cdr); 
+   	  }
    }
 
    @Override
-   public void deserialize(us.ihmc.pubsub.common.SerializedPayload serializedPayload, test.FooYoVariableDefinition data) throws java.io.IOException
+   public void deserialize(MemoryStream stream, test.FooYoVariableDefinition data) throws java.io.IOException
    {
-      deserializeCDR.deserialize(serializedPayload);
-      read(data, deserializeCDR);
-      deserializeCDR.finishDeserialize();
+   	   using(BinaryReader reader = new BinaryReader(stream))
+   	   {
+   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(stream);
+   	   		read(data, cdr); 
+   	   }
    }
 
    public final static int getCdrSerializedSize(test.FooYoVariableDefinition data)
@@ -42,39 +44,39 @@ public class FooYoVariableDefinitionPubSubType : Halodi.TopicDataType<test.FooYo
    {
       int initial_alignment = current_alignment;
 
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4) + data.getName().length() + 1;
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.getName().length() + 1;
 
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4) + data.getDescription().length() + 1;
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.getDescription().length() + 1;
 
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
-
-
-      current_alignment += 2 + us.ihmc.idl.CDR.alignment(current_alignment, 2);
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
 
 
-      current_alignment += 2 + us.ihmc.idl.CDR.alignment(current_alignment, 2);
+      current_alignment += 2 + Halodi.CDR.CDRCommon.alignment(current_alignment, 2);
 
 
-      current_alignment += 1 + us.ihmc.idl.CDR.alignment(current_alignment, 1);
+      current_alignment += 2 + Halodi.CDR.CDRCommon.alignment(current_alignment, 2);
 
 
-      current_alignment += 1 + us.ihmc.idl.CDR.alignment(current_alignment, 1);
+      current_alignment += 1 + Halodi.CDR.CDRCommon.alignment(current_alignment, 1);
 
 
-      current_alignment += 8 + us.ihmc.idl.CDR.alignment(current_alignment, 8);
+      current_alignment += 1 + Halodi.CDR.CDRCommon.alignment(current_alignment, 1);
 
 
-      current_alignment += 8 + us.ihmc.idl.CDR.alignment(current_alignment, 8);
+      current_alignment += 8 + Halodi.CDR.CDRCommon.alignment(current_alignment, 8);
 
 
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
+      current_alignment += 8 + Halodi.CDR.CDRCommon.alignment(current_alignment, 8);
+
+
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
 
 
 
       return current_alignment - initial_alignment;
    }
 
-   public static void write(test.FooYoVariableDefinition data, us.ihmc.idl.CDR cdr)
+   public static void write(test.FooYoVariableDefinition data, Halodi.CDR.CDRSerializer cdr)
    {
       cdr.write_type_d(data.getName());
 
@@ -100,7 +102,7 @@ public class FooYoVariableDefinitionPubSubType : Halodi.TopicDataType<test.FooYo
 
    }
 
-   public static void read(test.FooYoVariableDefinition data, us.ihmc.idl.CDR cdr)
+   public static void read(test.FooYoVariableDefinition data, Halodi.CDR.CDRDeserializer cdr)
    {
       cdr.read_type_d(data.getName());	
       cdr.read_type_d(data.getDescription());	
@@ -130,15 +132,7 @@ public class FooYoVariableDefinitionPubSubType : Halodi.TopicDataType<test.FooYo
       return name;
    }
    
-   public void serialize(test.FooYoVariableDefinition data, us.ihmc.idl.CDR cdr)
-   {
-      write(data, cdr);
-   }
 
-   public void deserialize(test.FooYoVariableDefinition data, us.ihmc.idl.CDR cdr)
-   {
-      read(data, cdr);
-   }
 }
 
 

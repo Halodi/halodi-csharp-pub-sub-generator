@@ -94,7 +94,7 @@ public class IDLCSharpGeneratorTask extends DefaultTask
 
       for (File idl : idlList)
       {
-         IDLGenerator.execute(idl, packagePrefix, targetDirectory, includeList);
+         IDLCSharpGenerator.execute(idl, packagePrefix, targetDirectory, includeList);
       }
    }
 }

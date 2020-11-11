@@ -1,3 +1,4 @@
+using System.IO;
 namespace test
 {
 
@@ -5,7 +6,7 @@ namespace test
 * 
 * Topic data type of the struct "IDLElementTest" defined in "IDLElementTest.idl". Use this class to provide the TopicDataType to a Participant. 
 *
-* This file was automatically generated from IDLElementTest.idl by us.ihmc.idl.generator.IDLGenerator. 
+* This file was automatically generated from IDLElementTest.idl by com.halodi.idl.generator.IDLCSharpGenerator. 
 * Do not update this file directly, edit IDLElementTest.idl instead.
 *
 */
@@ -14,23 +15,24 @@ public class IDLElementTestPubSubType : Halodi.TopicDataType<test.IDLElementTest
    public const string name = "test::IDLElementTest";
 
 
-   private final us.ihmc.idl.CDR serializeCDR = new us.ihmc.idl.CDR();
-   private final us.ihmc.idl.CDR deserializeCDR = new us.ihmc.idl.CDR();
-
    @Override
-   public void serialize(test.IDLElementTest data, us.ihmc.pubsub.common.SerializedPayload serializedPayload) throws java.io.IOException
+   public void serialize(test.IDLElementTest data, MemoryStream stream) throws java.io.IOException
    {
-      serializeCDR.serialize(serializedPayload);
-      write(data, serializeCDR);
-      serializeCDR.finishSerialize();
+   	  using(BinaryWriter writer = new BinaryWriter(stream))
+   	  {
+   	  	  Halodi.CDR.CDRSerializer cdr = new Halodi.CDR.CDRSerializer(writer);
+   	  	  write(data, cdr); 
+   	  }
    }
 
    @Override
-   public void deserialize(us.ihmc.pubsub.common.SerializedPayload serializedPayload, test.IDLElementTest data) throws java.io.IOException
+   public void deserialize(MemoryStream stream, test.IDLElementTest data) throws java.io.IOException
    {
-      deserializeCDR.deserialize(serializedPayload);
-      read(data, deserializeCDR);
-      deserializeCDR.finishDeserialize();
+   	   using(BinaryReader reader = new BinaryReader(stream))
+   	   {
+   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(stream);
+   	   		read(data, cdr); 
+   	   }
    }
 
    public final static int getCdrSerializedSize(test.IDLElementTest data)
@@ -42,50 +44,50 @@ public class IDLElementTestPubSubType : Halodi.TopicDataType<test.IDLElementTest
    {
       int initial_alignment = current_alignment;
 
-      current_alignment += 1 + us.ihmc.idl.CDR.alignment(current_alignment, 1);
+      current_alignment += 1 + Halodi.CDR.CDRCommon.alignment(current_alignment, 1);
 
 
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
 
 
-      current_alignment += 1 + us.ihmc.idl.CDR.alignment(current_alignment, 1);
+      current_alignment += 1 + Halodi.CDR.CDRCommon.alignment(current_alignment, 1);
 
 
-      current_alignment += 2 + us.ihmc.idl.CDR.alignment(current_alignment, 2);
+      current_alignment += 2 + Halodi.CDR.CDRCommon.alignment(current_alignment, 2);
 
 
-      current_alignment += 2 + us.ihmc.idl.CDR.alignment(current_alignment, 2);
+      current_alignment += 2 + Halodi.CDR.CDRCommon.alignment(current_alignment, 2);
 
 
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
 
 
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
 
 
-      current_alignment += 8 + us.ihmc.idl.CDR.alignment(current_alignment, 8);
+      current_alignment += 8 + Halodi.CDR.CDRCommon.alignment(current_alignment, 8);
 
 
-      current_alignment += 8 + us.ihmc.idl.CDR.alignment(current_alignment, 8);
+      current_alignment += 8 + Halodi.CDR.CDRCommon.alignment(current_alignment, 8);
 
 
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
 
 
-      current_alignment += 8 + us.ihmc.idl.CDR.alignment(current_alignment, 8);
+      current_alignment += 8 + Halodi.CDR.CDRCommon.alignment(current_alignment, 8);
 
 
-      current_alignment += 1 + us.ihmc.idl.CDR.alignment(current_alignment, 1);
+      current_alignment += 1 + Halodi.CDR.CDRCommon.alignment(current_alignment, 1);
 
 
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
 
 
       current_alignment += nested.NestedElementPubSubType.getCdrSerializedSize(data.getNestedElementTest(), current_alignment);
 
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4) + data.getStringTest().length() + 1;
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.getStringTest().length() + 1;
 
-      current_alignment += ((10) * 4) + us.ihmc.idl.CDR.alignment(current_alignment, 4);
+      current_alignment += ((10) * 4) + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
       for(int i0 = 0; i0 < data.getNestedArray().length; ++i0)
       {
           for(int i1 = 0; i1 < data.getNestedArray()[i0].length; ++i1)
@@ -95,77 +97,77 @@ public class IDLElementTestPubSubType : Halodi.TopicDataType<test.IDLElementTest
       }
       for(int i0 = 0; i0 < data.getStringArray().length; ++i0)
       {
-              current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4) + data.getStringArray()[i0].length() + 1;
+              current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.getStringArray()[i0].length() + 1;
 
       }
-      current_alignment += ((6) * 4) + us.ihmc.idl.CDR.alignment(current_alignment, 4);
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
-      current_alignment += (data.getCharSeqTest().size() * 1) + us.ihmc.idl.CDR.alignment(current_alignment, 1);
+      current_alignment += ((6) * 4) + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
+      current_alignment += (data.getCharSeqTest().size() * 1) + Halodi.CDR.CDRCommon.alignment(current_alignment, 1);
 
 
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
-      current_alignment += (data.getWcharSeqTest().size() * 4) + us.ihmc.idl.CDR.alignment(current_alignment, 4);
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
+      current_alignment += (data.getWcharSeqTest().size() * 4) + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
 
 
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
-      current_alignment += (data.getOctetSeqTest().size() * 1) + us.ihmc.idl.CDR.alignment(current_alignment, 1);
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
+      current_alignment += (data.getOctetSeqTest().size() * 1) + Halodi.CDR.CDRCommon.alignment(current_alignment, 1);
 
 
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
-      current_alignment += (data.getShortSeqTest().size() * 2) + us.ihmc.idl.CDR.alignment(current_alignment, 2);
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
+      current_alignment += (data.getShortSeqTest().size() * 2) + Halodi.CDR.CDRCommon.alignment(current_alignment, 2);
 
 
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
-      current_alignment += (data.getUshortSeqTest().size() * 2) + us.ihmc.idl.CDR.alignment(current_alignment, 2);
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
+      current_alignment += (data.getUshortSeqTest().size() * 2) + Halodi.CDR.CDRCommon.alignment(current_alignment, 2);
 
 
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
-      current_alignment += (data.getLongSeqTest().size() * 4) + us.ihmc.idl.CDR.alignment(current_alignment, 4);
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
+      current_alignment += (data.getLongSeqTest().size() * 4) + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
 
 
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
-      current_alignment += (data.getUlongSeqTest().size() * 4) + us.ihmc.idl.CDR.alignment(current_alignment, 4);
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
+      current_alignment += (data.getUlongSeqTest().size() * 4) + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
 
 
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
-      current_alignment += (data.getLonglongSeqtest().size() * 8) + us.ihmc.idl.CDR.alignment(current_alignment, 8);
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
+      current_alignment += (data.getLonglongSeqtest().size() * 8) + Halodi.CDR.CDRCommon.alignment(current_alignment, 8);
 
 
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
-      current_alignment += (data.getUlonglongSeqTest().size() * 8) + us.ihmc.idl.CDR.alignment(current_alignment, 8);
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
+      current_alignment += (data.getUlonglongSeqTest().size() * 8) + Halodi.CDR.CDRCommon.alignment(current_alignment, 8);
 
 
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
-      current_alignment += (data.getFloatSeqTest().size() * 4) + us.ihmc.idl.CDR.alignment(current_alignment, 4);
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
+      current_alignment += (data.getFloatSeqTest().size() * 4) + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
 
 
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
-      current_alignment += (data.getDoubleSeqTest().size() * 8) + us.ihmc.idl.CDR.alignment(current_alignment, 8);
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
+      current_alignment += (data.getDoubleSeqTest().size() * 8) + Halodi.CDR.CDRCommon.alignment(current_alignment, 8);
 
 
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
-      current_alignment += (data.getBooleanSeqTest().size() * 1) + us.ihmc.idl.CDR.alignment(current_alignment, 1);
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
+      current_alignment += (data.getBooleanSeqTest().size() * 1) + Halodi.CDR.CDRCommon.alignment(current_alignment, 1);
 
 
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
       for(int i0 = 0; i0 < data.getNestedSeqTest().size(); ++i0)
       {
           current_alignment += nested.NestedElementPubSubType.getCdrSerializedSize(data.getNestedSeqTest().get(i0), current_alignment);}
 
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
-      current_alignment += (data.getEnumSeqTest().size() * 4) + us.ihmc.idl.CDR.alignment(current_alignment, 4);
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
+      current_alignment += (data.getEnumSeqTest().size() * 4) + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
 
 
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
       for(int i0 = 0; i0 < data.getStringSeqTest().size(); ++i0)
       {
-          current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4) + data.getStringSeqTest().get(i0).length() + 1;
+          current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4) + data.getStringSeqTest().get(i0).length() + 1;
       }
 
       return current_alignment - initial_alignment;
    }
 
-   public static void write(test.IDLElementTest data, us.ihmc.idl.CDR cdr)
+   public static void write(test.IDLElementTest data, Halodi.CDR.CDRSerializer cdr)
    {
       cdr.write_type_8(data.getCharTest());
 
@@ -256,7 +258,7 @@ public class IDLElementTestPubSubType : Halodi.TopicDataType<test.IDLElementTest
 
    }
 
-   public static void read(test.IDLElementTest data, us.ihmc.idl.CDR cdr)
+   public static void read(test.IDLElementTest data, Halodi.CDR.CDRDeserializer cdr)
    {
       data.CharTest=cdr.read_type_8());
       	
@@ -476,15 +478,7 @@ public class IDLElementTestPubSubType : Halodi.TopicDataType<test.IDLElementTest
       return name;
    }
    
-   public void serialize(test.IDLElementTest data, us.ihmc.idl.CDR cdr)
-   {
-      write(data, cdr);
-   }
 
-   public void deserialize(test.IDLElementTest data, us.ihmc.idl.CDR cdr)
-   {
-      read(data, cdr);
-   }
 }
 
 

@@ -1,3 +1,4 @@
+using System.IO;
 namespace test
 {
 
@@ -5,7 +6,7 @@ namespace test
 * 
 * Topic data type of the struct "BigMessage" defined in "BigMessage.idl". Use this class to provide the TopicDataType to a Participant. 
 *
-* This file was automatically generated from BigMessage.idl by us.ihmc.idl.generator.IDLGenerator. 
+* This file was automatically generated from BigMessage.idl by com.halodi.idl.generator.IDLCSharpGenerator. 
 * Do not update this file directly, edit BigMessage.idl instead.
 *
 */
@@ -14,23 +15,24 @@ public class BigMessagePubSubType : Halodi.TopicDataType<test.BigMessage>
    public const string name = "test::BigMessage";
 
 
-   private final us.ihmc.idl.CDR serializeCDR = new us.ihmc.idl.CDR();
-   private final us.ihmc.idl.CDR deserializeCDR = new us.ihmc.idl.CDR();
-
    @Override
-   public void serialize(test.BigMessage data, us.ihmc.pubsub.common.SerializedPayload serializedPayload) throws java.io.IOException
+   public void serialize(test.BigMessage data, MemoryStream stream) throws java.io.IOException
    {
-      serializeCDR.serialize(serializedPayload);
-      write(data, serializeCDR);
-      serializeCDR.finishSerialize();
+   	  using(BinaryWriter writer = new BinaryWriter(stream))
+   	  {
+   	  	  Halodi.CDR.CDRSerializer cdr = new Halodi.CDR.CDRSerializer(writer);
+   	  	  write(data, cdr); 
+   	  }
    }
 
    @Override
-   public void deserialize(us.ihmc.pubsub.common.SerializedPayload serializedPayload, test.BigMessage data) throws java.io.IOException
+   public void deserialize(MemoryStream stream, test.BigMessage data) throws java.io.IOException
    {
-      deserializeCDR.deserialize(serializedPayload);
-      read(data, deserializeCDR);
-      deserializeCDR.finishDeserialize();
+   	   using(BinaryReader reader = new BinaryReader(stream))
+   	   {
+   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(stream);
+   	   		read(data, cdr); 
+   	   }
    }
 
    public final static int getCdrSerializedSize(test.BigMessage data)
@@ -42,10 +44,10 @@ public class BigMessagePubSubType : Halodi.TopicDataType<test.BigMessage>
    {
       int initial_alignment = current_alignment;
 
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
 
 
-      current_alignment += 4 + us.ihmc.idl.CDR.alignment(current_alignment, 4);
+      current_alignment += 4 + Halodi.CDR.CDRCommon.alignment(current_alignment, 4);
       for(int i0 = 0; i0 < data.getLargeSequence().size(); ++i0)
       {
           current_alignment += test.IDLSubmessagePubSubType.getCdrSerializedSize(data.getLargeSequence().get(i0), current_alignment);}
@@ -54,7 +56,7 @@ public class BigMessagePubSubType : Halodi.TopicDataType<test.BigMessage>
       return current_alignment - initial_alignment;
    }
 
-   public static void write(test.BigMessage data, us.ihmc.idl.CDR cdr)
+   public static void write(test.BigMessage data, Halodi.CDR.CDRSerializer cdr)
    {
       cdr.write_type_2(data.getId());
 
@@ -62,7 +64,7 @@ public class BigMessagePubSubType : Halodi.TopicDataType<test.BigMessage>
 
    }
 
-   public static void read(test.BigMessage data, us.ihmc.idl.CDR cdr)
+   public static void read(test.BigMessage data, Halodi.CDR.CDRDeserializer cdr)
    {
       data.Id=cdr.read_type_2());
       	
@@ -85,15 +87,7 @@ public class BigMessagePubSubType : Halodi.TopicDataType<test.BigMessage>
       return name;
    }
    
-   public void serialize(test.BigMessage data, us.ihmc.idl.CDR cdr)
-   {
-      write(data, cdr);
-   }
 
-   public void deserialize(test.BigMessage data, us.ihmc.idl.CDR cdr)
-   {
-      read(data, cdr);
-   }
 }
 
 

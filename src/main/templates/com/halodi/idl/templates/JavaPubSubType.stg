@@ -1,6 +1,7 @@
 group JavaType;
 
 main(ctx, definitions, package) ::= <<
+using System.IO;
 $if(package)$
 namespace $package$
 {
@@ -31,23 +32,24 @@ public class $struct.name$PubSubType : Halodi.TopicDataType<$struct.javaTypename
    public const string name = "$typecode$";
 
 
-   private final us.ihmc.idl.CDR serializeCDR = new us.ihmc.idl.CDR();
-   private final us.ihmc.idl.CDR deserializeCDR = new us.ihmc.idl.CDR();
-
    @Override
-   public void serialize($struct.javaTypename$ data, us.ihmc.pubsub.common.SerializedPayload serializedPayload) throws java.io.IOException
+   public void serialize($struct.javaTypename$ data, MemoryStream stream) throws java.io.IOException
    {
-      serializeCDR.serialize(serializedPayload);
-      write(data, serializeCDR);
-      serializeCDR.finishSerialize();
+   	  using(BinaryWriter writer = new BinaryWriter(stream))
+   	  {
+   	  	  Halodi.CDR.CDRSerializer cdr = new Halodi.CDR.CDRSerializer(writer);
+   	  	  write(data, cdr); 
+   	  }
    }
 
    @Override
-   public void deserialize(us.ihmc.pubsub.common.SerializedPayload serializedPayload, $struct.javaTypename$ data) throws java.io.IOException
+   public void deserialize(MemoryStream stream, $struct.javaTypename$ data) throws java.io.IOException
    {
-      deserializeCDR.deserialize(serializedPayload);
-      read(data, deserializeCDR);
-      deserializeCDR.finishDeserialize();
+   	   using(BinaryReader reader = new BinaryReader(stream))
+   	   {
+   	   		Halodi.CDR.CDRDeserializer cdr = new Halodi.CDR.CDRDeserializer(stream);
+   	   		read(data, cdr); 
+   	   }
    }
 
    public final static int getCdrSerializedSize($struct.javaTypename$ data)
@@ -66,14 +68,14 @@ $struct.members : { member |
       return current_alignment - initial_alignment;
    }
 
-   public static void write($struct.javaTypename$ data, us.ihmc.idl.CDR cdr)
+   public static void write($struct.javaTypename$ data, Halodi.CDR.CDRSerializer cdr)
    {
 $struct.members : { member |
       $object_serialization(ctx=ctx, object=member, arg="", element="data.")$
 }; separator="\n"$
    }
 
-   public static void read($struct.javaTypename$ data, us.ihmc.idl.CDR cdr)
+   public static void read($struct.javaTypename$ data, Halodi.CDR.CDRDeserializer cdr)
    {
 $struct.members : { member |
       $object_deserialization(ctx=ctx, object=member, arg="", argsep="", element="data.")$
@@ -87,15 +89,7 @@ $struct.members : { member |
       return name;
    }
    
-   public void serialize($struct.javaTypename$ data, us.ihmc.idl.CDR cdr)
-   {
-      write(data, cdr);
-   }
 
-   public void deserialize($struct.javaTypename$ data, us.ihmc.idl.CDR cdr)
-   {
-      read(data, cdr);
-   }
    $extension$
 }$\n$
 >>
