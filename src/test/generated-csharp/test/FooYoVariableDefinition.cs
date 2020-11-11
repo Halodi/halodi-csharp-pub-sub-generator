@@ -50,25 +50,25 @@ public class FooYoVariableDefinition
 
       builder.Append("FooYoVariableDefinition {");
       builder.Append("name=");
-      builder.Append(this.name_);      Append.append(", ");
+      builder.Append(this.name);      builder.Append(", ");
       builder.Append("description=");
-      builder.Append(this.description_);      Append.append(", ");
+      builder.Append(this.description);      builder.Append(", ");
       builder.Append("type=");
-      builder.Append(this.type_);      Append.append(", ");
+      builder.Append(this.type);      builder.Append(", ");
       builder.Append("registry=");
-      builder.Append(this.registry_);      Append.append(", ");
+      builder.Append(this.registry);      builder.Append(", ");
       builder.Append("enumType=");
-      builder.Append(this.enumType_);      Append.append(", ");
+      builder.Append(this.enumType);      builder.Append(", ");
       builder.Append("allowNullValues=");
-      builder.Append(this.allowNullValues_);      Append.append(", ");
+      builder.Append(this.allowNullValues);      builder.Append(", ");
       builder.Append("isParameter=");
-      builder.Append(this.isParameter_);      Append.append(", ");
+      builder.Append(this.isParameter);      builder.Append(", ");
       builder.Append("min=");
-      builder.Append(this.min_);      Append.append(", ");
+      builder.Append(this.min);      builder.Append(", ");
       builder.Append("max=");
-      builder.Append(this.max_);      Append.append(", ");
+      builder.Append(this.max);      builder.Append(", ");
       builder.Append("loadStatus=");
-      builder.Append(this.loadStatus_);
+      builder.Append(this.loadStatus);
       builder.Append("}");
       return builder.ToString();
    }

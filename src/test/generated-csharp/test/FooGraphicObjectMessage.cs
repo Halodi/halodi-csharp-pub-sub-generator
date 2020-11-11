@@ -20,9 +20,22 @@ public class FooGraphicObjectMessage
 
       name = other.name;
 
-      yoVariableIndex.set(other.yoVariableIndex);
-      constants.set(other.constants);
-      test.FooAppearanceDefinitionMessagePubSubType.staticCopy(other.appearance, appearance);
+
+
+      yoVariableIndex = new System.Collections.Generic.List<ushort>(other.yoVariableIndex.Count);
+      for(int i1 = 0; i1 < other.yoVariableIndex.Count; i1++)
+      {
+         yoVariableIndex.Add(other.yoVariableIndex[i1]);
+      }
+
+
+      constants = new System.Collections.Generic.List<double>(other.constants.Count);
+      for(int i2 = 0; i2 < other.constants.Count; i2++)
+      {
+         constants.Add(other.constants[i2]);
+      }
+      test.FooAppearanceDefinitionMessagePubSubType.Copy(other.appearance, appearance);
+
       listName = other.listName;
 
    }
@@ -35,17 +48,17 @@ public class FooGraphicObjectMessage
 
       builder.Append("FooGraphicObjectMessage {");
       builder.Append("registrationID=");
-      builder.Append(this.registrationID_);      Append.append(", ");
+      builder.Append(this.registrationID);      builder.Append(", ");
       builder.Append("name=");
-      builder.Append(this.name_);      Append.append(", ");
+      builder.Append(this.name);      builder.Append(", ");
       builder.Append("yoVariableIndex=");
-      builder.Append(this.yoVariableIndex_);      Append.append(", ");
+      builder.Append(this.yoVariableIndex);      builder.Append(", ");
       builder.Append("constants=");
-      builder.Append(this.constants_);      Append.append(", ");
+      builder.Append(this.constants);      builder.Append(", ");
       builder.Append("appearance=");
-      builder.Append(this.appearance_);      Append.append(", ");
+      builder.Append(this.appearance);      builder.Append(", ");
       builder.Append("listName=");
-      builder.Append(this.listName_);
+      builder.Append(this.listName);
       builder.Append("}");
       return builder.ToString();
    }

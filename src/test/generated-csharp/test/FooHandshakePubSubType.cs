@@ -12,7 +12,7 @@ namespace test
 */
 public class FooHandshakePubSubType : Halodi.CDR.TopicDataType<test.FooHandshake>
 {
-   public const string name = "test::FooHandshake";
+   public override string Name => "test::FooHandshake";
 
 
    
@@ -136,7 +136,9 @@ public class FooHandshakePubSubType : Halodi.CDR.TopicDataType<test.FooHandshake
       data.registries = new System.Collections.Generic.List<test.FooYoRegistryDefinition>(registries_length);
       for(int i = 0; i < registries_length; i++)
       {
-      	test.FooYoRegistryDefinitionPubSubType.read(data.registries, cdr);	
+      	test.FooYoRegistryDefinition new_registries = test.FooYoRegistryDefinitionPubSubType.Create(); 
+      	test.FooYoRegistryDefinitionPubSubType.read(new_registries, cdr);
+      	data.registries.Add(new_registries);	
       	
       }
 
@@ -146,7 +148,9 @@ public class FooHandshakePubSubType : Halodi.CDR.TopicDataType<test.FooHandshake
       data.variables = new System.Collections.Generic.List<test.FooYoVariableDefinition>(variables_length);
       for(int i = 0; i < variables_length; i++)
       {
-      	test.FooYoVariableDefinitionPubSubType.read(data.variables, cdr);	
+      	test.FooYoVariableDefinition new_variables = test.FooYoVariableDefinitionPubSubType.Create(); 
+      	test.FooYoVariableDefinitionPubSubType.read(new_variables, cdr);
+      	data.variables.Add(new_variables);	
       	
       }
 
@@ -156,7 +160,9 @@ public class FooHandshakePubSubType : Halodi.CDR.TopicDataType<test.FooHandshake
       data.joints = new System.Collections.Generic.List<test.FooJointDefinition>(joints_length);
       for(int i = 0; i < joints_length; i++)
       {
-      	test.FooJointDefinitionPubSubType.read(data.joints, cdr);	
+      	test.FooJointDefinition new_joints = test.FooJointDefinitionPubSubType.Create(); 
+      	test.FooJointDefinitionPubSubType.read(new_joints, cdr);
+      	data.joints.Add(new_joints);	
       	
       }
 
@@ -166,7 +172,9 @@ public class FooHandshakePubSubType : Halodi.CDR.TopicDataType<test.FooHandshake
       data.graphicObjects = new System.Collections.Generic.List<test.FooGraphicObjectMessage>(graphicObjects_length);
       for(int i = 0; i < graphicObjects_length; i++)
       {
-      	test.FooGraphicObjectMessagePubSubType.read(data.graphicObjects, cdr);	
+      	test.FooGraphicObjectMessage new_graphicObjects = test.FooGraphicObjectMessagePubSubType.Create(); 
+      	test.FooGraphicObjectMessagePubSubType.read(new_graphicObjects, cdr);
+      	data.graphicObjects.Add(new_graphicObjects);	
       	
       }
 
@@ -176,7 +184,9 @@ public class FooHandshakePubSubType : Halodi.CDR.TopicDataType<test.FooHandshake
       data.artifacts = new System.Collections.Generic.List<test.FooGraphicObjectMessage>(artifacts_length);
       for(int i = 0; i < artifacts_length; i++)
       {
-      	test.FooGraphicObjectMessagePubSubType.read(data.artifacts, cdr);	
+      	test.FooGraphicObjectMessage new_artifacts = test.FooGraphicObjectMessagePubSubType.Create(); 
+      	test.FooGraphicObjectMessagePubSubType.read(new_artifacts, cdr);
+      	data.artifacts.Add(new_artifacts);	
       	
       }
 
@@ -186,23 +196,25 @@ public class FooHandshakePubSubType : Halodi.CDR.TopicDataType<test.FooHandshake
       data.enumTypes = new System.Collections.Generic.List<test.FooEnumType>(enumTypes_length);
       for(int i = 0; i < enumTypes_length; i++)
       {
-      	test.FooEnumTypePubSubType.read(data.enumTypes, cdr);	
+      	test.FooEnumType new_enumTypes = test.FooEnumTypePubSubType.Create(); 
+      	test.FooEnumTypePubSubType.read(new_enumTypes, cdr);
+      	data.enumTypes.Add(new_enumTypes);	
       	
       }
 
       	
+      data.summary = test.FooSummaryPubSubType.Create();
       test.FooSummaryPubSubType.read(data.summary, cdr);
       	
 
    }
 
 
+    public static void Copy(test.FooHandshake src, test.FooHandshake target)
+    {
+        target.Set(src);
+    }
 
-   public override string getName()
-   {
-      return name;
-   }
-   
 
 }
 

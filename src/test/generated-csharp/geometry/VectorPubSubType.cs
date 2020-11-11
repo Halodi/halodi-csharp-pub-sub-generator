@@ -12,7 +12,7 @@ namespace geometry
 */
 public class VectorPubSubType : Halodi.CDR.TopicDataType<geometry.Vector>
 {
-   public const string name = "geometry::Vector";
+   public override string Name => "geometry::Vector";
 
 
    
@@ -118,12 +118,11 @@ public class VectorPubSubType : Halodi.CDR.TopicDataType<geometry.Vector>
    }
 
 
+    public static void Copy(geometry.Vector src, geometry.Vector target)
+    {
+        target.Set(src);
+    }
 
-   public override string getName()
-   {
-      return name;
-   }
-   
 
 }
 

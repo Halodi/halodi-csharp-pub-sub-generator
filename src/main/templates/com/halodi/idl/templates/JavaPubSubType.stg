@@ -29,7 +29,7 @@ struct_type(ctx, parent, struct, extension, typecode) ::= <<
 $javadocpubsub(type="struct", name=struct.name, filename=[ctx.filename, ".idl"])$
 public class $struct.name$PubSubType : Halodi.CDR.TopicDataType<$struct.javaTypename$>
 {
-   public const string name = "$typecode$";
+   public override string Name => "$typecode$";
 
 
    
@@ -83,12 +83,11 @@ $struct.members : { member |
    }
 
 
+    public static void Copy($struct.javaTypename$ src, $struct.javaTypename$ target)
+    {
+        target.Set(src);
+    }
 
-   public override string getName()
-   {
-      return name;
-   }
-   
 
    $extension$
 }$\n$

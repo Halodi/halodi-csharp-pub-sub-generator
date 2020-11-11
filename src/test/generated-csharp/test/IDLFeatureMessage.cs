@@ -59,20 +59,53 @@ public class IDLFeatureMessage
 
       hello = other.hello;
 
-      test.IDLSubmessagePubSubType.staticCopy(other.num1, num1);
-      num2.set(other.num2);
-      for(int i1 = 0; i1 < num3.length; ++i1)
-      {
-            test.IDLSubmessagePubSubType.staticCopy(other.num3[i1], num3[i1]);}
+      test.IDLSubmessagePubSubType.Copy(other.num1, num1);
 
-      num4.set(other.num4);
+
+
+      num2 = new System.Collections.Generic.List<test.IDLSubmessage>(other.num2.Count);
+      for(int i1 = 0; i1 < other.num2.Count; i1++)
+      {
+      	test.IDLSubmessage newElement = new test.IDLSubmessagePubSubType.Create();
+         test.IDLSubmessagePubSubType.Copy(other.num2, newElement);
+         num2.Add(newElement);}
+      for(int i2 = 0; i2 < num3.Length; ++i2)
+      {
+            test.IDLSubmessagePubSubType.Copy(other.num3[i2], num3[i2]);}
+
+
+
+      num4 = new System.Collections.Generic.List<test.IDLSubmessage>(other.num4.Count);
+      for(int i4 = 0; i4 < other.num4.Count; i4++)
+      {
+      	test.IDLSubmessage newElement = new test.IDLSubmessagePubSubType.Create();
+         test.IDLSubmessagePubSubType.Copy(other.num4, newElement);
+         num4.Add(newElement);}
       str1 = other.str1;
 
       str2 = other.str2;
 
-      str3.set(other.str3);
-      str4.set(other.str4);
-      str5.set(other.str5);
+
+
+      str3 = new System.Collections.Generic.List<string>(other.str3.Count);
+      for(int i5 = 0; i5 < other.str3.Count; i5++)
+      {
+         str3.Add(other.str3[i5]);
+      }
+
+
+      str4 = new System.Collections.Generic.List<string>(other.str4.Count);
+      for(int i6 = 0; i6 < other.str4.Count; i6++)
+      {
+         str4.Add(other.str4[i6]);
+      }
+
+
+      str5 = new System.Collections.Generic.List<string>(other.str5.Count);
+      for(int i7 = 0; i7 < other.str5.Count; i7++)
+      {
+         str5.Add(other.str5[i7]);
+      }
    }
 
 
@@ -83,31 +116,33 @@ public class IDLFeatureMessage
 
       builder.Append("IDLFeatureMessage {");
       builder.Append("num=");
-      builder.Append(this.num_);      Append.append(", ");
+      builder.Append(this.num);      builder.Append(", ");
       builder.Append("no_default_with_doc=");
-      builder.Append(this.no_default_with_doc_);      Append.append(", ");
+      builder.Append(this.no_default_with_doc);      builder.Append(", ");
       builder.Append("no_doc_num=");
-      builder.Append(this.no_doc_num_);      Append.append(", ");
+      builder.Append(this.no_doc_num);      builder.Append(", ");
       builder.Append("hello=");
-      builder.Append(this.hello_);      Append.append(", ");
+      builder.Append(this.hello);      builder.Append(", ");
       builder.Append("num1=");
-      builder.Append(this.num1_);      Append.append(", ");
+      builder.Append(this.num1);      builder.Append(", ");
       builder.Append("num2=");
-      builder.Append(this.num2_);      Append.append(", ");
+      builder.Append(this.num2);      builder.Append(", ");
       builder.Append("num3=");
-      builder.Append(java.util.Arrays.toString(this.num3_));      Append.append(", ");
+	  builder.Append("[");
+      builder.Append(System.String.Join(",", this.num3));
+      builder.Append("]");      builder.Append(", ");
       builder.Append("num4=");
-      builder.Append(this.num4_);      Append.append(", ");
+      builder.Append(this.num4);      builder.Append(", ");
       builder.Append("str1=");
-      builder.Append(this.str1_);      Append.append(", ");
+      builder.Append(this.str1);      builder.Append(", ");
       builder.Append("str2=");
-      builder.Append(this.str2_);      Append.append(", ");
+      builder.Append(this.str2);      builder.Append(", ");
       builder.Append("str3=");
-      builder.Append(this.str3_);      Append.append(", ");
+      builder.Append(this.str3);      builder.Append(", ");
       builder.Append("str4=");
-      builder.Append(this.str4_);      Append.append(", ");
+      builder.Append(this.str4);      builder.Append(", ");
       builder.Append("str5=");
-      builder.Append(this.str5_);
+      builder.Append(this.str5);
       builder.Append("}");
       return builder.ToString();
    }

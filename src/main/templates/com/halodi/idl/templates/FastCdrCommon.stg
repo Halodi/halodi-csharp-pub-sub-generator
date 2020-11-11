@@ -50,7 +50,7 @@ $endif$
 
 array_copy(ctx, typecodeArr, data, loopvar, other, dimensions) ::= <<
 $if(first(dimensions))$
-for(int $loopvar$ = 0; $loopvar$ < $data$.length; ++$loopvar$)
+for(int $loopvar$ = 0; $loopvar$ < $data$.Length; ++$loopvar$)
 {
    $array_copy(ctx=ctx, typecodeArr=typecodeArr, data=[data, "[", loopvar, "]"], other=[other, "[", loopvar, "]"], loopvar=ctx.nextLoopVarName, dimensions=rest(dimensions))$
 }
@@ -58,14 +58,33 @@ $else$
 $if(typecodeArr.contentTypeCode.primitive)$
    $data$ = $other$;
 $elseif(typecodeArr.contentTypeCode.isType_d)$
-   $data$.setLength(0);
-   $data$.append($other$);
+   $data$ = $other$;
 $elseif(typecodeArr.contentTypeCode.isType_a)$
-   $typecodeArr.contentTypeCode.pubsubTypename$.staticCopy($other$, $data$);
+   $typecodeArr.contentTypeCode.pubsubTypename$.Copy($other$, $data$);
 $else$
-   $other$.set($data$);
+   $other$ = $data$;
 $endif$
 $endif$
+>>
+
+sequence_copy(ctx, typecodeArr, data, loopvar, other) ::= <<
+
+
+$data$ = new $typecodeArr.javaTypename$($other$.Count);
+for(int $loopvar$ = 0; $loopvar$ < $other$.Count; $loopvar$++)
+{
+$if(typecodeArr.contentTypeCode.primitive)$
+   $data$.Add($other$[$loopvar$]);
+$elseif(typecodeArr.contentTypeCode.isType_d)$
+   $data$.Add($other$[$loopvar$]);
+$elseif(typecodeArr.contentTypeCode.isType_a)$
+	$typecodeArr.contentTypeCode.javaTypename$ newElement = new $typecodeArr.contentTypeCode.pubsubTypename$.Create();
+   $typecodeArr.contentTypeCode.pubsubTypename$.Copy($other$, newElement);
+   $data$.Add(newElement);
+$else$
+   $data$.Add($other$[$loopvar$]);
+$endif$
+}
 >>
 
 array_equals(ctx, typecodeArr, data, loopvar, other, dimensions) ::= <<
@@ -144,10 +163,12 @@ object_deserialization(ctx, object, arg, argsep, element) ::= <<
 $if(object.typecode.isType_c)$$element$$object.name$ = ($object.typecode.javaTypename$) cdr.read_$object.typecode.stType$();
 $elseif(object.typecode.isType_f)$$array_deserialize(ctx=ctx, typecodeArr=object.typecode, data=[element, object.name], loopvar=ctx.newLoopVarName, dimensions=object.typecode.dimensions)$
 $elseif(object.typecode.primitive)$$element$$object.name$=cdr.read_$object.typecode.stType$();
-$elseif(object.typecode.isType_a)$$object.typecode.pubsubTypename$.read($element$$object.name$, cdr);
+$elseif(object.typecode.isType_a)$
+$element$$object.name$ = $object.typecode.pubsubTypename$.Create();
+$object.typecode.pubsubTypename$.read($element$$object.name$, cdr);
 $elseif(object.typecode.isType_e)$$sequence_deserialize(ctx=ctx, typecodeArr=object.typecode, fieldname=object.name, data=[element, object.name], loopvar=ctx.newLoopVarName)$
 $elseif(object.typecode.isType_d)$$element$$object.name$ = cdr.read_$object.typecode.stType$();
-$else$cdr.read_$object.typecode.stType$($element$$object.name$);
+$else$$element$$object.name$ = cdr.read_$object.typecode.stType$();
 $endif$	
 >>
 
@@ -187,7 +208,9 @@ for(int i = 0; i < $fieldname$_length; i++)
 $elseif(typecodeArr.contentTypeCode.primitive)$
 	$data$.Add(cdr.read_$typecodeArr.contentTypeCode.stType$());
 $elseif(typecodeArr.contentTypeCode.isType_a)$
-	$typecodeArr.contentTypeCode.pubsubTypename$.read($data$, cdr);
+	$typecodeArr.contentTypeCode.javaTypename$ new_$fieldname$ = $typecodeArr.contentTypeCode.pubsubTypename$.Create(); 
+	$typecodeArr.contentTypeCode.pubsubTypename$.read(new_$fieldname$, cdr);
+	$data$.Add(new_$fieldname$);
 $else$
 	$data$.Add(cdr.read_$typecodeArr.contentTypeCode.stType$());
 $endif$	

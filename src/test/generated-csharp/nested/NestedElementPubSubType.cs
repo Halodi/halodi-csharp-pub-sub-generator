@@ -12,7 +12,7 @@ namespace nested
 */
 public class NestedElementPubSubType : Halodi.CDR.TopicDataType<nested.NestedElement>
 {
-   public const string name = "nested::NestedElement";
+   public override string Name => "nested::NestedElement";
 
 
    
@@ -70,12 +70,11 @@ public class NestedElementPubSubType : Halodi.CDR.TopicDataType<nested.NestedEle
    }
 
 
+    public static void Copy(nested.NestedElement src, nested.NestedElement target)
+    {
+        target.Set(src);
+    }
 
-   public override string getName()
-   {
-      return name;
-   }
-   
 
 }
 

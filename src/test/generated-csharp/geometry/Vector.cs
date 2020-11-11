@@ -25,10 +25,16 @@ public class Vector
 
       z = other.z;
 
-      bla.set(other.bla);
-      for(int i1 = 0; i1 < waa.length; ++i1)
+
+
+      bla = new System.Collections.Generic.List<double>(other.bla.Count);
+      for(int i1 = 0; i1 < other.bla.Count; i1++)
       {
-            waa[i1] = other.waa[i1];
+         bla.Add(other.bla[i1]);
+      }
+      for(int i2 = 0; i2 < waa.Length; ++i2)
+      {
+            waa[i2] = other.waa[i2];
 
       }
 
@@ -42,17 +48,19 @@ public class Vector
 
       builder.Append("Vector {");
       builder.Append("frame=");
-      builder.Append(this.frame_);      Append.append(", ");
+      builder.Append(this.frame);      builder.Append(", ");
       builder.Append("x=");
-      builder.Append(this.x_);      Append.append(", ");
+      builder.Append(this.x);      builder.Append(", ");
       builder.Append("y=");
-      builder.Append(this.y_);      Append.append(", ");
+      builder.Append(this.y);      builder.Append(", ");
       builder.Append("z=");
-      builder.Append(this.z_);      Append.append(", ");
+      builder.Append(this.z);      builder.Append(", ");
       builder.Append("bla=");
-      builder.Append(this.bla_);      Append.append(", ");
+      builder.Append(this.bla);      builder.Append(", ");
       builder.Append("waa=");
-      builder.Append(java.util.Arrays.toString(this.waa_));
+	  builder.Append("[");
+      builder.Append(System.String.Join(",", this.waa));
+      builder.Append("]");
       builder.Append("}");
       return builder.ToString();
    }

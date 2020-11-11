@@ -12,7 +12,7 @@ namespace geometry
 */
 public class BoxPubSubType : Halodi.CDR.TopicDataType<geometry.Box>
 {
-   public const string name = "geometry::Box";
+   public override string Name => "geometry::Box";
 
 
    
@@ -73,6 +73,7 @@ public class BoxPubSubType : Halodi.CDR.TopicDataType<geometry.Box>
 
    public static void read(geometry.Box data, Halodi.CDR.CDRDeserializer cdr)
    {
+      data.center = geometry.VectorPubSubType.Create();
       geometry.VectorPubSubType.read(data.center, cdr);
       	
       data.w=cdr.read_type_6();
@@ -85,12 +86,11 @@ public class BoxPubSubType : Halodi.CDR.TopicDataType<geometry.Box>
    }
 
 
+    public static void Copy(geometry.Box src, geometry.Box target)
+    {
+        target.Set(src);
+    }
 
-   public override string getName()
-   {
-      return name;
-   }
-   
 
 }
 

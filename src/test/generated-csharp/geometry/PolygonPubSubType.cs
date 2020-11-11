@@ -12,7 +12,7 @@ namespace geometry
 */
 public class PolygonPubSubType : Halodi.CDR.TopicDataType<geometry.Polygon>
 {
-   public const string name = "geometry::Polygon";
+   public override string Name => "geometry::Polygon";
 
 
    
@@ -68,7 +68,9 @@ public class PolygonPubSubType : Halodi.CDR.TopicDataType<geometry.Polygon>
       data.points = new System.Collections.Generic.List<geometry.Vector>(points_length);
       for(int i = 0; i < points_length; i++)
       {
-      	geometry.VectorPubSubType.read(data.points, cdr);	
+      	geometry.Vector new_points = geometry.VectorPubSubType.Create(); 
+      	geometry.VectorPubSubType.read(new_points, cdr);
+      	data.points.Add(new_points);	
       	
       }
 
@@ -77,12 +79,11 @@ public class PolygonPubSubType : Halodi.CDR.TopicDataType<geometry.Polygon>
    }
 
 
+    public static void Copy(geometry.Polygon src, geometry.Polygon target)
+    {
+        target.Set(src);
+    }
 
-   public override string getName()
-   {
-      return name;
-   }
-   
 
 }
 

@@ -12,7 +12,7 @@ namespace test
 */
 public class FooEnumTypePubSubType : Halodi.CDR.TopicDataType<test.FooEnumType>
 {
-   public const string name = "test::FooEnumType";
+   public override string Name => "test::FooEnumType";
 
 
    
@@ -85,12 +85,11 @@ public class FooEnumTypePubSubType : Halodi.CDR.TopicDataType<test.FooEnumType>
    }
 
 
+    public static void Copy(test.FooEnumType src, test.FooEnumType target)
+    {
+        target.Set(src);
+    }
 
-   public override string getName()
-   {
-      return name;
-   }
-   
 
 }
 

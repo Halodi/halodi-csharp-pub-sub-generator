@@ -12,7 +12,7 @@ namespace chat
 */
 public class ChatMessagePubSubType : Halodi.CDR.TopicDataType<chat.ChatMessage>
 {
-   public const string name = "chat::ChatMessage";
+   public override string Name => "chat::ChatMessage";
 
 
    
@@ -75,12 +75,11 @@ public class ChatMessagePubSubType : Halodi.CDR.TopicDataType<chat.ChatMessage>
    }
 
 
+    public static void Copy(chat.ChatMessage src, chat.ChatMessage target)
+    {
+        target.Set(src);
+    }
 
-   public override string getName()
-   {
-      return name;
-   }
-   
 
 }
 

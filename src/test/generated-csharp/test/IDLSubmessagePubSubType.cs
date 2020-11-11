@@ -12,7 +12,7 @@ namespace test
 */
 public class IDLSubmessagePubSubType : Halodi.CDR.TopicDataType<test.IDLSubmessage>
 {
-   public const string name = "test::IDLSubmessage";
+   public override string Name => "test::IDLSubmessage";
 
 
    
@@ -86,12 +86,11 @@ public class IDLSubmessagePubSubType : Halodi.CDR.TopicDataType<test.IDLSubmessa
    }
 
 
+    public static void Copy(test.IDLSubmessage src, test.IDLSubmessage target)
+    {
+        target.Set(src);
+    }
 
-   public override string getName()
-   {
-      return name;
-   }
-   
 
 }
 

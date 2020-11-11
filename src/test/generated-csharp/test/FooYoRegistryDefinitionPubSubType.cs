@@ -12,7 +12,7 @@ namespace test
 */
 public class FooYoRegistryDefinitionPubSubType : Halodi.CDR.TopicDataType<test.FooYoRegistryDefinition>
 {
-   public const string name = "test::FooYoRegistryDefinition";
+   public override string Name => "test::FooYoRegistryDefinition";
 
 
    
@@ -70,12 +70,11 @@ public class FooYoRegistryDefinitionPubSubType : Halodi.CDR.TopicDataType<test.F
    }
 
 
+    public static void Copy(test.FooYoRegistryDefinition src, test.FooYoRegistryDefinition target)
+    {
+        target.Set(src);
+    }
 
-   public override string getName()
-   {
-      return name;
-   }
-   
 
 }
 

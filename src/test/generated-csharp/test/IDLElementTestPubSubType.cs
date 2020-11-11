@@ -12,7 +12,7 @@ namespace test
 */
 public class IDLElementTestPubSubType : Halodi.CDR.TopicDataType<test.IDLElementTest>
 {
-   public const string name = "test::IDLElementTest";
+   public override string Name => "test::IDLElementTest";
 
 
    
@@ -359,6 +359,7 @@ public class IDLElementTestPubSubType : Halodi.CDR.TopicDataType<test.IDLElement
       	
       data.colorTest = (test.Color) cdr.read_type_c();
       	
+      data.nestedElementTest = nested.NestedElementPubSubType.Create();
       nested.NestedElementPubSubType.read(data.nestedElementTest, cdr);
       	
       data.stringTest = cdr.read_type_d();	
@@ -527,7 +528,9 @@ public class IDLElementTestPubSubType : Halodi.CDR.TopicDataType<test.IDLElement
       data.nestedSeqTest = new System.Collections.Generic.List<nested.NestedElement>(nestedSeqTest_length);
       for(int i = 0; i < nestedSeqTest_length; i++)
       {
-      	nested.NestedElementPubSubType.read(data.nestedSeqTest, cdr);	
+      	nested.NestedElement new_nestedSeqTest = nested.NestedElementPubSubType.Create(); 
+      	nested.NestedElementPubSubType.read(new_nestedSeqTest, cdr);
+      	data.nestedSeqTest.Add(new_nestedSeqTest);	
       	
       }
 
@@ -560,12 +563,11 @@ public class IDLElementTestPubSubType : Halodi.CDR.TopicDataType<test.IDLElement
    }
 
 
+    public static void Copy(test.IDLElementTest src, test.IDLElementTest target)
+    {
+        target.Set(src);
+    }
 
-   public override string getName()
-   {
-      return name;
-   }
-   
 
 }
 

@@ -34,11 +34,11 @@ public class ChatMessage
 
       builder.Append("ChatMessage {");
       builder.Append("key=");
-      builder.Append(this.key_);      Append.append(", ");
+      builder.Append(this.key);      builder.Append(", ");
       builder.Append("sender=");
-      builder.Append(this.sender_);      Append.append(", ");
+      builder.Append(this.sender);      builder.Append(", ");
       builder.Append("msg=");
-      builder.Append(this.msg_);
+      builder.Append(this.msg);
       builder.Append("}");
       return builder.ToString();
    }

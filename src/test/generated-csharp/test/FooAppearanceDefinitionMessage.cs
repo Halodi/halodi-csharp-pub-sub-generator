@@ -32,13 +32,13 @@ public class FooAppearanceDefinitionMessage
 
       builder.Append("FooAppearanceDefinitionMessage {");
       builder.Append("r=");
-      builder.Append(this.r_);      Append.append(", ");
+      builder.Append(this.r);      builder.Append(", ");
       builder.Append("g=");
-      builder.Append(this.g_);      Append.append(", ");
+      builder.Append(this.g);      builder.Append(", ");
       builder.Append("b=");
-      builder.Append(this.b_);      Append.append(", ");
+      builder.Append(this.b);      builder.Append(", ");
       builder.Append("transparency=");
-      builder.Append(this.transparency_);
+      builder.Append(this.transparency);
       builder.Append("}");
       return builder.ToString();
    }

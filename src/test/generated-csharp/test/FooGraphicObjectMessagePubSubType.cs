@@ -12,7 +12,7 @@ namespace test
 */
 public class FooGraphicObjectMessagePubSubType : Halodi.CDR.TopicDataType<test.FooGraphicObjectMessage>
 {
-   public const string name = "test::FooGraphicObjectMessage";
+   public override string Name => "test::FooGraphicObjectMessage";
 
 
    
@@ -118,6 +118,7 @@ public class FooGraphicObjectMessagePubSubType : Halodi.CDR.TopicDataType<test.F
       }
 
       	
+      data.appearance = test.FooAppearanceDefinitionMessagePubSubType.Create();
       test.FooAppearanceDefinitionMessagePubSubType.read(data.appearance, cdr);
       	
       data.listName = cdr.read_type_d();	
@@ -125,12 +126,11 @@ public class FooGraphicObjectMessagePubSubType : Halodi.CDR.TopicDataType<test.F
    }
 
 
+    public static void Copy(test.FooGraphicObjectMessage src, test.FooGraphicObjectMessage target)
+    {
+        target.Set(src);
+    }
 
-   public override string getName()
-   {
-      return name;
-   }
-   
 
 }
 

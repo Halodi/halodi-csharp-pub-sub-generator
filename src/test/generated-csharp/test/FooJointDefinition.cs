@@ -26,9 +26,9 @@ public class FooJointDefinition
 
       builder.Append("FooJointDefinition {");
       builder.Append("name=");
-      builder.Append(this.name_);      Append.append(", ");
+      builder.Append(this.name);      builder.Append(", ");
       builder.Append("type=");
-      builder.Append(this.type_);
+      builder.Append(this.type);
       builder.Append("}");
       return builder.ToString();
    }

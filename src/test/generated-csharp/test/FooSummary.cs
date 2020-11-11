@@ -17,7 +17,13 @@ public class FooSummary
 
       summaryTriggerVariable = other.summaryTriggerVariable;
 
-      summarizedVariables.set(other.summarizedVariables);
+
+
+      summarizedVariables = new System.Collections.Generic.List<string>(other.summarizedVariables.Count);
+      for(int i4 = 0; i4 < other.summarizedVariables.Count; i4++)
+      {
+         summarizedVariables.Add(other.summarizedVariables[i4]);
+      }
    }
 
 
@@ -28,11 +34,11 @@ public class FooSummary
 
       builder.Append("FooSummary {");
       builder.Append("createSummary=");
-      builder.Append(this.createSummary_);      Append.append(", ");
+      builder.Append(this.createSummary);      builder.Append(", ");
       builder.Append("summaryTriggerVariable=");
-      builder.Append(this.summaryTriggerVariable_);      Append.append(", ");
+      builder.Append(this.summaryTriggerVariable);      builder.Append(", ");
       builder.Append("summarizedVariables=");
-      builder.Append(this.summarizedVariables_);
+      builder.Append(this.summarizedVariables);
       builder.Append("}");
       return builder.ToString();
    }

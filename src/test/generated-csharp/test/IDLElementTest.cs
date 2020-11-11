@@ -70,49 +70,140 @@ public class IDLElementTest
 
       colorTest = other.colorTest;
 
-      nested.NestedElementPubSubType.staticCopy(other.nestedElementTest, nestedElementTest);
+      nested.NestedElementPubSubType.Copy(other.nestedElementTest, nestedElementTest);
+
       stringTest = other.stringTest;
 
-      for(int i1 = 0; i1 < longArray.length; ++i1)
+      for(int i1 = 0; i1 < longArray.Length; ++i1)
       {
             longArray[i1] = other.longArray[i1];
 
       }
 
-      for(int i3 = 0; i3 < nestedArray.length; ++i3)
+      for(int i3 = 0; i3 < nestedArray.Length; ++i3)
       {
-         for(int i4 = 0; i4 < nestedArray[i3].length; ++i4)
+         for(int i4 = 0; i4 < nestedArray[i3].Length; ++i4)
          {
-               nested.NestedElementPubSubType.staticCopy(other.nestedArray[i3][i4], nestedArray[i3][i4]);}
+               nested.NestedElementPubSubType.Copy(other.nestedArray[i3][i4], nestedArray[i3][i4]);}
       }
 
-      for(int i6 = 0; i6 < stringArray.length; ++i6)
+      for(int i6 = 0; i6 < stringArray.Length; ++i6)
       {
-            stringArray[i6].setLength(0);
-            stringArray[i6].append(other.stringArray[i6]);
+            stringArray[i6] = other.stringArray[i6];
       }
 
-      for(int i8 = 0; i8 < enumArray.length; ++i8)
+      for(int i8 = 0; i8 < enumArray.Length; ++i8)
       {
             enumArray[i8] = other.enumArray[i8];
 
       }
 
-      charSeqTest.set(other.charSeqTest);
-      wcharSeqTest.set(other.wcharSeqTest);
-      octetSeqTest.set(other.octetSeqTest);
-      shortSeqTest.set(other.shortSeqTest);
-      ushortSeqTest.set(other.ushortSeqTest);
-      longSeqTest.set(other.longSeqTest);
-      ulongSeqTest.set(other.ulongSeqTest);
-      longlongSeqtest.set(other.longlongSeqtest);
-      ulonglongSeqTest.set(other.ulonglongSeqTest);
-      floatSeqTest.set(other.floatSeqTest);
-      doubleSeqTest.set(other.doubleSeqTest);
-      booleanSeqTest.set(other.booleanSeqTest);
-      nestedSeqTest.set(other.nestedSeqTest);
-      enumSeqTest.set(other.enumSeqTest);
-      stringSeqTest.set(other.stringSeqTest);
+
+
+      charSeqTest = new System.Collections.Generic.List<char>(other.charSeqTest.Count);
+      for(int i10 = 0; i10 < other.charSeqTest.Count; i10++)
+      {
+         charSeqTest.Add(other.charSeqTest[i10]);
+      }
+
+
+      wcharSeqTest = new System.Collections.Generic.List<char>(other.wcharSeqTest.Count);
+      for(int i11 = 0; i11 < other.wcharSeqTest.Count; i11++)
+      {
+         wcharSeqTest.Add(other.wcharSeqTest[i11]);
+      }
+
+
+      octetSeqTest = new System.Collections.Generic.List<byte>(other.octetSeqTest.Count);
+      for(int i12 = 0; i12 < other.octetSeqTest.Count; i12++)
+      {
+         octetSeqTest.Add(other.octetSeqTest[i12]);
+      }
+
+
+      shortSeqTest = new System.Collections.Generic.List<short>(other.shortSeqTest.Count);
+      for(int i13 = 0; i13 < other.shortSeqTest.Count; i13++)
+      {
+         shortSeqTest.Add(other.shortSeqTest[i13]);
+      }
+
+
+      ushortSeqTest = new System.Collections.Generic.List<ushort>(other.ushortSeqTest.Count);
+      for(int i14 = 0; i14 < other.ushortSeqTest.Count; i14++)
+      {
+         ushortSeqTest.Add(other.ushortSeqTest[i14]);
+      }
+
+
+      longSeqTest = new System.Collections.Generic.List<int>(other.longSeqTest.Count);
+      for(int i15 = 0; i15 < other.longSeqTest.Count; i15++)
+      {
+         longSeqTest.Add(other.longSeqTest[i15]);
+      }
+
+
+      ulongSeqTest = new System.Collections.Generic.List<uint>(other.ulongSeqTest.Count);
+      for(int i16 = 0; i16 < other.ulongSeqTest.Count; i16++)
+      {
+         ulongSeqTest.Add(other.ulongSeqTest[i16]);
+      }
+
+
+      longlongSeqtest = new System.Collections.Generic.List<long>(other.longlongSeqtest.Count);
+      for(int i17 = 0; i17 < other.longlongSeqtest.Count; i17++)
+      {
+         longlongSeqtest.Add(other.longlongSeqtest[i17]);
+      }
+
+
+      ulonglongSeqTest = new System.Collections.Generic.List<ulong>(other.ulonglongSeqTest.Count);
+      for(int i18 = 0; i18 < other.ulonglongSeqTest.Count; i18++)
+      {
+         ulonglongSeqTest.Add(other.ulonglongSeqTest[i18]);
+      }
+
+
+      floatSeqTest = new System.Collections.Generic.List<float>(other.floatSeqTest.Count);
+      for(int i19 = 0; i19 < other.floatSeqTest.Count; i19++)
+      {
+         floatSeqTest.Add(other.floatSeqTest[i19]);
+      }
+
+
+      doubleSeqTest = new System.Collections.Generic.List<double>(other.doubleSeqTest.Count);
+      for(int i20 = 0; i20 < other.doubleSeqTest.Count; i20++)
+      {
+         doubleSeqTest.Add(other.doubleSeqTest[i20]);
+      }
+
+
+      booleanSeqTest = new System.Collections.Generic.List<bool>(other.booleanSeqTest.Count);
+      for(int i21 = 0; i21 < other.booleanSeqTest.Count; i21++)
+      {
+         booleanSeqTest.Add(other.booleanSeqTest[i21]);
+      }
+
+
+      nestedSeqTest = new System.Collections.Generic.List<nested.NestedElement>(other.nestedSeqTest.Count);
+      for(int i22 = 0; i22 < other.nestedSeqTest.Count; i22++)
+      {
+      	nested.NestedElement newElement = new nested.NestedElementPubSubType.Create();
+         nested.NestedElementPubSubType.Copy(other.nestedSeqTest, newElement);
+         nestedSeqTest.Add(newElement);}
+
+
+      enumSeqTest = new us.ihmc.idl.IDLSequence.Enum<test.Color>(other.enumSeqTest.Count);
+      for(int i23 = 0; i23 < other.enumSeqTest.Count; i23++)
+      {
+         enumSeqTest.Add(other.enumSeqTest[i23]);
+      }
+
+
+      stringSeqTest = new System.Collections.Generic.List<string>(other.stringSeqTest.Count);
+      for(int i24 = 0; i24 < other.stringSeqTest.Count; i24++)
+      {
+         stringSeqTest.Add(other.stringSeqTest[i24]);
+      }
    }
 
 
@@ -123,73 +214,81 @@ public class IDLElementTest
 
       builder.Append("IDLElementTest {");
       builder.Append("charTest=");
-      builder.Append(this.charTest_);      Append.append(", ");
+      builder.Append(this.charTest);      builder.Append(", ");
       builder.Append("wcharTest=");
-      builder.Append(this.wcharTest_);      Append.append(", ");
+      builder.Append(this.wcharTest);      builder.Append(", ");
       builder.Append("octetTest=");
-      builder.Append(this.octetTest_);      Append.append(", ");
+      builder.Append(this.octetTest);      builder.Append(", ");
       builder.Append("shortTest=");
-      builder.Append(this.shortTest_);      Append.append(", ");
+      builder.Append(this.shortTest);      builder.Append(", ");
       builder.Append("ushortTest=");
-      builder.Append(this.ushortTest_);      Append.append(", ");
+      builder.Append(this.ushortTest);      builder.Append(", ");
       builder.Append("longTest=");
-      builder.Append(this.longTest_);      Append.append(", ");
+      builder.Append(this.longTest);      builder.Append(", ");
       builder.Append("ulongTest=");
-      builder.Append(this.ulongTest_);      Append.append(", ");
+      builder.Append(this.ulongTest);      builder.Append(", ");
       builder.Append("longlongTest=");
-      builder.Append(this.longlongTest_);      Append.append(", ");
+      builder.Append(this.longlongTest);      builder.Append(", ");
       builder.Append("ulonglongTest=");
-      builder.Append(this.ulonglongTest_);      Append.append(", ");
+      builder.Append(this.ulonglongTest);      builder.Append(", ");
       builder.Append("floatTest=");
-      builder.Append(this.floatTest_);      Append.append(", ");
+      builder.Append(this.floatTest);      builder.Append(", ");
       builder.Append("doubleTest=");
-      builder.Append(this.doubleTest_);      Append.append(", ");
+      builder.Append(this.doubleTest);      builder.Append(", ");
       builder.Append("booleanTest=");
-      builder.Append(this.booleanTest_);      Append.append(", ");
+      builder.Append(this.booleanTest);      builder.Append(", ");
       builder.Append("colorTest=");
-      builder.Append(this.colorTest_);      Append.append(", ");
+      builder.Append(this.colorTest);      builder.Append(", ");
       builder.Append("nestedElementTest=");
-      builder.Append(this.nestedElementTest_);      Append.append(", ");
+      builder.Append(this.nestedElementTest);      builder.Append(", ");
       builder.Append("stringTest=");
-      builder.Append(this.stringTest_);      Append.append(", ");
+      builder.Append(this.stringTest);      builder.Append(", ");
       builder.Append("longArray=");
-      builder.Append(java.util.Arrays.toString(this.longArray_));      Append.append(", ");
+	  builder.Append("[");
+      builder.Append(System.String.Join(",", this.longArray));
+      builder.Append("]");      builder.Append(", ");
       builder.Append("nestedArray=");
-      builder.Append(java.util.Arrays.deepToString(this.nestedArray_));      Append.append(", ");
+      builder.Append("[");
+      builder.Append(System.String.Join(",", this.nestedArray));
+      builder.Append("]");      builder.Append(", ");
       builder.Append("stringArray=");
-      builder.Append(java.util.Arrays.toString(this.stringArray_));      Append.append(", ");
+	  builder.Append("[");
+      builder.Append(System.String.Join(",", this.stringArray));
+      builder.Append("]");      builder.Append(", ");
       builder.Append("enumArray=");
-      builder.Append(java.util.Arrays.toString(this.enumArray_));      Append.append(", ");
+	  builder.Append("[");
+      builder.Append(System.String.Join(",", this.enumArray));
+      builder.Append("]");      builder.Append(", ");
       builder.Append("charSeqTest=");
-      builder.Append(this.charSeqTest_);      Append.append(", ");
+      builder.Append(this.charSeqTest);      builder.Append(", ");
       builder.Append("wcharSeqTest=");
-      builder.Append(this.wcharSeqTest_);      Append.append(", ");
+      builder.Append(this.wcharSeqTest);      builder.Append(", ");
       builder.Append("octetSeqTest=");
-      builder.Append(this.octetSeqTest_);      Append.append(", ");
+      builder.Append(this.octetSeqTest);      builder.Append(", ");
       builder.Append("shortSeqTest=");
-      builder.Append(this.shortSeqTest_);      Append.append(", ");
+      builder.Append(this.shortSeqTest);      builder.Append(", ");
       builder.Append("ushortSeqTest=");
-      builder.Append(this.ushortSeqTest_);      Append.append(", ");
+      builder.Append(this.ushortSeqTest);      builder.Append(", ");
       builder.Append("longSeqTest=");
-      builder.Append(this.longSeqTest_);      Append.append(", ");
+      builder.Append(this.longSeqTest);      builder.Append(", ");
       builder.Append("ulongSeqTest=");
-      builder.Append(this.ulongSeqTest_);      Append.append(", ");
+      builder.Append(this.ulongSeqTest);      builder.Append(", ");
       builder.Append("longlongSeqtest=");
-      builder.Append(this.longlongSeqtest_);      Append.append(", ");
+      builder.Append(this.longlongSeqtest);      builder.Append(", ");
       builder.Append("ulonglongSeqTest=");
-      builder.Append(this.ulonglongSeqTest_);      Append.append(", ");
+      builder.Append(this.ulonglongSeqTest);      builder.Append(", ");
       builder.Append("floatSeqTest=");
-      builder.Append(this.floatSeqTest_);      Append.append(", ");
+      builder.Append(this.floatSeqTest);      builder.Append(", ");
       builder.Append("doubleSeqTest=");
-      builder.Append(this.doubleSeqTest_);      Append.append(", ");
+      builder.Append(this.doubleSeqTest);      builder.Append(", ");
       builder.Append("booleanSeqTest=");
-      builder.Append(this.booleanSeqTest_);      Append.append(", ");
+      builder.Append(this.booleanSeqTest);      builder.Append(", ");
       builder.Append("nestedSeqTest=");
-      builder.Append(this.nestedSeqTest_);      Append.append(", ");
+      builder.Append(this.nestedSeqTest);      builder.Append(", ");
       builder.Append("enumSeqTest=");
-      builder.Append(this.enumSeqTest_);      Append.append(", ");
+      builder.Append(this.enumSeqTest);      builder.Append(", ");
       builder.Append("stringSeqTest=");
-      builder.Append(this.stringSeqTest_);
+      builder.Append(this.stringSeqTest);
       builder.Append("}");
       return builder.ToString();
    }

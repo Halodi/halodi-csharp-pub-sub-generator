@@ -12,7 +12,7 @@ namespace test
 */
 public class FooAppearanceDefinitionMessagePubSubType : Halodi.CDR.TopicDataType<test.FooAppearanceDefinitionMessage>
 {
-   public const string name = "test::FooAppearanceDefinitionMessage";
+   public override string Name => "test::FooAppearanceDefinitionMessage";
 
 
    
@@ -86,12 +86,11 @@ public class FooAppearanceDefinitionMessagePubSubType : Halodi.CDR.TopicDataType
    }
 
 
+    public static void Copy(test.FooAppearanceDefinitionMessage src, test.FooAppearanceDefinitionMessage target)
+    {
+        target.Set(src);
+    }
 
-   public override string getName()
-   {
-      return name;
-   }
-   
 
 }
 

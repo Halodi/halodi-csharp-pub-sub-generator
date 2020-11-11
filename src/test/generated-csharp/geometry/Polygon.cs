@@ -11,8 +11,14 @@ public class Polygon
 
    public void set(Polygon other)
    {
-      points.set(other.points);
-   }
+
+
+      points = new System.Collections.Generic.List<geometry.Vector>(other.points.Count);
+      for(int i4 = 0; i4 < other.points.Count; i4++)
+      {
+      	geometry.Vector newElement = new geometry.VectorPubSubType.Create();
+         geometry.VectorPubSubType.Copy(other.points, newElement);
+         points.Add(newElement);}   }
 
 
    public override string ToString()
@@ -22,7 +28,7 @@ public class Polygon
 
       builder.Append("Polygon {");
       builder.Append("points=");
-      builder.Append(this.points_);
+      builder.Append(this.points);
       builder.Append("}");
       return builder.ToString();
    }

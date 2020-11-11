@@ -29,9 +29,9 @@ public class StatusMessage
 
       builder.Append("StatusMessage {");
       builder.Append("sequence_id=");
-      builder.Append(this.sequence_id_);      Append.append(", ");
+      builder.Append(this.sequence_id);      builder.Append(", ");
       builder.Append("pause=");
-      builder.Append(this.pause_);
+      builder.Append(this.pause);
       builder.Append("}");
       return builder.ToString();
    }

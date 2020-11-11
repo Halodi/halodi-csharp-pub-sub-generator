@@ -11,9 +11,9 @@ public class Triangle
 
    public void set(Triangle other)
    {
-      for(int i3 = 0; i3 < points.length; ++i3)
+      for(int i5 = 0; i5 < points.Length; ++i5)
       {
-            geometry.VectorPubSubType.staticCopy(other.points[i3], points[i3]);}
+            geometry.VectorPubSubType.Copy(other.points[i5], points[i5]);}
    }
 
 
@@ -24,7 +24,9 @@ public class Triangle
 
       builder.Append("Triangle {");
       builder.Append("points=");
-      builder.Append(java.util.Arrays.toString(this.points_));
+	  builder.Append("[");
+      builder.Append(System.String.Join(",", this.points));
+      builder.Append("]");
       builder.Append("}");
       return builder.ToString();
    }

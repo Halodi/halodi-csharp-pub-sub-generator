@@ -12,7 +12,7 @@ namespace test
 */
 public class FooJointDefinitionPubSubType : Halodi.CDR.TopicDataType<test.FooJointDefinition>
 {
-   public const string name = "test::FooJointDefinition";
+   public override string Name => "test::FooJointDefinition";
 
 
    
@@ -71,12 +71,11 @@ public class FooJointDefinitionPubSubType : Halodi.CDR.TopicDataType<test.FooJoi
    }
 
 
+    public static void Copy(test.FooJointDefinition src, test.FooJointDefinition target)
+    {
+        target.Set(src);
+    }
 
-   public override string getName()
-   {
-      return name;
-   }
-   
 
 }
 

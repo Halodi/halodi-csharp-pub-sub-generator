@@ -57,9 +57,11 @@ $elseif(member.typecode.isType_d)$
 $elseif(member.typecode.isType_f)$
       $array_copy(ctx=ctx, typecodeArr=member.typecode, data=[member.name], other=["other.", member.name], loopvar=ctx.nextLoopVarName, dimensions=member.typecode.dimensions)$
 $elseif(member.typecode.isType_a)$
-      $member.typecode.pubsubTypename$.staticCopy(other.$member.name$, $member.name$);
+      $member.typecode.pubsubTypename$.Copy(other.$member.name$, $member.name$);
+$elseif(member.typecode.isType_e)$
+      $sequence_copy(ctx=ctx, typecodeArr=member.typecode, data=[member.name], other=["other.", member.name], loopvar=ctx.nextLoopVarName)$
 $else$
-      $member.name$.set(other.$member.name$);
+      $member.name$ = other.$member.name$;
 $endif$
 }; separator="\n"$
    }
@@ -75,14 +77,18 @@ $struct.members : { member |
       builder.Append("$member.name$=");
 $if(member.typecode.isType_f)$
 $if(first(rest(member.typecode.dimensions)))$
-      builder.Append(java.util.Arrays.deepToString(this.$member.name$_));
+      builder.Append("[");
+      builder.Append(System.String.Join(",", this.$member.name$));
+      builder.Append("]");
 $else$
-      builder.Append(java.util.Arrays.toString(this.$member.name$_));
+	  builder.Append("[");
+      builder.Append(System.String.Join(",", this.$member.name$));
+      builder.Append("]");
 $endif$
 $else$
-      builder.Append(this.$member.name$_);
+      builder.Append(this.$member.name$);
 $endif$
-}; separator="      Append.append(\", \");\n"$
+}; separator="      builder.Append(\", \");\n"$
       builder.Append("}");
       return builder.ToString();
    }

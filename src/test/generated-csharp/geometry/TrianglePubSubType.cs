@@ -12,7 +12,7 @@ namespace geometry
 */
 public class TrianglePubSubType : Halodi.CDR.TopicDataType<geometry.Triangle>
 {
-   public const string name = "geometry::Triangle";
+   public override string Name => "geometry::Triangle";
 
 
    
@@ -70,12 +70,11 @@ public class TrianglePubSubType : Halodi.CDR.TopicDataType<geometry.Triangle>
    }
 
 
+    public static void Copy(geometry.Triangle src, geometry.Triangle target)
+    {
+        target.Set(src);
+    }
 
-   public override string getName()
-   {
-      return name;
-   }
-   
 
 }
 

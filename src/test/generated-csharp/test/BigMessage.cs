@@ -14,7 +14,14 @@ public class BigMessage
    {
       id = other.id;
 
-      largeSequence.set(other.largeSequence);
+
+
+      largeSequence = new System.Collections.Generic.List<test.IDLSubmessage>(other.largeSequence.Count);
+      for(int i1 = 0; i1 < other.largeSequence.Count; i1++)
+      {
+      	test.IDLSubmessage newElement = new test.IDLSubmessagePubSubType.Create();
+         test.IDLSubmessagePubSubType.Copy(other.largeSequence, newElement);
+         largeSequence.Add(newElement);}
    }
 
 
@@ -25,9 +32,9 @@ public class BigMessage
 
       builder.Append("BigMessage {");
       builder.Append("id=");
-      builder.Append(this.id_);      Append.append(", ");
+      builder.Append(this.id);      builder.Append(", ");
       builder.Append("largeSequence=");
-      builder.Append(this.largeSequence_);
+      builder.Append(this.largeSequence);
       builder.Append("}");
       return builder.ToString();
    }

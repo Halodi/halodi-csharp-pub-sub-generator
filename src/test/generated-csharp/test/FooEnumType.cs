@@ -14,7 +14,13 @@ public class FooEnumType
    {
       name = other.name;
 
-      enumValues.set(other.enumValues);
+
+
+      enumValues = new System.Collections.Generic.List<string>(other.enumValues.Count);
+      for(int i3 = 0; i3 < other.enumValues.Count; i3++)
+      {
+         enumValues.Add(other.enumValues[i3]);
+      }
    }
 
 
@@ -25,9 +31,9 @@ public class FooEnumType
 
       builder.Append("FooEnumType {");
       builder.Append("name=");
-      builder.Append(this.name_);      Append.append(", ");
+      builder.Append(this.name);      builder.Append(", ");
       builder.Append("enumValues=");
-      builder.Append(this.enumValues_);
+      builder.Append(this.enumValues);
       builder.Append("}");
       return builder.ToString();
    }

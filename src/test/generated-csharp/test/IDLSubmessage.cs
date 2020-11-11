@@ -56,13 +56,13 @@ public class IDLSubmessage
 
       builder.Append("IDLSubmessage {");
       builder.Append("num=");
-      builder.Append(this.num_);      Append.append(", ");
+      builder.Append(this.num);      builder.Append(", ");
       builder.Append("no_default_with_doc=");
-      builder.Append(this.no_default_with_doc_);      Append.append(", ");
+      builder.Append(this.no_default_with_doc);      builder.Append(", ");
       builder.Append("no_doc_num=");
-      builder.Append(this.no_doc_num_);      Append.append(", ");
+      builder.Append(this.no_doc_num);      builder.Append(", ");
       builder.Append("hello=");
-      builder.Append(this.hello_);
+      builder.Append(this.hello);
       builder.Append("}");
       return builder.ToString();
    }

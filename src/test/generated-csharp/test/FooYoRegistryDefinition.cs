@@ -26,9 +26,9 @@ public class FooYoRegistryDefinition
 
       builder.Append("FooYoRegistryDefinition {");
       builder.Append("parent=");
-      builder.Append(this.parent_);      Append.append(", ");
+      builder.Append(this.parent);      builder.Append(", ");
       builder.Append("name=");
-      builder.Append(this.name_);
+      builder.Append(this.name);
       builder.Append("}");
       return builder.ToString();
    }

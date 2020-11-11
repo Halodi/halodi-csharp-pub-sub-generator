@@ -12,7 +12,7 @@ namespace test
 */
 public class FooYoVariableDefinitionPubSubType : Halodi.CDR.TopicDataType<test.FooYoVariableDefinition>
 {
-   public const string name = "test::FooYoVariableDefinition";
+   public override string Name => "test::FooYoVariableDefinition";
 
 
    
@@ -126,12 +126,11 @@ public class FooYoVariableDefinitionPubSubType : Halodi.CDR.TopicDataType<test.F
    }
 
 
+    public static void Copy(test.FooYoVariableDefinition src, test.FooYoVariableDefinition target)
+    {
+        target.Set(src);
+    }
 
-   public override string getName()
-   {
-      return name;
-   }
-   
 
 }
 

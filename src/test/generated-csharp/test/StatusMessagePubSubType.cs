@@ -12,7 +12,7 @@ namespace test
 */
 public class StatusMessagePubSubType : Halodi.CDR.TopicDataType<test.StatusMessage>
 {
-   public const string name = "test::StatusMessage";
+   public override string Name => "test::StatusMessage";
 
 
    
@@ -72,12 +72,11 @@ public class StatusMessagePubSubType : Halodi.CDR.TopicDataType<test.StatusMessa
    }
 
 
+    public static void Copy(test.StatusMessage src, test.StatusMessage target)
+    {
+        target.Set(src);
+    }
 
-   public override string getName()
-   {
-      return name;
-   }
-   
 
 }
 

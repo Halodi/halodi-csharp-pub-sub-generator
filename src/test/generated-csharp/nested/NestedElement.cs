@@ -26,9 +26,9 @@ public class NestedElement
 
       builder.Append("NestedElement {");
       builder.Append("stringTest=");
-      builder.Append(this.stringTest_);      Append.append(", ");
+      builder.Append(this.stringTest);      builder.Append(", ");
       builder.Append("longTest=");
-      builder.Append(this.longTest_);
+      builder.Append(this.longTest);
       builder.Append("}");
       return builder.ToString();
    }

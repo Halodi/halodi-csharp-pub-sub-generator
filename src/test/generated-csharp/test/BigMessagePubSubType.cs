@@ -12,7 +12,7 @@ namespace test
 */
 public class BigMessagePubSubType : Halodi.CDR.TopicDataType<test.BigMessage>
 {
-   public const string name = "test::BigMessage";
+   public override string Name => "test::BigMessage";
 
 
    
@@ -77,7 +77,9 @@ public class BigMessagePubSubType : Halodi.CDR.TopicDataType<test.BigMessage>
       data.largeSequence = new System.Collections.Generic.List<test.IDLSubmessage>(largeSequence_length);
       for(int i = 0; i < largeSequence_length; i++)
       {
-      	test.IDLSubmessagePubSubType.read(data.largeSequence, cdr);	
+      	test.IDLSubmessage new_largeSequence = test.IDLSubmessagePubSubType.Create(); 
+      	test.IDLSubmessagePubSubType.read(new_largeSequence, cdr);
+      	data.largeSequence.Add(new_largeSequence);	
       	
       }
 
@@ -86,12 +88,11 @@ public class BigMessagePubSubType : Halodi.CDR.TopicDataType<test.BigMessage>
    }
 
 
+    public static void Copy(test.BigMessage src, test.BigMessage target)
+    {
+        target.Set(src);
+    }
 
-   public override string getName()
-   {
-      return name;
-   }
-   
 
 }
 

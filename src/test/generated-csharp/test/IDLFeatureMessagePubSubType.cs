@@ -12,7 +12,7 @@ namespace test
 */
 public class IDLFeatureMessagePubSubType : Halodi.CDR.TopicDataType<test.IDLFeatureMessage>
 {
-   public const string name = "test::IDLFeatureMessage";
+   public override string Name => "test::IDLFeatureMessage";
 
 
    
@@ -161,6 +161,7 @@ public class IDLFeatureMessagePubSubType : Halodi.CDR.TopicDataType<test.IDLFeat
       	
       data.hello=cdr.read_type_2();
       	
+      data.num1 = test.IDLSubmessagePubSubType.Create();
       test.IDLSubmessagePubSubType.read(data.num1, cdr);
       	
 
@@ -168,7 +169,9 @@ public class IDLFeatureMessagePubSubType : Halodi.CDR.TopicDataType<test.IDLFeat
       data.num2 = new System.Collections.Generic.List<test.IDLSubmessage>(num2_length);
       for(int i = 0; i < num2_length; i++)
       {
-      	test.IDLSubmessagePubSubType.read(data.num2, cdr);	
+      	test.IDLSubmessage new_num2 = test.IDLSubmessagePubSubType.Create(); 
+      	test.IDLSubmessagePubSubType.read(new_num2, cdr);
+      	data.num2.Add(new_num2);	
       	
       }
 
@@ -183,7 +186,9 @@ public class IDLFeatureMessagePubSubType : Halodi.CDR.TopicDataType<test.IDLFeat
       data.num4 = new System.Collections.Generic.List<test.IDLSubmessage>(num4_length);
       for(int i = 0; i < num4_length; i++)
       {
-      	test.IDLSubmessagePubSubType.read(data.num4, cdr);	
+      	test.IDLSubmessage new_num4 = test.IDLSubmessagePubSubType.Create(); 
+      	test.IDLSubmessagePubSubType.read(new_num4, cdr);
+      	data.num4.Add(new_num4);	
       	
       }
 
@@ -224,12 +229,11 @@ public class IDLFeatureMessagePubSubType : Halodi.CDR.TopicDataType<test.IDLFeat
    }
 
 
+    public static void Copy(test.IDLFeatureMessage src, test.IDLFeatureMessage target)
+    {
+        target.Set(src);
+    }
 
-   public override string getName()
-   {
-      return name;
-   }
-   
 
 }
 
