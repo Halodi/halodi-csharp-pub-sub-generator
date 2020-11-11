@@ -106,25 +106,49 @@ public class IDLFeatureMessagePubSubType : Halodi.CDR.TopicDataType<test.IDLFeat
       cdr.write_type_2(data.hello);
 
       test.IDLSubmessagePubSubType.write(data.num1, cdr);
-      cdr.write_type_e(data.num2);
 
+
+      	int num2_length = data.num2.Count;
+            cdr.write_type_2(num2_length);
+            for (int i0 = 0; i0 < num2_length; i0++)
+            {
+      			test.IDLSubmessagePubSubType.write(data.num2[i0], cdr);	      }
       for(int i0 = 0; i0 < data.num3.length; ++i0)
       {
         	test.IDLSubmessagePubSubType.write(data.num3[i0], cdr);		
       }
 
-      cdr.write_type_e(data.num4);
 
+      	int num4_length = data.num4.Count;
+            cdr.write_type_2(num4_length);
+            for (int i0 = 0; i0 < num4_length; i0++)
+            {
+      			test.IDLSubmessagePubSubType.write(data.num4[i0], cdr);	      }
       cdr.write_type_d(data.str1);
 
       cdr.write_type_d(data.str2);
 
-      cdr.write_type_e(data.str3);
 
-      cdr.write_type_e(data.str4);
+      	int str3_length = data.str3.Count;
+            cdr.write_type_2(str3_length);
+            for (int i0 = 0; i0 < str3_length; i0++)
+            {
+      			cdr.write_type_d(data.str3[i0]);
+            }
 
-      cdr.write_type_e(data.str5);
+      	int str4_length = data.str4.Count;
+            cdr.write_type_2(str4_length);
+            for (int i0 = 0; i0 < str4_length; i0++)
+            {
+      			cdr.write_type_d(data.str4[i0]);
+            }
 
+      	int str5_length = data.str5.Count;
+            cdr.write_type_2(str5_length);
+            for (int i0 = 0; i0 < str5_length; i0++)
+            {
+      			cdr.write_type_d(data.str5[i0]);
+            }
    }
 
    public static void read(test.IDLFeatureMessage data, Halodi.CDR.CDRDeserializer cdr)
@@ -147,8 +171,9 @@ public class IDLFeatureMessagePubSubType : Halodi.CDR.TopicDataType<test.IDLFeat
       	test.IDLSubmessagePubSubType.read(data.num2, cdr);	
       	
       }
+
       	
-      for(int i0 = 0; i0 < data.num3.length; ++i0)
+      for(int i0 = 0; i0 < data.num3.Length; ++i0)
       {
         	test.IDLSubmessagePubSubType.read(data.num3[i0], cdr);	
       }
@@ -161,9 +186,10 @@ public class IDLFeatureMessagePubSubType : Halodi.CDR.TopicDataType<test.IDLFeat
       	test.IDLSubmessagePubSubType.read(data.num4, cdr);	
       	
       }
+
       	
-      cdr.read_type_d(data.str1);	
-      cdr.read_type_d(data.str2);	
+      data.str1 = cdr.read_type_d();	
+      data.str2 = cdr.read_type_d();	
 
       int str3_length = cdr.read_type_2();
       data.str3 = new System.Collections.Generic.List<string>(str3_length);
@@ -172,6 +198,7 @@ public class IDLFeatureMessagePubSubType : Halodi.CDR.TopicDataType<test.IDLFeat
       	data.str3.Add(cdr.read_type_d());	
       	
       }
+
       	
 
       int str4_length = cdr.read_type_2();
@@ -181,6 +208,7 @@ public class IDLFeatureMessagePubSubType : Halodi.CDR.TopicDataType<test.IDLFeat
       	data.str4.Add(cdr.read_type_d());	
       	
       }
+
       	
 
       int str5_length = cdr.read_type_2();
@@ -190,6 +218,7 @@ public class IDLFeatureMessagePubSubType : Halodi.CDR.TopicDataType<test.IDLFeat
       	data.str5.Add(cdr.read_type_d());	
       	
       }
+
       	
 
    }

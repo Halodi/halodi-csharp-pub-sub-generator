@@ -69,8 +69,8 @@ public class ChatMessagePubSubType : Halodi.CDR.TopicDataType<chat.ChatMessage>
    {
       data.key=cdr.read_type_2();
       	
-      cdr.read_type_d(data.sender);	
-      cdr.read_type_d(data.msg);	
+      data.sender = cdr.read_type_d();	
+      data.msg = cdr.read_type_d();	
 
    }
 

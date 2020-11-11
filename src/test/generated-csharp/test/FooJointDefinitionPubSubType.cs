@@ -64,7 +64,7 @@ public class FooJointDefinitionPubSubType : Halodi.CDR.TopicDataType<test.FooJoi
 
    public static void read(test.FooJointDefinition data, Halodi.CDR.CDRDeserializer cdr)
    {
-      cdr.read_type_d(data.name);	
+      data.name = cdr.read_type_d();	
       data.type = (test.FooJointType) cdr.read_type_c();
       	
 

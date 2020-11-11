@@ -87,19 +87,44 @@ public class FooHandshakePubSubType : Halodi.CDR.TopicDataType<test.FooHandshake
    {
       cdr.write_type_6(data.dt);
 
-      cdr.write_type_e(data.registries);
 
-      cdr.write_type_e(data.variables);
+      	int registries_length = data.registries.Count;
+            cdr.write_type_2(registries_length);
+            for (int i0 = 0; i0 < registries_length; i0++)
+            {
+      			test.FooYoRegistryDefinitionPubSubType.write(data.registries[i0], cdr);	      }
 
-      cdr.write_type_e(data.joints);
+      	int variables_length = data.variables.Count;
+            cdr.write_type_2(variables_length);
+            for (int i0 = 0; i0 < variables_length; i0++)
+            {
+      			test.FooYoVariableDefinitionPubSubType.write(data.variables[i0], cdr);	      }
 
-      cdr.write_type_e(data.graphicObjects);
+      	int joints_length = data.joints.Count;
+            cdr.write_type_2(joints_length);
+            for (int i0 = 0; i0 < joints_length; i0++)
+            {
+      			test.FooJointDefinitionPubSubType.write(data.joints[i0], cdr);	      }
 
-      cdr.write_type_e(data.artifacts);
+      	int graphicObjects_length = data.graphicObjects.Count;
+            cdr.write_type_2(graphicObjects_length);
+            for (int i0 = 0; i0 < graphicObjects_length; i0++)
+            {
+      			test.FooGraphicObjectMessagePubSubType.write(data.graphicObjects[i0], cdr);	      }
 
-      cdr.write_type_e(data.enumTypes);
+      	int artifacts_length = data.artifacts.Count;
+            cdr.write_type_2(artifacts_length);
+            for (int i0 = 0; i0 < artifacts_length; i0++)
+            {
+      			test.FooGraphicObjectMessagePubSubType.write(data.artifacts[i0], cdr);	      }
 
+      	int enumTypes_length = data.enumTypes.Count;
+            cdr.write_type_2(enumTypes_length);
+            for (int i0 = 0; i0 < enumTypes_length; i0++)
+            {
+      			test.FooEnumTypePubSubType.write(data.enumTypes[i0], cdr);	      }
       test.FooSummaryPubSubType.write(data.summary, cdr);
+
    }
 
    public static void read(test.FooHandshake data, Halodi.CDR.CDRDeserializer cdr)
@@ -114,6 +139,7 @@ public class FooHandshakePubSubType : Halodi.CDR.TopicDataType<test.FooHandshake
       	test.FooYoRegistryDefinitionPubSubType.read(data.registries, cdr);	
       	
       }
+
       	
 
       int variables_length = cdr.read_type_2();
@@ -123,6 +149,7 @@ public class FooHandshakePubSubType : Halodi.CDR.TopicDataType<test.FooHandshake
       	test.FooYoVariableDefinitionPubSubType.read(data.variables, cdr);	
       	
       }
+
       	
 
       int joints_length = cdr.read_type_2();
@@ -132,6 +159,7 @@ public class FooHandshakePubSubType : Halodi.CDR.TopicDataType<test.FooHandshake
       	test.FooJointDefinitionPubSubType.read(data.joints, cdr);	
       	
       }
+
       	
 
       int graphicObjects_length = cdr.read_type_2();
@@ -141,6 +169,7 @@ public class FooHandshakePubSubType : Halodi.CDR.TopicDataType<test.FooHandshake
       	test.FooGraphicObjectMessagePubSubType.read(data.graphicObjects, cdr);	
       	
       }
+
       	
 
       int artifacts_length = cdr.read_type_2();
@@ -150,6 +179,7 @@ public class FooHandshakePubSubType : Halodi.CDR.TopicDataType<test.FooHandshake
       	test.FooGraphicObjectMessagePubSubType.read(data.artifacts, cdr);	
       	
       }
+
       	
 
       int enumTypes_length = cdr.read_type_2();
@@ -159,6 +189,7 @@ public class FooHandshakePubSubType : Halodi.CDR.TopicDataType<test.FooHandshake
       	test.FooEnumTypePubSubType.read(data.enumTypes, cdr);	
       	
       }
+
       	
       test.FooSummaryPubSubType.read(data.summary, cdr);
       	

@@ -197,6 +197,7 @@ public class IDLElementTestPubSubType : Halodi.CDR.TopicDataType<test.IDLElement
 
 
       nested.NestedElementPubSubType.write(data.nestedElementTest, cdr);
+
       cdr.write_type_d(data.stringTest);
 
       for(int i0 = 0; i0 < data.longArray.length; ++i0)
@@ -226,36 +227,111 @@ public class IDLElementTestPubSubType : Halodi.CDR.TopicDataType<test.IDLElement
         	
       }
 
-      cdr.write_type_e(data.charSeqTest);
 
-      cdr.write_type_e(data.wcharSeqTest);
+      	int charSeqTest_length = data.charSeqTest.Count;
+            cdr.write_type_2(charSeqTest_length);
+            for (int i0 = 0; i0 < charSeqTest_length; i0++)
+            {
+      			cdr.write_type_8(data.charSeqTest[i0]);
+            }
 
-      cdr.write_type_e(data.octetSeqTest);
+      	int wcharSeqTest_length = data.wcharSeqTest.Count;
+            cdr.write_type_2(wcharSeqTest_length);
+            for (int i0 = 0; i0 < wcharSeqTest_length; i0++)
+            {
+      			cdr.write_type_14(data.wcharSeqTest[i0]);
+            }
 
-      cdr.write_type_e(data.shortSeqTest);
+      	int octetSeqTest_length = data.octetSeqTest.Count;
+            cdr.write_type_2(octetSeqTest_length);
+            for (int i0 = 0; i0 < octetSeqTest_length; i0++)
+            {
+      			cdr.write_type_9(data.octetSeqTest[i0]);
+            }
 
-      cdr.write_type_e(data.ushortSeqTest);
+      	int shortSeqTest_length = data.shortSeqTest.Count;
+            cdr.write_type_2(shortSeqTest_length);
+            for (int i0 = 0; i0 < shortSeqTest_length; i0++)
+            {
+      			cdr.write_type_1(data.shortSeqTest[i0]);
+            }
 
-      cdr.write_type_e(data.longSeqTest);
+      	int ushortSeqTest_length = data.ushortSeqTest.Count;
+            cdr.write_type_2(ushortSeqTest_length);
+            for (int i0 = 0; i0 < ushortSeqTest_length; i0++)
+            {
+      			cdr.write_type_3(data.ushortSeqTest[i0]);
+            }
 
-      cdr.write_type_e(data.ulongSeqTest);
+      	int longSeqTest_length = data.longSeqTest.Count;
+            cdr.write_type_2(longSeqTest_length);
+            for (int i0 = 0; i0 < longSeqTest_length; i0++)
+            {
+      			cdr.write_type_2(data.longSeqTest[i0]);
+            }
 
-      cdr.write_type_e(data.longlongSeqtest);
+      	int ulongSeqTest_length = data.ulongSeqTest.Count;
+            cdr.write_type_2(ulongSeqTest_length);
+            for (int i0 = 0; i0 < ulongSeqTest_length; i0++)
+            {
+      			cdr.write_type_4(data.ulongSeqTest[i0]);
+            }
 
-      cdr.write_type_e(data.ulonglongSeqTest);
+      	int longlongSeqtest_length = data.longlongSeqtest.Count;
+            cdr.write_type_2(longlongSeqtest_length);
+            for (int i0 = 0; i0 < longlongSeqtest_length; i0++)
+            {
+      			cdr.write_type_11(data.longlongSeqtest[i0]);
+            }
 
-      cdr.write_type_e(data.floatSeqTest);
+      	int ulonglongSeqTest_length = data.ulonglongSeqTest.Count;
+            cdr.write_type_2(ulonglongSeqTest_length);
+            for (int i0 = 0; i0 < ulonglongSeqTest_length; i0++)
+            {
+      			cdr.write_type_12(data.ulonglongSeqTest[i0]);
+            }
 
-      cdr.write_type_e(data.doubleSeqTest);
+      	int floatSeqTest_length = data.floatSeqTest.Count;
+            cdr.write_type_2(floatSeqTest_length);
+            for (int i0 = 0; i0 < floatSeqTest_length; i0++)
+            {
+      			cdr.write_type_5(data.floatSeqTest[i0]);
+            }
 
-      cdr.write_type_e(data.booleanSeqTest);
+      	int doubleSeqTest_length = data.doubleSeqTest.Count;
+            cdr.write_type_2(doubleSeqTest_length);
+            for (int i0 = 0; i0 < doubleSeqTest_length; i0++)
+            {
+      			cdr.write_type_6(data.doubleSeqTest[i0]);
+            }
 
-      cdr.write_type_e(data.nestedSeqTest);
+      	int booleanSeqTest_length = data.booleanSeqTest.Count;
+            cdr.write_type_2(booleanSeqTest_length);
+            for (int i0 = 0; i0 < booleanSeqTest_length; i0++)
+            {
+      			cdr.write_type_7(data.booleanSeqTest[i0]);
+            }
 
-      cdr.write_type_e(data.enumSeqTest);
+      	int nestedSeqTest_length = data.nestedSeqTest.Count;
+            cdr.write_type_2(nestedSeqTest_length);
+            for (int i0 = 0; i0 < nestedSeqTest_length; i0++)
+            {
+      			nested.NestedElementPubSubType.write(data.nestedSeqTest[i0], cdr);	      }
 
-      cdr.write_type_e(data.stringSeqTest);
+      	int enumSeqTest_length = data.enumSeqTest.Count;
+            cdr.write_type_2(enumSeqTest_length);
+            for (int i0 = 0; i0 < enumSeqTest_length; i0++)
+            {
+      	   		cdr.write_type_c(data.enumSeqTest[i0].ordinal());
 
+            }
+
+      	int stringSeqTest_length = data.stringSeqTest.Count;
+            cdr.write_type_2(stringSeqTest_length);
+            for (int i0 = 0; i0 < stringSeqTest_length; i0++)
+            {
+      			cdr.write_type_d(data.stringSeqTest[i0]);
+            }
    }
 
    public static void read(test.IDLElementTest data, Halodi.CDR.CDRDeserializer cdr)
@@ -288,27 +364,27 @@ public class IDLElementTestPubSubType : Halodi.CDR.TopicDataType<test.IDLElement
       	
       nested.NestedElementPubSubType.read(data.nestedElementTest, cdr);
       	
-      cdr.read_type_d(data.stringTest);	
-      for(int i0 = 0; i0 < data.longArray.length; ++i0)
+      data.stringTest = cdr.read_type_d();	
+      for(int i0 = 0; i0 < data.longArray.Length; ++i0)
       {
         	data.longArray[i0] = cdr.read_type_2();
         	
       }
       	
-      for(int i0 = 0; i0 < data.nestedArray.length; ++i0)
+      for(int i0 = 0; i0 < data.nestedArray.Length; ++i0)
       {
-        for(int i1 = 0; i1 < data.nestedArray[i0].length; ++i1)
+        for(int i1 = 0; i1 < data.nestedArray[i0].Length; ++i1)
         {
           	nested.NestedElementPubSubType.read(data.nestedArray[i0][i1], cdr);	
         }
       }
       	
-      for(int i0 = 0; i0 < data.stringArray.length; ++i0)
+      for(int i0 = 0; i0 < data.stringArray.Length; ++i0)
       {
         	data.stringArray[i0].Add(cdr.read_type_d());	
       }
       	
-      for(int i0 = 0; i0 < data.enumArray.length; ++i0)
+      for(int i0 = 0; i0 < data.enumArray.Length; ++i0)
       {
            int ordinal = cdr.read_type_c();
            if (ordinal < 0)
@@ -326,6 +402,7 @@ public class IDLElementTestPubSubType : Halodi.CDR.TopicDataType<test.IDLElement
       	
       	
       }
+
       	
 
       int wcharSeqTest_length = cdr.read_type_2();
@@ -336,6 +413,7 @@ public class IDLElementTestPubSubType : Halodi.CDR.TopicDataType<test.IDLElement
       	
       	
       }
+
       	
 
       int octetSeqTest_length = cdr.read_type_2();
@@ -346,6 +424,7 @@ public class IDLElementTestPubSubType : Halodi.CDR.TopicDataType<test.IDLElement
       	
       	
       }
+
       	
 
       int shortSeqTest_length = cdr.read_type_2();
@@ -356,6 +435,7 @@ public class IDLElementTestPubSubType : Halodi.CDR.TopicDataType<test.IDLElement
       	
       	
       }
+
       	
 
       int ushortSeqTest_length = cdr.read_type_2();
@@ -366,6 +446,7 @@ public class IDLElementTestPubSubType : Halodi.CDR.TopicDataType<test.IDLElement
       	
       	
       }
+
       	
 
       int longSeqTest_length = cdr.read_type_2();
@@ -376,6 +457,7 @@ public class IDLElementTestPubSubType : Halodi.CDR.TopicDataType<test.IDLElement
       	
       	
       }
+
       	
 
       int ulongSeqTest_length = cdr.read_type_2();
@@ -386,6 +468,7 @@ public class IDLElementTestPubSubType : Halodi.CDR.TopicDataType<test.IDLElement
       	
       	
       }
+
       	
 
       int longlongSeqtest_length = cdr.read_type_2();
@@ -396,6 +479,7 @@ public class IDLElementTestPubSubType : Halodi.CDR.TopicDataType<test.IDLElement
       	
       	
       }
+
       	
 
       int ulonglongSeqTest_length = cdr.read_type_2();
@@ -406,6 +490,7 @@ public class IDLElementTestPubSubType : Halodi.CDR.TopicDataType<test.IDLElement
       	
       	
       }
+
       	
 
       int floatSeqTest_length = cdr.read_type_2();
@@ -416,6 +501,7 @@ public class IDLElementTestPubSubType : Halodi.CDR.TopicDataType<test.IDLElement
       	
       	
       }
+
       	
 
       int doubleSeqTest_length = cdr.read_type_2();
@@ -426,6 +512,7 @@ public class IDLElementTestPubSubType : Halodi.CDR.TopicDataType<test.IDLElement
       	
       	
       }
+
       	
 
       int booleanSeqTest_length = cdr.read_type_2();
@@ -436,6 +523,7 @@ public class IDLElementTestPubSubType : Halodi.CDR.TopicDataType<test.IDLElement
       	
       	
       }
+
       	
 
       int nestedSeqTest_length = cdr.read_type_2();
@@ -445,6 +533,7 @@ public class IDLElementTestPubSubType : Halodi.CDR.TopicDataType<test.IDLElement
       	nested.NestedElementPubSubType.read(data.nestedSeqTest, cdr);	
       	
       }
+
       	
 
       int enumSeqTest_length = cdr.read_type_2();
@@ -458,6 +547,7 @@ public class IDLElementTestPubSubType : Halodi.CDR.TopicDataType<test.IDLElement
       	
       	
       }
+
       	
 
       int stringSeqTest_length = cdr.read_type_2();
@@ -467,6 +557,7 @@ public class IDLElementTestPubSubType : Halodi.CDR.TopicDataType<test.IDLElement
       	data.stringSeqTest.Add(cdr.read_type_d());	
       	
       }
+
       	
 
    }

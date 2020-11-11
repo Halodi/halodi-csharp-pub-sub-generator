@@ -63,7 +63,7 @@ public class NestedElementPubSubType : Halodi.CDR.TopicDataType<nested.NestedEle
 
    public static void read(nested.NestedElement data, Halodi.CDR.CDRDeserializer cdr)
    {
-      cdr.read_type_d(data.stringTest);	
+      data.stringTest = cdr.read_type_d();	
       data.longTest=cdr.read_type_2();
       	
 

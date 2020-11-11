@@ -62,6 +62,7 @@ public class BoxPubSubType : Halodi.CDR.TopicDataType<geometry.Box>
    public static void write(geometry.Box data, Halodi.CDR.CDRSerializer cdr)
    {
       geometry.VectorPubSubType.write(data.center, cdr);
+
       cdr.write_type_6(data.w);
 
       cdr.write_type_6(data.l);

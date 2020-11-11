@@ -61,7 +61,7 @@ public class TrianglePubSubType : Halodi.CDR.TopicDataType<geometry.Triangle>
 
    public static void read(geometry.Triangle data, Halodi.CDR.CDRDeserializer cdr)
    {
-      for(int i0 = 0; i0 < data.points.length; ++i0)
+      for(int i0 = 0; i0 < data.points.Length; ++i0)
       {
         	geometry.VectorPubSubType.read(data.points[i0], cdr);	
       }

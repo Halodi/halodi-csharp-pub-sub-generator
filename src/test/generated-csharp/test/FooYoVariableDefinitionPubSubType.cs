@@ -104,8 +104,8 @@ public class FooYoVariableDefinitionPubSubType : Halodi.CDR.TopicDataType<test.F
 
    public static void read(test.FooYoVariableDefinition data, Halodi.CDR.CDRDeserializer cdr)
    {
-      cdr.read_type_d(data.name);	
-      cdr.read_type_d(data.description);	
+      data.name = cdr.read_type_d();	
+      data.description = cdr.read_type_d();	
       data.type = (test.FooYoType) cdr.read_type_c();
       	
       data.registry=cdr.read_type_3();

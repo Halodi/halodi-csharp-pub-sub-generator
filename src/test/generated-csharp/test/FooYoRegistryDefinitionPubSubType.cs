@@ -65,7 +65,7 @@ public class FooYoRegistryDefinitionPubSubType : Halodi.CDR.TopicDataType<test.F
    {
       data.parent=cdr.read_type_3();
       	
-      cdr.read_type_d(data.name);	
+      data.name = cdr.read_type_d();	
 
    }
 

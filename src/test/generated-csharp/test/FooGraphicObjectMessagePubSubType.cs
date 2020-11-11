@@ -71,11 +71,22 @@ public class FooGraphicObjectMessagePubSubType : Halodi.CDR.TopicDataType<test.F
 
       cdr.write_type_d(data.name);
 
-      cdr.write_type_e(data.yoVariableIndex);
 
-      cdr.write_type_e(data.constants);
+      	int yoVariableIndex_length = data.yoVariableIndex.Count;
+            cdr.write_type_2(yoVariableIndex_length);
+            for (int i0 = 0; i0 < yoVariableIndex_length; i0++)
+            {
+      			cdr.write_type_3(data.yoVariableIndex[i0]);
+            }
 
+      	int constants_length = data.constants.Count;
+            cdr.write_type_2(constants_length);
+            for (int i0 = 0; i0 < constants_length; i0++)
+            {
+      			cdr.write_type_6(data.constants[i0]);
+            }
       test.FooAppearanceDefinitionMessagePubSubType.write(data.appearance, cdr);
+
       cdr.write_type_d(data.listName);
 
    }
@@ -84,7 +95,7 @@ public class FooGraphicObjectMessagePubSubType : Halodi.CDR.TopicDataType<test.F
    {
       data.registrationID=cdr.read_type_2();
       	
-      cdr.read_type_d(data.name);	
+      data.name = cdr.read_type_d();	
 
       int yoVariableIndex_length = cdr.read_type_2();
       data.yoVariableIndex = new System.Collections.Generic.List<ushort>(yoVariableIndex_length);
@@ -94,6 +105,7 @@ public class FooGraphicObjectMessagePubSubType : Halodi.CDR.TopicDataType<test.F
       	
       	
       }
+
       	
 
       int constants_length = cdr.read_type_2();
@@ -104,10 +116,11 @@ public class FooGraphicObjectMessagePubSubType : Halodi.CDR.TopicDataType<test.F
       	
       	
       }
+
       	
       test.FooAppearanceDefinitionMessagePubSubType.read(data.appearance, cdr);
       	
-      cdr.read_type_d(data.listName);	
+      data.listName = cdr.read_type_d();	
 
    }
 
