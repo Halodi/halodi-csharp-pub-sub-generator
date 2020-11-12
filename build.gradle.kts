@@ -7,7 +7,7 @@ plugins {
 
 ihmc {
    group = "com.halodi"
-   version = "0.1"
+   version = "0.1.1"
    vcsUrl = "https://github.com/Halodi/halodi-csharp-pub-sub-generator"
    openSource = true
 

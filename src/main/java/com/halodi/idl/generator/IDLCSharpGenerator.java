@@ -158,6 +158,9 @@ public class IDLCSharpGenerator
       AnnotationDeclaration topicann = context.createAnnotationDeclaration("Topic", null);
       topicann.addMember(new AnnotationMember("value", new PrimitiveTypeCode(TypeCode.KIND_BOOLEAN), "true"));
 
+      AnnotationDeclaration abstractann = context.createAnnotationDeclaration("Abstract", null);
+      abstractann.addMember(new AnnotationMember("type", new PrimitiveTypeCode(TypeCode.KIND_STRING), "java.lang.Object"));
+      abstractann.addMember(new AnnotationMember("impl", new PrimitiveTypeCode(TypeCode.KIND_STRING), ""));
 
       AnnotationDeclaration typecode = context.createAnnotationDeclaration("TypeCode", null);
       typecode.addMember(new AnnotationMember("type", new PrimitiveTypeCode(TypeCode.KIND_BOOLEAN), "INVALID_TYPE_CODE"));

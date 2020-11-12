@@ -106,13 +106,13 @@ class TypesGenerator
                TypeDeclaration typedecl = (TypeDeclaration) definition;
                if (typedecl.getTypeCode().getKind() == TypeCode.KIND_STRUCT)
                {
-                  boolean abstractAnnotation = typedecl.getAnnotations().containsKey("Abstract");
-                  if (abstractAnnotation)
-                  {
-                     AbstractTypeDeclaration newDeclaration = new AbstractTypeDeclaration(typedecl);
-                     definitions.set(i, newDeclaration);
-                     updatedTypes.put(typedecl.getTypeCode(), (AbstractStructTypeCode) newDeclaration.getTypeCode());
-                  }
+//                  boolean abstractAnnotation = typedecl.getAnnotations().containsKey("Abstract");
+//                  if (abstractAnnotation)
+//                  {
+//                     AbstractTypeDeclaration newDeclaration = new AbstractTypeDeclaration(typedecl);
+//                     definitions.set(i, newDeclaration);
+//                     updatedTypes.put(typedecl.getTypeCode(), (AbstractStructTypeCode) newDeclaration.getTypeCode());
+//                  }
                   members.addAll(((StructTypeCode) typedecl.getTypeCode()).getMembers());
                }
             }
