@@ -56,8 +56,6 @@ class TypesGenerator
 {
    private static final String PUB_SUB_TYPE_NAME = "PubSubType";
 
-   private final HashMap<TypeCode, AbstractStructTypeCode> updatedTypes = new HashMap<>();
-   private final ArrayList<Member> members = new ArrayList<>();
    private TemplateManager tmanager_ = null;
    private boolean replace_ = false;
 
@@ -75,8 +73,6 @@ class TypesGenerator
    {
       ArrayList<Definition> definitions = context.getDefinitions();
 
-      processAbstractDefinitions(definitions);
-
       StringTemplateGroup javaTypeTemplate = tmanager_.createStringTemplateGroup("JavaType");
       boolean returnedValue = processDefinitions(javaTypeTemplate, context, definitions, packagDir, packag, "", extensions);
       if (returnedValue)
@@ -86,61 +82,6 @@ class TypesGenerator
       }
 
       return returnedValue;
-   }
-
-   private void processAbstractDefinitions(ArrayList<Definition> definitions)
-   {
-      if (definitions != null)
-      {
-         for (int i = 0; i < definitions.size(); i++)
-         {
-            Definition definition = definitions.get(i);
-
-            if (definition.isIsModule())
-            {
-               Module module = (Module) definition;
-               processAbstractDefinitions(module.getDefinitions());
-            }
-            else if (definition.isIsTypeDeclaration())
-            {
-               TypeDeclaration typedecl = (TypeDeclaration) definition;
-               if (typedecl.getTypeCode().getKind() == TypeCode.KIND_STRUCT)
-               {
-//                  boolean abstractAnnotation = typedecl.getAnnotations().containsKey("Abstract");
-//                  if (abstractAnnotation)
-//                  {
-//                     AbstractTypeDeclaration newDeclaration = new AbstractTypeDeclaration(typedecl);
-//                     definitions.set(i, newDeclaration);
-//                     updatedTypes.put(typedecl.getTypeCode(), (AbstractStructTypeCode) newDeclaration.getTypeCode());
-//                  }
-                  members.addAll(((StructTypeCode) typedecl.getTypeCode()).getMembers());
-               }
-            }
-         }
-
-         for (Member member : members)
-         {
-            if (updatedTypes.containsKey(member.getTypecode()))
-            {
-               member.setTypecode(updatedTypes.get(member.getTypecode()));
-            }
-            else if (member.getTypecode().getKind() == TypeCode.KIND_SEQUENCE || member.getTypecode().getKind() == TypeCode.KIND_ARRAY)
-            {
-               ContainerTypeCode containerTypeCode = (ContainerTypeCode) member.getTypecode();
-               if (containerTypeCode.getContentTypeCode().getKind() == TypeCode.KIND_STRUCT)
-               {
-                  for (AbstractStructTypeCode entry : updatedTypes.values())
-                  {
-                     if (entry.getIdlTypename().equals(containerTypeCode.getContentTypeCode().getIdlTypename()))
-                     {
-                        containerTypeCode.setContentTypeCode(entry);
-                        break;
-                     }
-                  }
-               }
-            }
-         }
-      }
    }
 
    private boolean isInScope(IDLContext context, String filename)
@@ -245,11 +186,9 @@ class TypesGenerator
                if (isInScope(context, typedecl.getScopeFile()))
                {
 
-                  boolean abstractAnnotation = typedecl.getAnnotations().containsKey("Abstract");
                   boolean notEnumPubSubType = !moduleNamePostfix.equals(PUB_SUB_TYPE_NAME) || typedecl.getTypeCode().getKind() != TypeCode.KIND_ENUM;
-                  boolean notAbstractDefinition = moduleNamePostfix.equals(PUB_SUB_TYPE_NAME) || !abstractAnnotation;
 
-                  if (notEnumPubSubType && notAbstractDefinition)
+                  if (notEnumPubSubType)
                   {
                      // get StringTemplate of the structure
                      StringTemplate typest = processTypeDeclaration(stg_, context, typedecl, extensions);
