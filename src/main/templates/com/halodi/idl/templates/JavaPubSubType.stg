@@ -27,7 +27,7 @@ public class $interface.name$PubSubType
 
 struct_type(ctx, parent, struct, extension, typecode) ::= <<
 $javadocpubsub(type="struct", name=struct.name, filename=[ctx.filename, ".idl"])$
-public class $struct.name$PubSubType : Halodi.CDR.TopicDataType<$struct.javaTypename$>
+public class $struct.name$PubSubType : Halodi.CDR.TopicDataType<$struct.name$>
 {
    public override string Name => "$typecode$";
 

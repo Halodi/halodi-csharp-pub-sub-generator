@@ -29,14 +29,6 @@
 
 package com.halodi.idl.generator;
 
-import com.eprosima.idl.generator.manager.TemplateManager;
-import com.eprosima.idl.parser.tree.Module;
-import com.eprosima.idl.parser.tree.*;
-import com.eprosima.idl.parser.typecode.*;
-import com.eprosima.log.ColorMessage;
-import org.antlr.stringtemplate.StringTemplate;
-import org.antlr.stringtemplate.StringTemplateGroup;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -44,8 +36,21 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
+
+import org.antlr.stringtemplate.StringTemplate;
+import org.antlr.stringtemplate.StringTemplateGroup;
+
+import com.eprosima.idl.generator.manager.TemplateManager;
+import com.eprosima.idl.parser.tree.Definition;
+import com.eprosima.idl.parser.tree.Export;
+import com.eprosima.idl.parser.tree.Interface;
+import com.eprosima.idl.parser.tree.Module;
+import com.eprosima.idl.parser.tree.TypeDeclaration;
+import com.eprosima.idl.parser.typecode.EnumTypeCode;
+import com.eprosima.idl.parser.typecode.TypeCode;
+import com.eprosima.idl.parser.typecode.UnionTypeCode;
+import com.eprosima.log.ColorMessage;
 
 /**
  * Internal class for the code generator
